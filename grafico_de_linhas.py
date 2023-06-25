@@ -4,7 +4,7 @@ import pandas as pd
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, HoverTool
-from reorganizador import reorganiza
+from reorganizador import reorganiza, traduz_milhares
 
 
 def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título Genérico"):
@@ -15,6 +15,7 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
     '''
 
     dataframe = reorganiza(datapath, f"{column_name}", 1990, 2010)
+    # dataframe[f"{column_name}"].apply(traduz_milhares)
 
     output_file(f"{title}.html")
 
@@ -40,11 +41,9 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
 
         if country in paises_destacaveis.keys():
             line_plot.line(x="year", y="INDICE", source=country_data, color=paises_destacaveis[country], line_width=4)
-            line_plot.circle(x="year", y="INDICE", source=country_data, color=paises_destacaveis[country], size = 1)
 
         else:
             line_plot.line(x="year", y="INDICE", source=country_data, color="gray", line_width=1)
-            line_plot.circle(x="year", y="INDICE", source=country_data, color="gray", size = 1)
 
 
 
