@@ -35,5 +35,23 @@ def reorganiza(datapath: str, column_name: str, first_year: int, last_year: int,
 
     return new_dataframe
 
+def traduz_milhares(initial_value):
+    '''
+    Recebe um caminho ou dataframe de dados do gapminder.
+    Converte todos os dados numéricos com k para seus valores exatos.
+    Retorna o novo dataframe.
+    '''
+    if type(initial_value) == int: return initial_value
+    if initial_value.isnumeric(): return initial_value 
+
+    if "k" in initial_value:
+        thousands = initial_value.split("k")[0]
+
+    thousands = round(float(thousands), 2)
+
+    return int(thousands*1000)
+    
+
 if __name__ == "__main__":
-    print(reorganiza("dados/gdp_pcap.csv", "GDP per capita", 1990, 2010))
+    dataframe = reorganiza("dados/gdp_pcap.csv", "GDP per capita", 1990, 2010)
+    print(dataframe)
