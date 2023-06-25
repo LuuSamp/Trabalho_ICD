@@ -22,6 +22,18 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
 
     line_plot = figure(title=f"{title}") #vai criar o objeto figure que iremos trabalhar
 
+    paises_destacaveis = {"Brazil":"green","Argentina":"blue","France":"purple","Germany":"yellow","Canada":"pink","Japan":"orange"}
+
+    for country in dataframe["country"].unique():
+
+        country_data = dataframe[dataframe["country"]==country]
+
+        if country in paises_destacaveis.keys():
+            line_plot.line(x="year", y="INDICE", source=country_data, color=paises_destacaveis[country])
+
+        else:
+            line_plot.line(x="year", y="INDICE", source=country_data, color="gray")
+
     show(line_plot)
     save(line_plot)
 
