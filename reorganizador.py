@@ -31,3 +31,6 @@ def reorganiza(datapath: str, column_name: str, first_year: int, last_year: int)
     new_dataframe.to_csv(f"dados/{column_name}_reorganized.csv", index = False)
 
     return new_dataframe
+
+if __name__ == "__main__":
+    reorganiza("dados/gdp_pcap.csv", "GDP per capita", 1990, 2010)
