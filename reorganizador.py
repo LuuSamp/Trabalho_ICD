@@ -37,11 +37,12 @@ def reorganiza(datapath: str, column_name: str, first_year: int, last_year: int,
 
 def traduz_milhares(initial_value):
     '''
-    Recebe um caminho ou dataframe de dados do gapminder.
+    Recebe um valor.
     Converte todos os dados numéricos com k para seus valores exatos.
-    Retorna o novo dataframe.
+    Retorna o valor convertido
     '''
     if type(initial_value) == int: return initial_value
+    if type(initial_value) == float: return initial_value
     if initial_value.isnumeric(): return initial_value 
 
     if "k" in initial_value:
