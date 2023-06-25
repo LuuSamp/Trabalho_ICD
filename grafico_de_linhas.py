@@ -11,6 +11,7 @@ def grafico_de_linhas(datapath="teste.csv", title="Título Genérico", analized_
     a função tem como objetivo receber o path dos arquivos e o 
     título do gráfico e gerar automaticamente um gráfico com bokeh
     '''
+    output_file(f"{title}".html)
 
     dataframe = pd.read_csv(datapath) #vai ler o nosso arquivo csv com pandas e transformar em dataframe
     source = ColumnDataSource(dataframe) #vai transformar o dataframe para o formato CDS
