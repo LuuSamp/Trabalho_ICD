@@ -1,10 +1,11 @@
 import pandas as pd
 
-def reorganiza(datapath: str, column_name: str, first_year: int, last_year: int):
+def reorganiza(datapath: str, column_name: str, first_year: int, last_year: int, csv = False):
     '''
-    Deve receber um caminho para um arquivo CSV do gapminder e um nome relacionado aos dados.
+    Deve receber um caminho para um arquivo CSV do gapminder, um nome relacionado aos dados, o primeiro ano e o último ano.
+    O quinto parâmetro, csv, deve ser um booleano (True or False).
     Cria um dataframe com 3 colunas: o nome do país, o ano e os valores com o nome recebido.
-    Cria um CSV com caminho "dados/column_name_reorganized.csv.
+    Se csv = True, cria um CSV com caminho "dados/column_name_reorganized.csv.
     Retorna o dataframe criado.
     '''
 
@@ -26,11 +27,31 @@ def reorganiza(datapath: str, column_name: str, first_year: int, last_year: int)
     for index, country in enumerate(new_format["country"]):
         new_format[column_name].append(initial_dataframe.loc[initial_dataframe["country"] == country, new_format["year"][index]].iloc[0])
 
-    # Armazenando em um novo DataFrame e CSV
     new_dataframe = pd.DataFrame(new_format)
-    new_dataframe.to_csv(f"dados/{column_name}_reorganized.csv", index = False)
+
+    # Armazenando em um novoCSV
+    if csv == True:
+        new_dataframe.to_csv(f"dados/{column_name}_reorganized.csv", index = False)
 
     return new_dataframe
 
+def traduz_milhares(initial_value):
+    '''
+    Recebe um caminho ou dataframe de dados do gapminder.
+    Converte todos os dados numéricos com k para seus valores exatos.
+    Retorna o novo dataframe.
+    '''
+    if type(initial_value) == int: return initial_value
+    if initial_value.isnumeric(): return initial_value 
+
+    if "k" in initial_value:
+        thousands = initial_value.split("k")[0]
+
+    thousands = round(float(thousands), 2)
+
+    return int(thousands*1000)
+    
+
 if __name__ == "__main__":
-    reorganiza("dados/gdp_pcap.csv", "GDP per capita", 1990, 2010)
+    dataframe = reorganiza("dados/gdp_pcap.csv", "GDP per capita", 1990, 2010)
+    print(dataframe)
