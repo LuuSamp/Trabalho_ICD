@@ -3,7 +3,7 @@
 import pandas as pd 
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, HoverTool
 from reorganizador import reorganiza
 
 
@@ -20,7 +20,17 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
 
     source = ColumnDataSource(dataframe) #vai transformar o dataframe para o formato CDS
 
-    line_plot = figure(title=f"{title}") #vai criar o objeto figure que iremos trabalhar
+    line_plot = figure(title=f"{title}", width = 1240, height = 720) #vai criar o objeto figure que iremos trabalhar
+
+    hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('Nº Mortes', f'@{column_name}')])
+    line_plot.add_tools(hover)
+
+
+
+
+
+
+
 
     paises_destacaveis = {"Brazil":"green","Argentina":"blue","France":"purple","Germany":"yellow","Canada":"pink","Japan":"orange"}
 
@@ -29,10 +39,20 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
         country_data = dataframe[dataframe["country"]==country]
 
         if country in paises_destacaveis.keys():
-            line_plot.line(x="year", y="INDICE", source=country_data, color=paises_destacaveis[country])
+            line_plot.line(x="year", y="INDICE", source=country_data, color=paises_destacaveis[country], line_width=4)
+            line_plot.circle(x="year", y="INDICE", source=country_data, color=paises_destacaveis[country], size = 1)
 
         else:
-            line_plot.line(x="year", y="INDICE", source=country_data, color="gray")
+            line_plot.line(x="year", y="INDICE", source=country_data, color="gray", line_width=1)
+            line_plot.circle(x="year", y="INDICE", source=country_data, color="gray", size = 1)
+
+
+
+
+
+
+
+
 
     show(line_plot)
     save(line_plot)
