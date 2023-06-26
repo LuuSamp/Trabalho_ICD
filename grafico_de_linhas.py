@@ -13,7 +13,7 @@ def grafico_de_linhas_gdp(datapath, titulo):
     '''
 
     #TRATAMENTO DA BASE DE DADOS
-    dataframe = reorganiza(datapath, "indice_analisado", 1990, 2010) #vai filtrar a base de dados para os anos de 1990 e 2010
+    dataframe = reorganiza(datapath, "indice_analisado", 1910, 2010) #vai filtrar a base de dados para os anos de 1990 e 2010
     dataframe = filtro_paises_do_g20(dataframe) #vai filtrar a base de dados apenas para países do g20 e UE
     dataframe["indice_analisado"] = dataframe["indice_analisado"].apply(traduz_milhares) #vai modificar os valores numéricos
     source = ColumnDataSource(dataframe) #vai transformar o dataframe para o formato CDS
@@ -25,14 +25,14 @@ def grafico_de_linhas_gdp(datapath, titulo):
     output_file(f"{titulo}.html")
 
     #criação do objeto figure
-    line_plot = figure(title=f"{titulo}", width = 1240, height = 720)
+    line_plot = figure(title=f"{titulo}", width = 1350, height = 720)
 
     #adição da ferramenta hover
     hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('PIB Per Capita (Dólar)', '@indice_analisado{$0,0}')])
     line_plot.add_tools(hover)
 
     #dicionário de países de destaque e suas cores
-    paises_destacaveis = {"Brazil":"green","Argentina":"blue","France":"purple","Germany":"yellow","Canada":"pink","Japan":"orange"}
+    paises_destacaveis = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","Germany":"coral","Canada":"red","Japan":"indianred"}
 
     #criação das várias linhas e suas respectivas formatações
     for country in dataframe["country"].unique():
@@ -40,11 +40,11 @@ def grafico_de_linhas_gdp(datapath, titulo):
 
         #PAÍS DESTACADOS
         if country in paises_destacaveis.keys():
-            line_plot.line(x="year", y="indice_analisado", source=country_data, color=paises_destacaveis[country], line_width=4)
+            line_plot.line(x="year", y="indice_analisado", source=country_data, color=paises_destacaveis[country], line_width=3, line_alpha=0.8)
         
         #OUTROS PAÍSES
         else:
-            line_plot.line(x="year", y="indice_analisado", source=country_data, color="gray", line_width=1)
+            line_plot.line(x="year", y="indice_analisado", source=country_data, color="gray", line_width=2, line_alpha=0.25)
 
     #CONFIGURAÇÕES ESTÉTICAS DOS EIXOS
     line_plot.xaxis[0].ticker.desired_num_ticks = 20
