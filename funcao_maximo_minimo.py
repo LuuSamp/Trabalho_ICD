@@ -1,4 +1,3 @@
-import pandas as pd
 
 def funcao_maximo_minimo(dataframe, nome_coluna, nome_coluna_pais):
     '''
@@ -33,13 +32,3 @@ def funcao_maximo_minimo(dataframe, nome_coluna, nome_coluna_pais):
         dicionario[pais] = cores[mapeamento[pais]]
 
     return dicionario
-
-data = {
-    'país': ['Brasil', 'Estados Unidos', 'China', 'Índia', 'Rússia'],
-    'valor': [211, 328, 1439, 1393, 144]
-}
-df = pd.DataFrame(data)
-
-data = funcao_maximo_minimo(df, 'valor', 'país')
-
-print(data)
