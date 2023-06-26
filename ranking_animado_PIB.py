@@ -19,18 +19,22 @@ bars = plot.hbar(y = "country", right = "GDP", source = data_source)
 
 # O Slider
 slider = Slider(start = 1990, end = 2010, value = 1990, step=1, title="Year")
+def slider_action(attr, old, new):
+    global year
+    year = slider.value
 
 def update_chart():
     global year
-    if year > 2010:
-        year = 1990
     raw_data["GDP"] = list(dataframe[f"{year}"])
-    print(raw_data)
+    slider.value = year
     data_source.data = raw_data
     bars.data_source.data = raw_data
     year += 1
-    slider.value = year
+    if year > 2010:
+        year = 1990
 
+
+slider.on_change("value", slider_action)
 curdoc().add_root(column(slider, plot))
 
 callback = curdoc().add_periodic_callback(update_chart, 1000)
