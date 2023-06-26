@@ -79,5 +79,8 @@ investimento_educacao.title.text_font_size = "18pt"
 # Título Centralizado
 investimento_educacao.title.align = "center"
 
+# Tamanho do nome dos países alterado
+investimento_educacao.below[0].major_label_text_font_size = '14px'
+
 
 show(investimento_educacao)
