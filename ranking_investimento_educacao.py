@@ -52,7 +52,7 @@ paises = [
 valores = random.sample(range(0, 100), len(paises))
 
 # É adicionado o objeto base do gráfico
-investimento_educacao = figure(x_range=paises, height=350, title="Investimento em Educação por Países", toolbar_location=None, tools="")
+investimento_educacao = figure(x_range=paises, height=650, width=1300, title="Investimento em Educação por Países", toolbar_location=None, tools="")
 
 # É adicionado o gráfico de barras 
 investimento_educacao.vbar(x=paises, top=valores, width=0.9)
