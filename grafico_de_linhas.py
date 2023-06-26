@@ -31,6 +31,9 @@ def grafico_de_linhas(datapath, column_name, titulo):
     hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('PIB Per Capita (Dólar)', f'@{column_name}')])
     line_plot.add_tools(hover)
 
+    line_plot.xaxis[0].ticker.desired_num_ticks = 20
+    line_plot.xaxis[0].ticker.num_minor_ticks = 0
+    
     #dicionário de países de destaque e suas cores
     paises_destacaveis = {"Brazil":"green","Argentina":"blue","France":"purple","Germany":"yellow","Canada":"pink","Japan":"orange"}
 
