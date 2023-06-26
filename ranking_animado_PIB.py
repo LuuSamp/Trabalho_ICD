@@ -6,21 +6,29 @@ from bokeh.io import curdoc
 import pandas as pd
 
 # Dataframe a ser usado
-dataframe = filtro_paises_do_g20(pd.read_csv("dados/gdp_total_yearly_growth.csv"))
+dataframe = filtro_paises_do_g20(pd.read_csv("dados/total_gdp_ppp_inflation_adjusted.csv"))
+for year in range(1800, 2014):
+    dataframe[str(year)] = dataframe[str(year)].apply(traduz_milhares)
+print(dataframe)
 
 # Dados
 year = 1990
-raw_data = {"country": list(dataframe["country"]), "GDP": list(dataframe[f"{year}"])}
+sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
+raw_data = {"country": list(sorted_dataframe["country"]), 
+            "GDP": list(sorted_dataframe[f"{year}"])}
 data_source = ColumnDataSource(raw_data)
 
 # O gráfico
-plot = figure(width=700, height=500, title="Top 10 Countries by Population (1964-2013)", x_range=(0, 20), y_range=dataframe["country"])
+plot = figure(width=700, height=500, title="Top 10 Countries by Population (1964-2013)", y_range=sorted_dataframe["country"])
 bars = plot.hbar(y = "country", right = "GDP", source = data_source)
 
 # Atualização do gráfico
 def update_chart():
     global year
-    raw_data["GDP"] = list(dataframe[f"{year}"])
+    sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
+    raw_data = {"country": list(sorted_dataframe["country"]), 
+                "GDP": list(sorted_dataframe[f"{year}"])}
+
     slider.value = year
     data_source.data = raw_data
     bars.data_source.data = raw_data
