@@ -18,6 +18,22 @@ def graf_barras_pib(datapath):
     dataframe['indice_analisado'] = dataframe['indice_analisado'].astype(float) #vai transformar a coluna toda em float
     dataframe = dataframe.groupby('country')['indice_analisado'].mean().round(2).reset_index() #vai agrupar por país fazendo a média dos 20 anos
     dataframe = dataframe.sort_values(["indice_analisado"], ascending=False) #vai ordenar o dataframe do menor para o maior
+
+    dicionario_de_cores = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","Germany":"coral","Canada":"red","Japan":"indianred"}
+    lista_de_cores = []
+    lista_de_preenchimento = []
+
+    for cada_pais in dataframe["country"]:
+        if cada_pais in dicionario_de_cores.keys():
+            lista_de_cores.append(dicionario_de_cores[cada_pais])
+            lista_de_preenchimento.append(0.7)
+        else:
+            lista_de_cores.append("gray")
+            lista_de_preenchimento.append(0.15)
+
+    dataframe["color"] = lista_de_cores
+    dataframe["preenchimento"] = lista_de_preenchimento
+
     source = ColumnDataSource(dataframe) #vai transformar em CDS
 
     #CONFECÇÃO DO GRÁFICO
@@ -34,10 +50,33 @@ def graf_barras_pib(datapath):
     bar_plot.add_tools(hover)
     
     #criação do gráfico de barras em si
-    bar_plot.vbar(x='country', top='indice_analisado', color='gray', source=source, width=0.8)
+    bar_plot.vbar(x='country', top='indice_analisado', color='color', source=source, width=0.8, alpha="preenchimento")
     
     #CONFIGURAÇÕES ESTÉTICAS DOS EIXOS
     bar_plot.xaxis.major_label_orientation = 0.7
+
+    bar_plot.yaxis[0].ticker.desired_num_ticks = 10
+    bar_plot.yaxis[0].ticker.num_minor_ticks = 0
+
+    bar_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
+
+    bar_plot.xaxis.axis_label = "Países" 
+    bar_plot.yaxis.axis_label = "Média do PIB (BIlhões de Dólares)" 
+
+    bar_plot.xaxis.axis_label_text_font = "Times"
+    bar_plot.yaxis.axis_label_text_font = "Times"
+
+    bar_plot.xaxis.axis_label_text_font_size = "14pt"
+    bar_plot.yaxis.axis_label_text_font_size = "14pt"
+
+    bar_plot.xgrid.grid_line_color = None
+    bar_plot.ygrid.grid_line_color = None
+
+    #CONFIGURAÇÃO DO TÍTULO
+    bar_plot.title.text_font = "Times"
+    bar_plot.title.text_font_size = "20pt"
+    bar_plot.title.align = "center"
+    bar_plot.title.text_baseline = "middle"
 
     show(bar_plot)
 
