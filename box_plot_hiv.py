@@ -39,7 +39,7 @@ def box_plot_hiv(datapath):
     source = ColumnDataSource(dataframe_quantis)
 
     plot = figure(x_range=dataframe_quantis["country"], title="Highway MPG distribution by vehicle class",
-           background_fill_color="#eaefef", y_axis_label="MPG")
+           background_fill_color="#eaefef", y_axis_label="MPG", width = 1350, height = 720)
     
     # outlier range
     whisker = Whisker(base="country", upper="upper", lower="lower", source=source)
