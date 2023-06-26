@@ -63,6 +63,7 @@ def slider_action(attr, old, new):
     '''
     global year
     year = slider.value
+    update_chart()
 
 slider.on_change("value", slider_action)
 
