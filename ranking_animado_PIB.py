@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, column
-from bokeh.models import Slider, ColumnDataSource
+from bokeh.models import Slider, ColumnDataSource, Button
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
@@ -22,7 +22,9 @@ slider = Slider(start = 1990, end = 2010, value = 1990, step=1, title="Year")
 def slider_action(attr, old, new):
     global year
     year = slider.value
+slider.on_change("value", slider_action)
 
+# Atualização do gráfico
 def update_chart():
     global year
     raw_data["GDP"] = list(dataframe[f"{year}"])
@@ -33,8 +35,18 @@ def update_chart():
     if year > 2010:
         year = 1990
 
+button = Button(label = "Play")
+callback = None
+def button_action():
+    global callback
+    if button.label == "Play":
+        callback = curdoc().add_periodic_callback(update_chart, 1000)
+        button.label = "Pause"
+    elif button.label == "Pause":
+        curdoc().remove_periodic_callback(callback)
+        button.label = "Play"
+
+button.on_click(button_action)
 
 slider.on_change("value", slider_action)
-curdoc().add_root(column(slider, plot))
-
-callback = curdoc().add_periodic_callback(update_chart, 1000)
+curdoc().add_root(column(button, slider, plot))
