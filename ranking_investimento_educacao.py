@@ -57,17 +57,15 @@ dicionario_paises = dict(zip(paises, valores))
 
 # É criado um DataFrame do Pandas com o país e seu respectivo valor
 df = pd.DataFrame.from_dict(dicionario_paises, orient='index', columns=['Valor']).reset_index()
+
 # É reordenado o DataFrame de acordo com os valores
-df_ordenado = df.sort_values(by='Valor')
-
-print(df_ordenado)
-
+df_ordenado = df.sort_values(by='Valor', ascending=False)
 
 # É adicionado o objeto base do gráfico
-investimento_educacao = figure(x_range=paises, height=650, width=1300, title="Investimento em Educação por Países", toolbar_location=None, tools="")
+investimento_educacao = figure(x_range=df_ordenado["index"], height=650, width=1300, title="Investimento em Educação por Países", toolbar_location=None, tools="")
 
 # É adicionado o gráfico de barras 
-investimento_educacao.vbar(x=paises, top=valores, width=0.9)
+investimento_educacao.vbar(x=df_ordenado["index"], top=df_ordenado["Valor"], width=0.9)
 
 # É alterado o background do gráfico
 investimento_educacao.xgrid.grid_line_color = None
