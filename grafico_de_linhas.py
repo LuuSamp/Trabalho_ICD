@@ -5,7 +5,7 @@ from bokeh.models import ColumnDataSource, HoverTool
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 
-def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título Genérico"):
+def grafico_de_linhas(datapath, column_name, titulo):
 
     '''
     a função tem como objetivo receber o path dos arquivos e o 
@@ -22,10 +22,10 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
     #CONFECÇÃO DO GRÁFICO
 
     #configuração do nome do arquivo
-    output_file(f"{title}.html")
+    output_file(f"{titulo}.html")
 
     #criação do objeto figure
-    line_plot = figure(title=f"{title}", width = 1240, height = 720)
+    line_plot = figure(title=f"{titulo}", width = 1240, height = 720)
 
     #adição da ferramenta hover
     hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('PIB Per Capita (Dólar)', f'@{column_name}')])
@@ -35,17 +35,17 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
     paises_destacaveis = {"Brazil":"green","Argentina":"blue","France":"purple","Germany":"yellow","Canada":"pink","Japan":"orange"}
 
     #criação das várias linhas e suas respectivas formatações
-    for each_country in dataframe["country"].unique():
-        country_data = dataframe[dataframe["country"]==each_country]
+    for country in dataframe["country"].unique():
+        country_data = dataframe[dataframe["country"]==country]
 
         #PAÍS DESTACADOS
-        if each_country in paises_destacaveis.keys():
-            line_plot.line(x="year", y=f"{column_name}", source=country_data, color=paises_destacaveis[each_country], line_width=4)
-
+        if country in paises_destacaveis.keys():
+            line_plot.line(x="year", y=f"{column_name}", source=country_data, color=paises_destacaveis[country], line_width=4)
+        
         #OUTROS PAÍSES
         else:
-            line_plot.line(x="year", y="{column_name}", source=country_data, color="gray", line_width=1)
+            line_plot.line(x="year", y=f"{column_name}", source=country_data, color="gray", line_width=1)
 
     show(line_plot)
 
-grafico_de_linhas("dados\gdp_pcap.csv")
+grafico_de_linhas("dados\gdp_pcap.csv", "PIB_PC", "PIB Per Capita G20 1990-2010")
