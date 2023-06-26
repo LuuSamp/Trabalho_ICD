@@ -2,6 +2,7 @@ from bokeh.plotting import figure, show
 from bokeh.models import ColumnDataSource
 from bokeh.io import output_file
 import random
+import pandas as pd
 
 # É adicionado uma lista com países e valores aleatórios relacionados a cada um.
 paises = [
@@ -51,6 +52,17 @@ paises = [
 ]
 valores = random.sample(range(0, 100), len(paises))
 
+# É criado um DataFrame a partir de um dicionário
+dicionario_paises = dict(zip(paises, valores))
+
+# É criado um DataFrame do Pandas com o país e seu respectivo valor
+df = pd.DataFrame.from_dict(dicionario_paises, orient='index', columns=['Valor']).reset_index()
+# É reordenado o DataFrame de acordo com os valores
+df_ordenado = df.sort_values(by='Valor')
+
+print(df_ordenado)
+
+
 # É adicionado o objeto base do gráfico
 investimento_educacao = figure(x_range=paises, height=650, width=1300, title="Investimento em Educação por Países", toolbar_location=None, tools="")
 
@@ -62,5 +74,12 @@ investimento_educacao.xgrid.grid_line_color = None
 
 # É rotacionado os rótulos do eixo x
 investimento_educacao.xaxis.major_label_orientation = 45
+
+# É alterado o tamanho do título
+investimento_educacao.title.text_font_size = "18pt"
+
+# Título Centralizado
+investimento_educacao.title.align = "center"
+
 
 show(investimento_educacao)
