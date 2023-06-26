@@ -33,7 +33,12 @@ def graf_barras_pib(datapath):
     hover = HoverTool(tooltips=[('País', '@country'), ('PIB (Bilhões de Dólares)', '@indice_analisado{$0,0}')])
     bar_plot.add_tools(hover)
     
+    #criação do gráfico de barras em si
     bar_plot.vbar(x='country', top='indice_analisado', color='gray', source=source, width=0.8)
+    
+    #CONFIGURAÇÕES ESTÉTICAS DOS EIXOS
+    bar_plot.xaxis.major_label_orientation = 0.7
+
     show(bar_plot)
 
 graf_barras_pib("dados\\gdp_pcap.csv")
