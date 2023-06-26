@@ -5,7 +5,7 @@ from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 
-def grafico_de_linhas(datapath, titulo):
+def grafico_de_linhas_gdp(datapath, titulo):
 
     '''
     a função tem como objetivo receber o path dos arquivos e o 
@@ -55,12 +55,19 @@ def grafico_de_linhas(datapath, titulo):
     line_plot.xaxis.axis_label = "Anos" 
     line_plot.yaxis.axis_label = "PIB Per Capita (Dólares)" 
 
+    line_plot.xaxis.axis_label_text_font = "Times"
+    line_plot.yaxis.axis_label_text_font = "Times"
+
+    line_plot.xaxis.axis_label_text_font_size = "14pt"
+    line_plot.yaxis.axis_label_text_font_size = "14pt"
+
     line_plot.xgrid.grid_line_color = None
     line_plot.ygrid.grid_line_color = None
 
     line_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
 
+    
 
     show(line_plot)
 
-grafico_de_linhas("dados\gdp_pcap.csv", "PIB Per Capita G20 1990-2010")
+grafico_de_linhas_gdp("dados\gdp_pcap.csv", "PIB Per Capita G20 1990-2010")
