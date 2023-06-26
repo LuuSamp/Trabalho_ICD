@@ -66,8 +66,15 @@ def grafico_de_linhas_gdp(datapath, titulo):
 
     line_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
 
+    #CONFIGURAÇÃO DO TÍTULO
+    line_plot.title.text_font = "Times"
+    line_plot.title.text_font_size = "20pt"
+    line_plot.title.align = "center"
+    line_plot.title.text_baseline = "middle"
+    
+
     
 
     show(line_plot)
 
-grafico_de_linhas_gdp("dados\gdp_pcap.csv", "PIB Per Capita G20 1990-2010")
+grafico_de_linhas_gdp("dados\gdp_pcap.csv", "PIB Per Capita G20 1910-2010")
