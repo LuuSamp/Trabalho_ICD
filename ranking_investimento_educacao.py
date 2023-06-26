@@ -4,7 +4,51 @@ from bokeh.io import output_file
 import random
 
 # É adicionado uma lista com países e valores aleatórios relacionados a cada um.
-paises = ["Argentina", "Alemanha", "China", "Brasil", "EUA", "Japão", "Rússia"]
+paises = [
+    'Argentina',
+    'Australia',
+    'Austria',
+    'Belgium',
+    'Brazil',
+    'Bulgaria',
+    'Canada',
+    'China',
+    'Croatia',
+    'Cyprus',
+    'Czech Republic',
+    'Denmark',
+    'Estonia',
+    'Finland',
+    'France',
+    'Germany',
+    'Greece',
+    'Hungary',
+    'India',
+    'Indonesia',
+    'Ireland',
+    'Italy',
+    'Japan',
+    'Latvia',
+    'Lithuania',
+    'Luxembourg',
+    'Malta',
+    'Mexico',
+    'Netherlands',
+    'Poland',
+    'Portugal',
+    'Romania',
+    'Russia',
+    'Saudi Arabia',
+    'Slovakia',
+    'Slovenia',
+    'South Africa',
+    'South Korea',
+    'Spain',
+    'Sweden',
+    'Turkey',
+    'United Kingdom',
+    'United States'
+]
 valores = random.sample(range(0, 100), len(paises))
 
 # É adicionado o objeto base do gráfico
