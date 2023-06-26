@@ -25,16 +25,10 @@ bars = plot.hbar(y = "country", right = "GDP", source = data_source)
 # Atualização do gráfico
 def update_chart():
     global year
-    sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
-    raw_data = {"country": list(sorted_dataframe["country"]), 
-                "GDP": list(sorted_dataframe[f"{year}"])}
-
-    slider.value = year
-    data_source.data = raw_data
-    bars.data_source.data = raw_data
     year += 1
     if year > 2010:
         year = 1990
+    slider.value = year
 
 # O botão
 button = Button(label = "Play")
@@ -63,7 +57,10 @@ def slider_action(attr, old, new):
     '''
     global year
     year = slider.value
-    update_chart()
+    sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
+    raw_data = {"country": list(sorted_dataframe["country"]), 
+                "GDP": list(sorted_dataframe[f"{year}"])}
+    bars.data_source.data = raw_data
 
 slider.on_change("value", slider_action)
 
