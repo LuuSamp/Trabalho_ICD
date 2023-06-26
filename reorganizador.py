@@ -46,13 +46,17 @@ def traduz_milhares(initial_value):
     if initial_value.isnumeric(): return initial_value 
 
     if "k" in initial_value:
-        thousands = initial_value.split("k")[0]
+        value = initial_value.split("k")[0]
+        multiplier = 1000
+    elif "M" in initial_value:
+        value = initial_value.split("M")[0]
+        multiplier = 1000000
+    elif "B" in initial_value:
+        value = initial_value.split("B")[0]
+        multiplier = 1000000000
+    elif "TR" in initial_value:
+        value = initial_value.split("TR")[0]
+        multiplier = 1000000000000
+    value = float(value)
 
-    thousands = round(float(thousands), 2)
-
-    return int(thousands*1000)
-    
-
-if __name__ == "__main__":
-    dataframe = reorganiza("dados/gdp_pcap.csv", "GDP per capita", 1990, 2010)
-    print(dataframe)
+    return round(value*multiplier, 2)
