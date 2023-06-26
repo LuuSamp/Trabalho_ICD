@@ -1,7 +1,7 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, HoverTool
+from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 
@@ -57,6 +57,8 @@ def grafico_de_linhas(datapath, column_name, titulo):
 
     line_plot.xgrid.grid_line_color = None
     line_plot.ygrid.grid_line_color = None
+
+    line_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
 
 
     show(line_plot)
