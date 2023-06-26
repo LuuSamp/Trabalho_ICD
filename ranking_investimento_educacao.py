@@ -65,7 +65,7 @@ df_ordenado = df.sort_values(by='Valor', ascending=False)
 investimento_educacao = figure(x_range=df_ordenado["index"], height=650, width=1300, title="Investimento em Educação por Países", toolbar_location=None, tools="")
 
 # É adicionado o gráfico de barras 
-investimento_educacao.vbar(x=df_ordenado["index"], top=df_ordenado["Valor"], width=0.9)
+investimento_educacao.vbar(x=df_ordenado["index"], top=df_ordenado["Valor"], width=0.9, color="#AEB7BF")
 
 # É alterado o background do gráfico
 investimento_educacao.xgrid.grid_line_color = None
@@ -81,6 +81,9 @@ investimento_educacao.title.align = "center"
 
 # Tamanho do nome dos países alterado
 investimento_educacao.below[0].major_label_text_font_size = '14px'
+
+# Tamanho dos valores do eixo y alterado 
+investimento_educacao.yaxis.major_label_text_font_size = "12pt"
 
 
 show(investimento_educacao)
