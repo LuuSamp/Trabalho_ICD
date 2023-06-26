@@ -60,8 +60,3 @@ def traduz_milhares(initial_value):
     value = float(value)
 
     return round(value*multiplier, 2)
-    
-
-if __name__ == "__main__":
-    dataframe = reorganiza("dados/gdp_pcap.csv", "GDP per capita", 1990, 2010)
-    print(dataframe)
