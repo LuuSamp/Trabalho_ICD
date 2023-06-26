@@ -1,6 +1,4 @@
-#import de bibliotecas e módulos
-
-import pandas as pd 
+#BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, HoverTool
@@ -15,7 +13,8 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
     '''
 
     dataframe = reorganiza(datapath, f"{column_name}", 1990, 2010)
-    # dataframe[f"{column_name}"].apply(traduz_milhares)
+    dataframe[f"{column_name}"] = dataframe[f"{column_name}"].apply(traduz_milhares)
+    print(dataframe)
 
     output_file(f"{title}.html")
 
@@ -23,7 +22,7 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
 
     line_plot = figure(title=f"{title}", width = 1240, height = 720) #vai criar o objeto figure que iremos trabalhar
 
-    hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('Nº Mortes', f'@{column_name}')])
+    hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('PIB Per Capita (Dólar)', f'@{column_name}')])
     line_plot.add_tools(hover)
 
 
@@ -54,6 +53,5 @@ def grafico_de_linhas(datapath="teste.csv", column_name="INDICE", title="Título
 
 
     show(line_plot)
-    save(line_plot)
 
-grafico_de_linhas("dados\hiv_anual_deaths.csv")
+grafico_de_linhas("dados\gdp_pcap.csv")
