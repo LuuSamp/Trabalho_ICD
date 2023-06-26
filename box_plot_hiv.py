@@ -1,7 +1,7 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Whisker, BoxAnnotation
+from bokeh.models import ColumnDataSource, HoverTool, Whisker, LogTicker
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 import numpy as np
@@ -22,9 +22,6 @@ def box_plot_hiv(datapath):
     dataframe = dataframe.fillna(0)
 
     #CALCULANDO OS QUANTIS PARA CONFECCIONAR OS BOXPLOTS
-
-    # compute quantile
-
     dataframe_quantis = dataframe.groupby('country')['indice_analisado'].agg([lambda x: x.quantile(0.25),
                                                 lambda x: x.quantile(0.50),
                                                 lambda x: x.quantile(0.75)]).round(2).reset_index()
@@ -36,20 +33,42 @@ def box_plot_hiv(datapath):
     dataframe_quantis["upper"] = dataframe_quantis["q75"] + 1.5*dataframe_quantis["iqr"]
     dataframe_quantis["lower"] = dataframe_quantis["q25"] - 1.5*dataframe_quantis["iqr"]
 
+
+
+    #GAMBIARRA DAS CORES
+    dicionario_de_cores = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","India":"coral","Canada":"red","Japan":"indianred"}
+    lista_de_cores = []
+
+    for cada_pais in dataframe_quantis["country"]:
+        if cada_pais in dicionario_de_cores.keys():
+            lista_de_cores.append(dicionario_de_cores[cada_pais])
+        else:
+            lista_de_cores.append("gray")
+
+    dataframe_quantis["color"] = lista_de_cores
+
+
+
+
+    #GAMBIARRA DO BOXPLOT
     source = ColumnDataSource(dataframe_quantis)
 
     plot = figure(x_range=dataframe_quantis["country"], title="Highway MPG distribution by vehicle class",
            background_fill_color="#eaefef", y_axis_label="MPG", width = 1350, height = 720)
     
-    # outlier range
     whisker = Whisker(base="country", upper="upper", lower="lower", source=source)
     whisker.upper_head.size = whisker.lower_head.size = 20
     plot.add_layout(whisker)
 
-    plot.vbar("country", 0.7, "q50", "q75", source=source, color="gray", line_color="black")
-    plot.vbar("country", 0.7, "q25", "q50", source=source, color="gray", line_color="black")
+    plot.vbar("country", 0.7, "q50", "q75", source=source, color="color", line_color="black")
+    plot.vbar("country", 0.7, "q25", "q50", source=source, color="color", line_color="black")
+
+    hover = HoverTool(tooltips=[('País', '@country'), ('Média', '@q50')])
+    plot.add_tools(hover)
 
     show(plot)
 
     print(dataframe_quantis)
+
+
 box_plot_hiv("dados\\hiv_deaths.csv")
