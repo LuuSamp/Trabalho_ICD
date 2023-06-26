@@ -46,7 +46,7 @@ def button_action():
     '''
     global callback
     if button.label == "Play":
-        callback = curdoc().add_periodic_callback(update_chart, 1000)
+        callback = curdoc().add_periodic_callback(update_chart, 100)
         button.label = "Pause"
     elif button.label == "Pause":
         curdoc().remove_periodic_callback(callback)
