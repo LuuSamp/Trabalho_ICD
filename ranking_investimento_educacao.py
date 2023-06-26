@@ -57,4 +57,8 @@ investimento_educacao = figure(x_range=paises, height=350, title="Investimento e
 # É adicionado o gráfico de barras 
 investimento_educacao.vbar(x=paises, top=valores, width=0.9)
 
+# O alterado o background do gráfico
+investimento_educacao.xgrid.grid_line_color = None
+
+
 show(investimento_educacao)
