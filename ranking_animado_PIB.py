@@ -17,13 +17,6 @@ data_source = ColumnDataSource(raw_data)
 plot = figure(width=700, height=500, title="Top 10 Countries by Population (1964-2013)", x_range=(0, 20), y_range=dataframe["country"])
 bars = plot.hbar(y = "country", right = "GDP", source = data_source)
 
-# O Slider
-slider = Slider(start = 1990, end = 2010, value = 1990, step=1, title="Year")
-def slider_action(attr, old, new):
-    global year
-    year = slider.value
-slider.on_change("value", slider_action)
-
 # Atualização do gráfico
 def update_chart():
     global year
@@ -35,9 +28,14 @@ def update_chart():
     if year > 2010:
         year = 1990
 
+# O botão
 button = Button(label = "Play")
+
 callback = None
 def button_action():
+    '''
+    Função que é executada quando o botão é apertado. Inicia ou para as atualizações periódicas na tabela
+    '''
     global callback
     if button.label == "Play":
         callback = curdoc().add_periodic_callback(update_chart, 1000)
@@ -48,5 +46,17 @@ def button_action():
 
 button.on_click(button_action)
 
+# O Slider
+slider = Slider(start = 1990, end = 2010, value = 1990, step=1, title="Year")
+
+def slider_action(attr, old, new):
+    '''
+    Função que é executada ao mover o slider. Muda o ano para aquele do slider.
+    '''
+    global year
+    year = slider.value
+
 slider.on_change("value", slider_action)
+
+# A GUI
 curdoc().add_root(column(button, slider, plot))
