@@ -10,6 +10,13 @@ df_mortes = reorganiza("dados/child_mortality_0_5_year_olds_dying_per_1000_born.
 
 df_vacina["Quantidade"] = df_mortes["Quantidade"]
 
+output_file("scatter_plot.html")
+
+scatter_plot = figure(title="Gráfico de Dispersão", x_axis_label="Mortes a cada 1000 nascimentos", y_axis_label="Porcentagem de crianças vacinadas")
+
+scatter_plot.scatter(df_vacina['Quantidade'], df_vacina['Porcentagem de Vacinação'], size=10, alpha = 0.5, color='orange')
+
+show(scatter_plot)
 
 
 
