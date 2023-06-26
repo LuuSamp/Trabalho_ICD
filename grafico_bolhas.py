@@ -18,6 +18,7 @@ df_final["População"] = df_populacao["População"]
 df_final["IMC dos Homens"] = df_imc_homens["IMC dos Homens"]
 df_final["IMC das Mulheres"] = df_imc_mulheres["IMC das Mulheres"]
 df_final["Média de Calorias"] = df_calorias["Média de Calorias"]
+df_final['IMC Médio'] = (df_final['IMC dos Homens'] + df_final['IMC das Mulheres']) / 2
 
 
 print(df_final)
