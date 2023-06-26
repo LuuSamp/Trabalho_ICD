@@ -31,9 +31,6 @@ def grafico_de_linhas(datapath, column_name, titulo):
     hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('PIB Per Capita (Dólar)', f'@{column_name}')])
     line_plot.add_tools(hover)
 
-    line_plot.xaxis[0].ticker.desired_num_ticks = 20
-    line_plot.xaxis[0].ticker.num_minor_ticks = 0
-    
     #dicionário de países de destaque e suas cores
     paises_destacaveis = {"Brazil":"green","Argentina":"blue","France":"purple","Germany":"yellow","Canada":"pink","Japan":"orange"}
 
@@ -48,6 +45,19 @@ def grafico_de_linhas(datapath, column_name, titulo):
         #OUTROS PAÍSES
         else:
             line_plot.line(x="year", y=f"{column_name}", source=country_data, color="gray", line_width=1)
+
+    #CONFIGURAÇÕES ESTÉTICAS DOS EIXOS
+    line_plot.xaxis[0].ticker.desired_num_ticks = 20
+    line_plot.xaxis[0].ticker.num_minor_ticks = 0
+    line_plot.yaxis[0].ticker.desired_num_ticks = 10
+    line_plot.yaxis[0].ticker.num_minor_ticks = 0
+
+    line_plot.xaxis.axis_label = "Anos" 
+    line_plot.yaxis.axis_label = "PIB Per Capita (Dólares)" 
+
+    line_plot.xgrid.grid_line_color = None
+    line_plot.ygrid.grid_line_color = None
+
 
     show(line_plot)
 
