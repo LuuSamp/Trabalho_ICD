@@ -21,10 +21,10 @@ def funcao_maximo_minimo(dataframe, nome_coluna, nome_coluna_pais):
 
     # Criando o dicionário que atribui as cores para cada país:
     dicionario_paises_cores = {
-        lista_total[0]: 'darkred',
-        lista_total[1]: 'red',
-        lista_total[2]: 'darkblue',
-        lista_total[3]: 'lightblue'
+        lista_total[0]: "#900C3F",
+        lista_total[1]: "#FA4343",
+        lista_total[2]: "#084C9F",
+        lista_total[3]: "#2685F8"
     }
 
     return dicionario_paises_cores
