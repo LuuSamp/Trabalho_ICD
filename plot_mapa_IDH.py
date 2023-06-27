@@ -74,9 +74,31 @@ dicionario_iso3 = {"BD": "BGD", "BE": "BEL", "BF": "BFA", "BG": "BGR", "BA": "BI
  "IS": "ISL", "IR": "IRN", "AM": "ARM", "AL": "ALB", "AO": "AGO", "AQ": "ATA", "AS": "ASM", "AR": "ARG", "AU": "AUS", "AT": "AUT", "AW": "ABW", 
  "IN": "IND", "AX": "ALA", "AZ": "AZE", "IE": "IRL", "ID": "IDN", "UA": "UKR", "QA": "QAT", "MZ": "MOZ"}
 
+def converte_iso2(pais):
+    for chave, valor in dicionario_iso2.items():
+        if valor == pais:
+            return chave
+        else: 
+            pass
+
+def converte_iso3(pais_iso2):
+    for chave, valor in dicionario_iso3.items():
+        if chave == pais_iso2:
+            return valor
+        else:
+            pass
+
 # Criação de Data Frames "tratados" a partir da utilização da função "reorganiza":
 df_IDH = reorganiza("dados\hdi_human_development_index.csv", "IDH", 1990, 2010)
 
+coluna_iso2 = df_IDH["country"].apply(converte_iso2)
+
+coluna_iso3 = coluna_iso2.apply(converte_iso3)
+
+df_IDH["iso3"] = coluna_iso3
+
+print(df_IDH)
+'''
 # Utilizando a função  "filtro_paises_do_g20" para filtrar apenas os países do g20:
 df_IDH_g20 = filtro_paises_do_g20(df_IDH, agrupamento="country")
 df_IDH_g20 = df_IDH_g20.sort_values("IDH", ascending=False)
@@ -107,3 +129,4 @@ output_file("mapa_mundial.html")
 show(mapa_IDH)
 # print(world.head())
 # print(df_IDH.head())
+'''
