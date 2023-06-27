@@ -1,13 +1,17 @@
-from reorganizador import traduz_milhares
 import pandas as pd  
 
-def filtro_paises_do_g20(dataframe, nome_da_coluna="indice_analisado"):
+def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
     '''
-    Função recebe o dataframe, modifica ele, retira os países que não pertecenssem ao g20, 
-    além disso ela vai juntar todos os países que fazem parte da UE (exceto ALE, FRA e ITA)
-    e guarda em um único registro "European Union", fazendo uma média. 
+    A função recebe um dataframe e um argumento opicional. Caso o argumento seja falso, ela apenas retira
+    os países que não fazem parte do G20 do dataframe. Caso o argumento seja verdadeiro, ela, além de
+    retirar todos que não fazem parte do G20, ela vai agrupar todos os países que pertencem à União Europeia 
+    (exceto Alemanha, Itália e França) em um único registro "European Union", sendo ele a média de todos
+    os países agrupados. 
+
+    É necessário passar como agrupamento qual coluna que deve ser agrupada, caso não seja passado nenhum, ela 
+    vai agrupar por ano.
     '''
-    countries = [
+    paises_do_g20 = [
     'Argentina',
     'Australia',
     'Austria',
@@ -52,7 +56,7 @@ def filtro_paises_do_g20(dataframe, nome_da_coluna="indice_analisado"):
     'United Kingdom',
     'United States'
 ]
-    eu_countries = [
+    paises_ue = [
     "Austria",
     "Belgium",
     "Bulgaria",
@@ -80,46 +84,52 @@ def filtro_paises_do_g20(dataframe, nome_da_coluna="indice_analisado"):
 ]
 
     #VAI RETIRAR TODAS AS LINHAS QUE NÃO SÃO DO G20 E RESETAR O ÍNDICE
-    for indice in range (dataframe.shape[0]):
-        if dataframe["country"][indice] in countries:
+    for indice_de_cada_linha in range (dataframe.shape[0]):
+        if dataframe["country"][indice_de_cada_linha] in paises_do_g20:
             pass
         else:
-            dataframe = dataframe.drop(indice)
-    
+            dataframe = dataframe.drop(indice_de_cada_linha)
+
     dataframe = dataframe.reset_index()
     del dataframe['index']
 
-    #VAI CRIAR UMA NOVA COLUNA DE BOLEANOS PARA SABER SE SÃO DA UNIÃO EUROPEIA
-    lista_de_confirmacao = list()
-    for indice in range(dataframe.shape[0]):
-        if dataframe["country"][indice] in eu_countries:
-            lista_de_confirmacao.append(True)
-        else:
-            lista_de_confirmacao.append(False)
 
-    dataframe["UE"] = lista_de_confirmacao
+    if filtrar == True:
 
-    #VAMOS CRIAR UM NOVO DATAFRAME SÓ COM DA UNIÃO EUROPEIA E VAMOS JUNTAR ELES AGRUPANDO POR ANO
-    dataframe_ue = dataframe[dataframe["UE"]==True]
-    dataframe_ue[f"{nome_da_coluna}"] = dataframe_ue[f"{nome_da_coluna}"].apply(traduz_milhares)
-    dataframe_ue[f"{nome_da_coluna}"] = dataframe_ue[f"{nome_da_coluna}"].astype(float)
-    dataframe_ue = dataframe_ue.groupby("year")[f"{nome_da_coluna}"].mean().round(2).reset_index()
-    dataframe_ue["country"] = "European Union"
+        #VAI CRIAR UMA NOVA COLUNA DE BOLEANOS PARA SABER SE SÃO DA UNIÃO EUROPEIA
+        lista_de_confirmacao = list()
+        for indice in range(dataframe.shape[0]):
+            if dataframe["country"][indice] in paises_ue:
+                lista_de_confirmacao.append(True)
+            else:
+                lista_de_confirmacao.append(False)
+        dataframe["PAIS_UE"] = lista_de_confirmacao
+        
+        dataframe_ue = dataframe[dataframe["PAIS_UE"]==True]
+        dataframe_ue["country"] = "European Union"
+   
+        if agrupamento == "year":
 
-    #VAMOS RETIRAR DO DATAFRAME ORIGINAL OS QUE SERIAM DA UNIÃO EUROPEIA
-    for indice in range(dataframe.shape[0]):
-        if dataframe["country"][indice] in eu_countries:
-            dataframe = dataframe.drop(indice)
-        else:
-            pass
+            #VAMOS CRIAR UM NOVO DATAFRAME SÓ COM DA UNIÃO EUROPEIA E VAMOS JUNTAR ELES AGRUPANDO POR ANO
+            del dataframe_ue["country"]
+            dataframe_ue = dataframe_ue.groupby("year").mean().round(2).reset_index()
+            dataframe_ue["country"] = "European Union"
 
-    #VAI TRADUZIR A COLUNA QUANTITATIVA PARA FLOATS
-    dataframe[f"{nome_da_coluna}"] = dataframe[f"{nome_da_coluna}"].apply(traduz_milhares)
-    dataframe[f"{nome_da_coluna}"] = dataframe[f"{nome_da_coluna}"].astype(float)
+        if agrupamento == "country":
 
-    #VAI CONCATENAR OS DOIS DATAFRAMES E FORMATÁ-LOS
-    dataframe_final = pd.concat([dataframe, dataframe_ue]).reset_index()
-    del dataframe_final['UE']
-    del dataframe_final['index']
+            #VAMOS CRIAR UM NOVO DATAFRAME SÓ COM DA UNIÃO EUROPEIA E VAMOS JUNTAR ELES AGRUPANDO POR ANO"
+            dataframe_ue = dataframe_ue.groupby("country").mean().round(2).reset_index()
 
-    return dataframe_final
+         #VAMOS RETIRAR DO DATAFRAME ORIGINAL OS QUE SERIAM DA UNIÃO EUROPEIA
+        for indice in range(dataframe.shape[0]):
+            if dataframe["country"][indice] in paises_ue:
+                dataframe = dataframe.drop(indice)
+            else:
+                pass
+
+        #VAI CONCATENAR OS DOIS DATAFRAMES E FORMATÁ-LOS
+        dataframe = pd.concat([dataframe, dataframe_ue]).reset_index()
+        del dataframe['PAIS_UE']
+        del dataframe['index']
+
+    return dataframe
