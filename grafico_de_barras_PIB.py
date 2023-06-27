@@ -2,7 +2,7 @@
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
-from reorganizador import reorganiza, traduz_milhares
+from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 
 def graf_barras_pib(datapath):
@@ -13,11 +13,11 @@ def graf_barras_pib(datapath):
     
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "indice_analisado", 1990, 2010) #vai fazer um recorte nos dados
-    dataframe = filtro_paises_do_g20(dataframe) #vai filtrar apenas os países do g20
-    dataframe["indice_analisado"] = dataframe["indice_analisado"].apply(traduz_milhares) #vai traduzir todos os valores para numérico
-    dataframe['indice_analisado'] = dataframe['indice_analisado'].astype(float) #vai transformar a coluna toda em float
+    dataframe = filtro_paises_do_g20(dataframe, "indice_analisado") #vai filtrar apenas os países do g20
     dataframe = dataframe.groupby('country')['indice_analisado'].mean().round(2).reset_index() #vai agrupar por país fazendo a média dos 20 anos
     dataframe = dataframe.sort_values(["indice_analisado"], ascending=False) #vai ordenar o dataframe do menor para o maior
+
+    dataframe["indice_analisado"] = dataframe["indice_analisado"]/1000000000
 
     dicionario_de_cores = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","Germany":"coral","Canada":"red","Japan":"indianred"}
     lista_de_cores = []
@@ -46,7 +46,7 @@ def graf_barras_pib(datapath):
                       x_range=dataframe['country'], y_range=(0, max(dataframe['indice_analisado']) * 1.1))
     
     #adição da ferramenta hover
-    hover = HoverTool(tooltips=[('País', '@country'), ('PIB (Bilhões de Dólares)', '@indice_analisado{$0,0}')])
+    hover = HoverTool(tooltips=[('País', '@country'), ('PIB (Bilhões de Dólares)', '@indice_analisado{$0,00}')])
     bar_plot.add_tools(hover)
     
     #criação do gráfico de barras em si
@@ -61,7 +61,7 @@ def graf_barras_pib(datapath):
     bar_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
 
     bar_plot.xaxis.axis_label = "Países" 
-    bar_plot.yaxis.axis_label = "Média do PIB (BIlhões de Dólares)" 
+    bar_plot.yaxis.axis_label = "Média do PIB (Bilhões de Dólares)" 
 
     bar_plot.xaxis.axis_label_text_font = "Times"
     bar_plot.yaxis.axis_label_text_font = "Times"
@@ -80,4 +80,4 @@ def graf_barras_pib(datapath):
 
     show(bar_plot)
 
-graf_barras_pib("dados\\gdp_pcap.csv")
+graf_barras_pib("dados\\gdp_total.csv")
