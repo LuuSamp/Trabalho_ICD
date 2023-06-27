@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.io import output_file
 import pandas as pd
 from traducao_g20 import filtro_paises_do_g20
@@ -36,7 +36,7 @@ colunas_trabalhadas = ["População", "IMC Médio", "Média de Calorias"]
 df_media_por_anos = df_final.groupby("country")[colunas_trabalhadas].mean().reset_index()
 
 # Ajustei a proporção da população para se adequar ao gráfico.
-df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/10000
+df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/20000000
 
 # É criado um ColumnDataSource.
 source = ColumnDataSource(df_media_por_anos)
@@ -45,7 +45,16 @@ source = ColumnDataSource(df_media_por_anos)
 imc_caloraias = figure(width=400, height=400)
 
 # Plotar o scatter plot.
-imc_caloraias.scatter(x="IMC Médio", y="Média de Calorias", size="População",source=source)
+imc_caloraias.scatter(x="IMC Médio", y="Média de Calorias", size="População em Proporção", source=source)
+
+# Desativando as linhas de grade vertical e horizontal
+imc_caloraias.xgrid.grid_line_color = None
+imc_caloraias.ygrid.grid_line_color = None
+
+# Configurando a ferramenta HoverTool
+hover = HoverTool(tooltips=[("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
+imc_caloraias.add_tools(hover)
+
 
 show(imc_caloraias)
 
