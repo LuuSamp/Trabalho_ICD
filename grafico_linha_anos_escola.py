@@ -66,4 +66,11 @@ media_anos_escola.xaxis.axis_label_text_font = FONTE_TEXTO
 media_anos_escola.yaxis.axis_label_text_font = FONTE_TEXTO
 media_anos_escola.title.text_font = FONTE_TEXTO
 
+# Removendo as grades de fundo
+media_anos_escola.xgrid.grid_line_color = None
+media_anos_escola.ygrid.grid_line_color = None
+
+# Alterarando a cor do background
+media_anos_escola.background_fill_color = "#F8F2FF"
+
 show(media_anos_escola)
