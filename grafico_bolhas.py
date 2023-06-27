@@ -36,13 +36,13 @@ colunas_trabalhadas = ["População", "IMC Médio", "Média de Calorias"]
 df_media_por_anos = df_final.groupby("country")[colunas_trabalhadas].mean().reset_index()
 
 # Ajustei a proporção da população para se adequar ao gráfico.
-df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/20000000
+df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/15000000
 
 # É criado um ColumnDataSource.
 source = ColumnDataSource(df_media_por_anos)
 
 # Objeto base do gráfico.
-imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=400, height=400)
+imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=600, height=600)
 
 # Plotar o scatter plot.
 imc_calorias.scatter(x="IMC Médio", y="Média de Calorias", size="População em Proporção", source=source)
