@@ -17,3 +17,7 @@ dataframe_idh = filtro_paises_do_g20(dataframe_idh, agrupamento="country")
 del dataframe_idh["year"]
 DICT_CORES = funcao_maximo_minimo(dataframe_idh, "IDH", "country")
 print(DICT_CORES)
+
+CORES_COMUNS = "gray"
+ALPHA_DESTAQUES = 0.8
+ALPHA_COMUNS = 0.2
