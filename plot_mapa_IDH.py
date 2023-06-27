@@ -3,6 +3,15 @@ from bokeh.io import output_file, show
 from bokeh.plotting import figure
 from bokeh.models import GeoJSONDataSource
 import geopandas as gpd
+from reorganizador import reorganiza
+from traducao_g20 import filtro_paises_do_g20
+import pandas as pd
+
+# Criação de Data Frames "tratados" a partir da utilização da função "reorganiza":
+df_IDH = reorganiza("dados\hdi_human_development_index.csv", "IDH", 1990, 2010)
+
+# Utilizando a função  "filtro_paises_do_g20" para filtrar apenas os países do g20:
+df_IDH_g20 = filtro_paises_do_g20(df_IDH, "IDH")
 
 # Carregar os dados usando geopandas
 world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
