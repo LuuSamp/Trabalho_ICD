@@ -89,7 +89,7 @@ def filtro_paises_do_g20(dataframe, nome_da_coluna="indice_analisado"):
     dataframe = dataframe.reset_index()
     del dataframe['index']
 
-    # VAI CRIAR UMA NOVA COLUNA DE BOLEANOS PARA SABER SE SÃO DA UNIÃO EUROPEIA
+    #VAI CRIAR UMA NOVA COLUNA DE BOLEANOS PARA SABER SE SÃO DA UNIÃO EUROPEIA
     lista_de_confirmacao = list()
     for indice in range(dataframe.shape[0]):
         if dataframe["country"][indice] in eu_countries:
