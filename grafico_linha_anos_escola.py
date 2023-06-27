@@ -12,11 +12,15 @@ df_mulheres = reorganiza(datapath = "dados/anos_mulheres_na_escola.csv", column_
 df_homens = filtro_paises_do_g20(df_homens, "Média de anos na Escola por Homens").reset_index()
 df_mulheres = filtro_paises_do_g20(df_mulheres, "Média de anos na Escola por Mulheres").reset_index()
 
-df_final = pd.DataFrame()
-df_final["country"] = df_homens["country"]
-df_final["year"] = df_mulheres["year"]
-df_final["Média de anos na Escola por Homens"] = df_homens["Média de anos na Escola por Homens"]
-df_final["Média de anos na Escola por Mulheres"] = df_mulheres["Média de anos na Escola por Mulheres"]
-df_final["Média de anos na Escola"] = (df_final["Média de anos na Escola por Mulheres"] + df_final["Média de anos na Escola por Homens"]) / 2
+df_anos_escola = pd.DataFrame()
+df_anos_escola["country"] = df_homens["country"]
+df_anos_escola["year"] = df_mulheres["year"]
+df_anos_escola["Média de anos na Escola por Homens"] = df_homens["Média de anos na Escola por Homens"]
+df_anos_escola["Média de anos na Escola por Mulheres"] = df_mulheres["Média de anos na Escola por Mulheres"]
+df_anos_escola["Média de anos na Escola"] = (df_anos_escola["Média de anos na Escola por Mulheres"] + df_anos_escola["Média de anos na Escola por Homens"]) / 2
 
-print(df_final)
+# É criado um ColumnDataSource.
+source = ColumnDataSource(df_anos_escola)
+
+# Objeto base do gráfico.
+media_anos_escola = figure(title="Média de anos na escola", width=1240, height=600)
