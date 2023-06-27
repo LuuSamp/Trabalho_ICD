@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, column
-from bokeh.models import Slider, ColumnDataSource, Button
+from bokeh.models import Slider, ColumnDataSource, Button, HoverTool, NumeralTickFormatter
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
@@ -69,6 +69,10 @@ def slider_action(attr, old, new):
 
 slider.on_change("value", slider_action)
 
+# Alterações estéticas
+plot.xaxis.formatter = NumeralTickFormatter(format="0 %")
+
+# Linha central
 plot.ray(x=.5, y=0, length=1, angle=1.57079633, color='black')
 
 # A GUI
