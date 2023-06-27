@@ -4,6 +4,7 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
 from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
+import math
 
 def graf_barras_pib(datapath):
     '''
@@ -18,6 +19,7 @@ def graf_barras_pib(datapath):
     dataframe = dataframe.sort_values(["indice_analisado"], ascending=False) #vai ordenar o dataframe do menor para o maior
 
     dataframe["indice_analisado"] = dataframe["indice_analisado"]/1000000000
+
 
     dicionario_de_cores = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","Germany":"coral","Canada":"red","Japan":"indianred"}
     lista_de_cores = []
