@@ -4,6 +4,7 @@ from bokeh.io import output_file
 import pandas as pd
 from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza, traduz_milhares
+from variaveis_globais import *
 
 # As bases de dados são convertidas a partir da função reorganiza.
 df_populacao = reorganiza(datapath = "dados/pop.csv", column_name = "População", first_year = 1990, last_year = 2008, csv = False)
@@ -40,6 +41,22 @@ df_media_por_anos["População em Proporção"] = df_media_por_anos["População
 
 # É criado um ColumnDataSource.
 source = ColumnDataSource(df_media_por_anos)
+
+
+# Criando colunas referentes a cores.
+lista_de_cores = []
+lista_de_preenchimento = []
+
+for cada_pais in df_media_por_anos["country"]:
+    if cada_pais in DICT_CORES.keys():
+        lista_de_cores.append(DICT_CORES[cada_pais])
+        lista_de_preenchimento.append(0.7)
+    else:
+        lista_de_cores.append("gray")
+        lista_de_preenchimento.append(0.15)
+df_media_por_anos["color"] = lista_de_cores
+df_media_por_anos["preenchimento"] = lista_de_preenchimento
+
 
 # Objeto base do gráfico.
 imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=1240, height=600, x_range=(2200,3800), y_range=(19,28))
