@@ -4,6 +4,8 @@ from bokeh.io import output_file
 import random
 import pandas as pd
 
+
+
 # É adicionado uma lista com países e valores aleatórios relacionados a cada um.
 paises = [
     'Argentina',
