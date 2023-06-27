@@ -26,16 +26,13 @@ source = ColumnDataSource(df_anos_escola)
 # Objeto base do gráfico.
 media_anos_escola = figure(title="Média de anos na escola", width=1240, height=600, x_range=(1970,2015))
 
-#dicionário de países de destaque e suas cores
-paises_destacaveis = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","Germany":"coral","Canada":"red","Japan":"indianred"}
-
 #criação das várias linhas e suas respectivas formatações
 for country in df_anos_escola["country"].unique():
     country_data = df_anos_escola[df_anos_escola["country"]==country]
 
 #PAÍS DESTACADOS
-    if country in paises_destacaveis.keys():
-        media_anos_escola.line(x="year", y="Média de anos na Escola", source=country_data, color=paises_destacaveis[country], line_width=3, line_alpha=0.8)
+    if country in DICT_CORES.keys():
+        media_anos_escola.line(x="year", y="Média de anos na Escola", source=country_data, color=DICT_CORES[country], line_width=3, line_alpha=0.8)
         
 #OUTROS PAÍSES
     else:
