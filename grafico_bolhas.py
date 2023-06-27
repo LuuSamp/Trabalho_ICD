@@ -35,6 +35,11 @@ colunas_trabalhadas = ["População", "IMC Médio", "Média de Calorias"]
 # É criada uma tabela contendo a média de população, calorias, IMC de acordo por Países ao longo dos anos
 df_media_por_anos = df_final.groupby("country")[colunas_trabalhadas].mean().reset_index()
 
+# É criado um ColumnDataSource
+source = ColumnDataSource(df_media_por_anos)
+
+# Objeto base do gráfico
+imc_caloraias = figure(width=400, height=400)
 
 
 
