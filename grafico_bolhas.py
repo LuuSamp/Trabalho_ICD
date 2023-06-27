@@ -26,20 +26,30 @@ df_final["IMC das Mulheres"] = df_imc_mulheres["IMC das Mulheres"]
 df_final["Média de Calorias"] = df_calorias["Média de Calorias"]
 df_final["IMC Médio"] = (df_final["IMC dos Homens"] + df_final["IMC das Mulheres"]) / 2
 
-# É criada a conversão dos valores de População para um float
+# É criada a conversão dos valores de População para um float.
 df_final["População"] = df_final["População"].apply(traduz_milhares)
 
-# É criada uma lista com as colunas que iremos fazer a média
+# É criada uma lista com as colunas que iremos fazer a média.
 colunas_trabalhadas = ["População", "IMC Médio", "Média de Calorias"]
 
-# É criada uma tabela contendo a média de população, calorias, IMC de acordo por Países ao longo dos anos
+# É criada uma tabela contendo a média de população, calorias, IMC de acordo por Países ao longo dos anos.
 df_media_por_anos = df_final.groupby("country")[colunas_trabalhadas].mean().reset_index()
 
-# É criado um ColumnDataSource
+# Ajustei a proporção da população para se adequar ao gráfico.
+df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/10000
+
+# É criado um ColumnDataSource.
 source = ColumnDataSource(df_media_por_anos)
 
-# Objeto base do gráfico
+# Objeto base do gráfico.
 imc_caloraias = figure(width=400, height=400)
+
+# Plotar o scatter plot.
+imc_caloraias.scatter(x="IMC Médio", y="Média de Calorias", size="População",source=source)
+
+show(imc_caloraias)
+
+
 
 
 
