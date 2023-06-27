@@ -25,7 +25,6 @@ df_vacina["Mortes a cada 1000 nascimentos"] = df_mortes["Mortes a cada 1000 nasc
 '''
 Criação do Scatter Plot:
 '''
-
 '''
 1. Definindo o arquivo de saída para o gráfico:
 '''
