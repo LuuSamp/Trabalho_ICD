@@ -6,8 +6,8 @@ from traducao_g20 import filtro_paises_do_g20
 import media_escolaridade
 import pandas as pd
 
-df_homens = reorganiza(datapath = "dados/anos_homens_na_escola.csv", column_name = "Média de anos na Escola por Homens", first_year = 1990, last_year = 2010, csv = False)
-df_mulheres = reorganiza(datapath = "dados/anos_mulheres_na_escola.csv", column_name = "Média de anos na Escola por Mulheres", first_year = 1990, last_year = 2010, csv = False)
+df_homens = reorganiza(datapath = "dados/anos_homens_na_escola.csv", column_name = "Média de anos na Escola por Homens", first_year = 1970, last_year = 2015, csv = False)
+df_mulheres = reorganiza(datapath = "dados/anos_mulheres_na_escola.csv", column_name = "Média de anos na Escola por Mulheres", first_year = 1970, last_year = 2015, csv = False)
 
 df_homens = filtro_paises_do_g20(df_homens, "Média de anos na Escola por Homens").reset_index()
 df_mulheres = filtro_paises_do_g20(df_mulheres, "Média de anos na Escola por Mulheres").reset_index()
@@ -24,3 +24,21 @@ source = ColumnDataSource(df_anos_escola)
 
 # Objeto base do gráfico.
 media_anos_escola = figure(title="Média de anos na escola", width=1240, height=600)
+
+
+#dicionário de países de destaque e suas cores
+paises_destacaveis = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","Germany":"coral","Canada":"red","Japan":"indianred"}
+
+#criação das várias linhas e suas respectivas formatações
+for country in df_anos_escola["country"].unique():
+    country_data = df_anos_escola[df_anos_escola["country"]==country]
+
+#PAÍS DESTACADOS
+    if country in paises_destacaveis.keys():
+        media_anos_escola.line(x="year", y="Média de anos na Escola", source=country_data, color=paises_destacaveis[country], line_width=3, line_alpha=0.8)
+        
+#OUTROS PAÍSES
+    else:
+        media_anos_escola.line(x="year", y="Média de anos na Escola", source=country_data, color="gray", line_width=2, line_alpha=0.25)
+
+show(media_anos_escola)
