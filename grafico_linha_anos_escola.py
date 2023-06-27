@@ -23,8 +23,7 @@ df_anos_escola["Média de anos na Escola"] = (df_anos_escola["Média de anos na 
 source = ColumnDataSource(df_anos_escola)
 
 # Objeto base do gráfico.
-media_anos_escola = figure(title="Média de anos na escola", width=1240, height=600)
-
+media_anos_escola = figure(title="Média de anos na escola", width=1240, height=600, x_range=(1970,2015))
 
 #dicionário de países de destaque e suas cores
 paises_destacaveis = {"Brazil":"blue","Argentina":"royalblue","France":"skyblue","Germany":"coral","Canada":"red","Japan":"indianred"}
@@ -40,5 +39,8 @@ for country in df_anos_escola["country"].unique():
 #OUTROS PAÍSES
     else:
         media_anos_escola.line(x="year", y="Média de anos na Escola", source=country_data, color="gray", line_width=2, line_alpha=0.25)
+
+hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('Média de anos na Escola', '@Média de anos na Escola')])
+media_anos_escola.add_tools(hover)
 
 show(media_anos_escola)
