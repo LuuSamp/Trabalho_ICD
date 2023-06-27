@@ -44,7 +44,7 @@ um alpha e uma cor para os pontos do gráfico:
 '''
 scatter_plot = figure(title=titulo, x_axis_label="Mortes a cada 1000 nascimentos", y_axis_label="Porcentagem de crianças vacinadas")
 #OBS: Não há muita diferença do scatter para o circle: 
-scatter_plot.circle(df_vacina["Mortes a cada 1000 nascimentos"], df_vacina["Porcentagem de Vacinação"], size=5, alpha = 0.5, color="red")
+scatter_plot.scatter(df_vacina["Mortes a cada 1000 nascimentos"], df_vacina["Porcentagem de Vacinação"], size=5, alpha = 0.5, color="red")
 
 '''
 4. Aumentando o tamanho do nome do eixo X e adicionando uma cor a ele:
