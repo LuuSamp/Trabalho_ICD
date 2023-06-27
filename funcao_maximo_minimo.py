@@ -28,3 +28,14 @@ def funcao_maximo_minimo(dataframe, nome_coluna, nome_coluna_pais):
     }
 
     return dicionario_paises_cores
+
+if __name__ == "__main__":
+    data = {
+        'país': ['Brasil', 'Estados Unidos', 'China', 'Índia', 'Rússia'],
+        'valor': [211, 328, 1439, 1393, 144]
+    }
+    df = pd.DataFrame(data)
+
+    data = funcao_maximo_minimo(df, 'valor', 'país')
+
+    print(data)
