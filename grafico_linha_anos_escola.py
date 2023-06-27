@@ -5,6 +5,7 @@ from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 import media_escolaridade
 import pandas as pd
+from variaveis_globais import *
 
 df_homens = reorganiza(datapath = "dados/anos_homens_na_escola.csv", column_name = "Média de anos na Escola por Homens", first_year = 1970, last_year = 2015, csv = False)
 df_mulheres = reorganiza(datapath = "dados/anos_mulheres_na_escola.csv", column_name = "Média de anos na Escola por Mulheres", first_year = 1970, last_year = 2015, csv = False)
@@ -55,5 +56,14 @@ media_anos_escola.yaxis.axis_label = "Média de anos na escola"
 media_anos_escola.xaxis.axis_label_text_font_size = "14pt"
 media_anos_escola.yaxis.axis_label_text_font_size = "14pt"
 media_anos_escola.title.text_font_size = "18pt"
+
+# Tamanho dos valores do eixo x e y alterados
+media_anos_escola.xaxis.major_label_text_font_size = "12pt"
+media_anos_escola.yaxis.major_label_text_font_size = "12pt"
+
+# Modificando fonte dos eixos e título
+media_anos_escola.xaxis.axis_label_text_font = FONTE_TEXTO
+media_anos_escola.yaxis.axis_label_text_font = FONTE_TEXTO
+media_anos_escola.title.text_font = FONTE_TEXTO
 
 show(media_anos_escola)
