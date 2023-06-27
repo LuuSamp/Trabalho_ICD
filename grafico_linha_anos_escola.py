@@ -40,7 +40,15 @@ for country in df_anos_escola["country"].unique():
     else:
         media_anos_escola.line(x="year", y="Média de anos na Escola", source=country_data, color="gray", line_width=2, line_alpha=0.25)
 
-hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('Média de anos na Escola', '@Média de anos na Escola')])
+# O título é colocado no centro
+media_anos_escola.title.align = "center"
+
+# Adicionei a ferramenta HoverTool
+hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('Média de anos na Escola', '@{Média de anos na Escola}{0,0.00}')])
 media_anos_escola.add_tools(hover)
+
+# É adicionado nome nos eixos
+media_anos_escola.xaxis.axis_label = "Anos"
+media_anos_escola.yaxis.axis_label = "Média de anos na escola"
 
 show(media_anos_escola)
