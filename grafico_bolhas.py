@@ -55,6 +55,9 @@ imc_calorias.ygrid.grid_line_color = None
 imc_calorias.xaxis.axis_label = "IMC Médio"
 imc_calorias.yaxis.axis_label = "Média de Calorias"
 
+# O título é colocado no centro
+imc_calorias.title.align = "center"
+
 # Configurando a ferramenta HoverTool
 hover = HoverTool(tooltips=[("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
 imc_calorias.add_tools(hover)
