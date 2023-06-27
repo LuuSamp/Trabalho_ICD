@@ -41,9 +41,9 @@ titulo = Title(text="Vacinação e Mortalidade Infantil", align="center", text_f
 o método scatter do objeto scatter_plot. Além disso, foi adicionado um tamanho, 
 um alpha e uma cor para os pontos do gráfico:
 '''
-scatter_plot = figure(title=titulo, x_axis_label="Mortes a cada 1000 nascimentos", y_axis_label="Porcentagem de crianças vacinadas")
+scatter_plot = figure(title=titulo, x_axis_label="Porcentagem de crianças vacinadas", y_axis_label="Mortes a cada 1000 nascimentos")
 #OBS: Não há muita diferença do scatter para o circle: 
-scatter_plot.scatter(df_vacina["Mortes a cada 1000 nascimentos"], df_vacina["Porcentagem de Vacinação"], size=5, alpha = 0.5, color="red")
+scatter_plot.scatter(df_vacina["Porcentagem de Vacinação"], df_vacina["Mortes a cada 1000 nascimentos"], size=5, alpha = 0.5, color="red")
 
 '''
 4. Aumentando o tamanho do nome do eixo X e adicionando uma cor a ele:
