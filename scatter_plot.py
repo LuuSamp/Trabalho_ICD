@@ -38,17 +38,28 @@ muda sua cor:
 titulo = Title(text="Vacinação e Mortalidade Infantil", align="center", text_font_size = "20pt", text_color = "darkblue")
 
 '''
-3. 
+3. Criando um objeto figure chamado scatter_plot e um gráfico de dispersão usando 
+o método scatter do objeto scatter_plot. Além disso, foi adicionado um tamanho, 
+um alpha e uma cor para os pontos do gráfico:
 '''
 scatter_plot = figure(title=titulo, x_axis_label="Mortes a cada 1000 nascimentos", y_axis_label="Porcentagem de crianças vacinadas")
 scatter_plot.scatter(df_vacina["Mortes a cada 1000 nascimentos"], df_vacina["Porcentagem de Vacinação"], size=5, alpha = 0.5, color="red")
 
+'''
+4. Aumentando o tamanho do nome do eixo X e adicionando uma cor a ele:
+'''
 scatter_plot.xaxis.axis_label_text_font_size = "16pt"
 scatter_plot.xaxis.axis_label_text_color = 'darkblue' 
 
+'''
+5. Aumentando o tamanho do nome do eixo Y e adicionando uma cor a ele:
+'''
 scatter_plot.yaxis.axis_label_text_font_size = "16pt"
 scatter_plot.yaxis.axis_label_text_color = 'darkblue'
 
+'''
+6. Exibindo o gráfico:
+'''
 show(scatter_plot)
 
 
