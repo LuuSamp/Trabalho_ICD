@@ -14,7 +14,7 @@ output_file("scatter_plot.html")
 
 scatter_plot = figure(title="Vacinação e Mortalidade Infantil", x_axis_label="Mortes a cada 1000 nascimentos", y_axis_label="Porcentagem de crianças vacinadas")
 
-scatter_plot.scatter(df_vacina['Mortes a cada 1000 nascimentos'], df_vacina['Porcentagem de Vacinação'], size=5, alpha = 1, color='orange')
+scatter_plot.scatter(df_vacina['Mortes a cada 1000 nascimentos'], df_vacina['Porcentagem de Vacinação'], size=5, alpha = 0.5, color='red')
 
 show(scatter_plot)
 
