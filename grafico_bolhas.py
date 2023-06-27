@@ -60,14 +60,13 @@ df_media_por_anos["preenchimento"] = lista_de_preenchimento
 sem_destaques = ColumnDataSource(df_media_por_anos[df_media_por_anos["color"]=="gray"]) 
 paises_com_destaque = ColumnDataSource(df_media_por_anos[df_media_por_anos["color"] != "gray"])
     
-
-print(df_media_por_anos)
 # Objeto base do gráfico.
 imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=1240, height=600, x_range=(2200,3800), y_range=(19,28))
 
 # Plotar o scatter plot.
 imc_calorias.circle(x="Média de Calorias", y="IMC Médio", size="População em Proporção", source=sem_destaques, color="color", fill_alpha = "preenchimento")
 imc_calorias.circle(x="Média de Calorias", y="IMC Médio", size="População em Proporção", source=paises_com_destaque, color="color", fill_alpha = "preenchimento")
+
 # Desativando as linhas de grade vertical e horizontal
 imc_calorias.xgrid.grid_line_color = None
 imc_calorias.ygrid.grid_line_color = None
@@ -91,6 +90,14 @@ imc_calorias.yaxis.major_label_text_font_size = "12pt"
 # Alterando tamanho dos eixos
 imc_calorias.xaxis.axis_label_text_font_size = "14pt"
 imc_calorias.yaxis.axis_label_text_font_size = "14pt"
+
+# Modificando fonte dos eixos e título
+imc_calorias.xaxis.axis_label_text_font = FONTE_TEXTO
+imc_calorias.yaxis.axis_label_text_font = FONTE_TEXTO
+imc_calorias.title.text_font = FONTE_TEXTO
+
+# Alterarando a cor do background
+imc_calorias.background_fill_color = "#F8F2FF"
 
 # Configurando a ferramenta HoverTool
 hover = HoverTool(tooltips=[("País", "@{country}"), ("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
