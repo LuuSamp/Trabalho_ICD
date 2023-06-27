@@ -11,10 +11,10 @@ df_imc_homens = reorganiza(datapath = "dados/body_mass_index_bmi_men_kgperm2.csv
 df_imc_mulheres = reorganiza(datapath = "dados/body_mass_index_bmi_women_kgperm2.csv", column_name = "IMC das Mulheres", first_year = 1990, last_year = 2008, csv = False)
 df_calorias = reorganiza(datapath = "dados/food_supply_kilocalories_per_person_and_day.csv", column_name = "Média de Calorias", first_year = 1990, last_year = 2008, csv = False)
 
-df_populacao = filtro_paises_do_g20(df_populacao).reset_index()
-df_imc_homens = filtro_paises_do_g20(df_imc_homens).reset_index()
-df_imc_mulheres = filtro_paises_do_g20(df_imc_mulheres).reset_index()
-df_calorias = filtro_paises_do_g20(df_calorias).reset_index()
+df_populacao = filtro_paises_do_g20(df_populacao, "População").reset_index()
+df_imc_homens = filtro_paises_do_g20(df_imc_homens, "IMC dos Homens").reset_index()
+df_imc_mulheres = filtro_paises_do_g20(df_imc_mulheres, "IMC das Mulheres").reset_index()
+df_calorias = filtro_paises_do_g20(df_calorias, "Média de Calorias").reset_index()
 
 # Criando o DataFrame Final
 df_final = pd.DataFrame()
@@ -36,24 +36,24 @@ colunas_trabalhadas = ["População", "IMC Médio", "Média de Calorias"]
 df_media_por_anos = df_final.groupby("country")[colunas_trabalhadas].mean().reset_index()
 
 # Ajustei a proporção da população para se adequar ao gráfico.
-df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/15000000
+df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/7000000
 
 # É criado um ColumnDataSource.
 source = ColumnDataSource(df_media_por_anos)
 
 # Objeto base do gráfico.
-imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=600, height=600)
+imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=1240, height=600, x_range=(2200,3800), y_range=(19,28))
 
 # Plotar o scatter plot.
-imc_calorias.scatter(x="IMC Médio", y="Média de Calorias", size="População em Proporção", source=source)
+imc_calorias.scatter(x="Média de Calorias", y="IMC Médio", size="População em Proporção", source=source)
 
 # Desativando as linhas de grade vertical e horizontal
 imc_calorias.xgrid.grid_line_color = None
 imc_calorias.ygrid.grid_line_color = None
 
 # É adicionado nome nos eixos
-imc_calorias.xaxis.axis_label = "IMC Médio"
-imc_calorias.yaxis.axis_label = "Média de Calorias"
+imc_calorias.xaxis.axis_label = "Média de Calorias"
+imc_calorias.yaxis.axis_label = "IMC Médio"
 
 # O título é colocado no centro
 imc_calorias.title.align = "center"
@@ -63,8 +63,3 @@ hover = HoverTool(tooltips=[("País", "@{country}"), ("IMC Médio", "@{IMC Médi
 imc_calorias.add_tools(hover)
 
 show(imc_calorias)
-
-
-
-
-
