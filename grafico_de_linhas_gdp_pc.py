@@ -2,7 +2,7 @@
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
-from reorganizador import reorganiza, traduz_milhares
+from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 
 def grafico_de_linhas_gdp(datapath, titulo):
@@ -14,8 +14,7 @@ def grafico_de_linhas_gdp(datapath, titulo):
 
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "indice_analisado", 1910, 2010) #vai filtrar a base de dados para os anos de 1990 e 2010
-    dataframe = filtro_paises_do_g20(dataframe) #vai filtrar a base de dados apenas para países do g20 e UE
-    dataframe["indice_analisado"] = dataframe["indice_analisado"].apply(traduz_milhares) #vai modificar os valores numéricos
+    dataframe = filtro_paises_do_g20(dataframe, "indice_analisado") #vai filtrar a base de dados apenas para países do g20 e UE
     source = ColumnDataSource(dataframe) #vai transformar o dataframe para o formato CDS
     
 
