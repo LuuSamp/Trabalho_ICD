@@ -51,4 +51,9 @@ media_anos_escola.add_tools(hover)
 media_anos_escola.xaxis.axis_label = "Anos"
 media_anos_escola.yaxis.axis_label = "Média de anos na escola"
 
+# Alterando tamanho dos eixos e do título
+media_anos_escola.xaxis.axis_label_text_font_size = "14pt"
+media_anos_escola.yaxis.axis_label_text_font_size = "14pt"
+media_anos_escola.title.text_font_size = "18pt"
+
 show(media_anos_escola)
