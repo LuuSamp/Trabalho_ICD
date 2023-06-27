@@ -21,11 +21,11 @@ raw_data = {"country": list(dataframe_total["country"]),
             "Homens": list(dataframe_homens[f"{year}"]/dataframe_total[f"{year}"]),
             "Mulheres": list(dataframe_mulheres[f"{year}"]/dataframe_total[f"{year}"])}
 data_source = ColumnDataSource(raw_data)
-print(raw_data)
+sorted_countries = list(pd.DataFrame(raw_data).sort_values(by=["Mulheres"])["country"])
 
 # O gráfico
-plot = figure(width=700, height=500, title="Proporção nos anos escolares de homens e mulheres", y_range=dataframe_total["country"])
-bars = plot.hbar_stack(["Homens", "Mulheres"], y = "country", color = ["Blue", "Red"], source = data_source)
+plot = figure(width=700, height=500, title="Proporção nos anos escolares de homens e mulheres", y_range=sorted_countries)
+bars = plot.hbar_stack(["Homens", "Mulheres"], y = "country", height=0.9, color = ["Blue", "Red"], source = data_source)
 
 # Atualização do gráfico
 def update_chart():
@@ -68,6 +68,8 @@ def slider_action(attr, old, new):
     bars[0].data_source.data = raw_data
 
 slider.on_change("value", slider_action)
+
+plot.ray(x=.5, y=0, length=1, angle=1.57079633, color='black')
 
 # A GUI
 curdoc().add_root(column(button, slider, plot))
