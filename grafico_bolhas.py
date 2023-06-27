@@ -42,21 +42,25 @@ df_media_por_anos["População em Proporção"] = df_media_por_anos["População
 source = ColumnDataSource(df_media_por_anos)
 
 # Objeto base do gráfico.
-imc_caloraias = figure(width=400, height=400)
+imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=400, height=400)
 
 # Plotar o scatter plot.
-imc_caloraias.scatter(x="IMC Médio", y="Média de Calorias", size="População em Proporção", source=source)
+imc_calorias.scatter(x="IMC Médio", y="Média de Calorias", size="População em Proporção", source=source)
 
 # Desativando as linhas de grade vertical e horizontal
-imc_caloraias.xgrid.grid_line_color = None
-imc_caloraias.ygrid.grid_line_color = None
+imc_calorias.xgrid.grid_line_color = None
+imc_calorias.ygrid.grid_line_color = None
+
+# É adicionado nome nos eixos
+imc_calorias.xaxis.axis_label = "IMC Médio"
+imc_calorias.yaxis.axis_label = "Média de Calorias"
 
 # Configurando a ferramenta HoverTool
 hover = HoverTool(tooltips=[("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
-imc_caloraias.add_tools(hover)
+imc_calorias.add_tools(hover)
 
 
-show(imc_caloraias)
+show(imc_calorias)
 
 
 
