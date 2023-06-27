@@ -58,6 +58,19 @@ imc_calorias.yaxis.axis_label = "IMC Médio"
 # O título é colocado no centro
 imc_calorias.title.align = "center"
 
+# É alterado o tamanho do título
+imc_calorias.title.text_font_size = "18pt"
+
+# Tamanho dos valores do eixo x alterado 
+imc_calorias.xaxis.major_label_text_font_size = "12pt"
+
+# Tamanho dos valores do eixo y alterado 
+imc_calorias.yaxis.major_label_text_font_size = "12pt"
+
+# Alterando tamanho dos eixos
+imc_calorias.xaxis.axis_label_text_font_size = "14pt"
+imc_calorias.yaxis.axis_label_text_font_size = "14pt"
+
 # Configurando a ferramenta HoverTool
 hover = HoverTool(tooltips=[("País", "@{country}"), ("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
 imc_calorias.add_tools(hover)
