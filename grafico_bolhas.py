@@ -59,9 +59,8 @@ imc_calorias.yaxis.axis_label = "Média de Calorias"
 imc_calorias.title.align = "center"
 
 # Configurando a ferramenta HoverTool
-hover = HoverTool(tooltips=[("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
+hover = HoverTool(tooltips=[("País", "@{country}"), ("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
 imc_calorias.add_tools(hover)
-
 
 show(imc_calorias)
 
