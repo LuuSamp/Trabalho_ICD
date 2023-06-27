@@ -7,6 +7,9 @@ from traducao_g20 import filtro_paises_do_g20
 
 dataframe = pd.read_csv("dados/investimento_educacao.csv")
 dataframe = filtro_paises_do_g20(dataframe, True, "country")
+print(dataframe)
+dataframe.iloc[:,1:] = dataframe.iloc[:,1:].interpolate(method = "linear", axis = 1, limit_direction="both")
+print(dataframe)
 
 # É adicionado uma lista com países e valores aleatórios relacionados a cada um.
 paises = [
