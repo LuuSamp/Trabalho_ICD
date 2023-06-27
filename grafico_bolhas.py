@@ -15,7 +15,6 @@ df_populacao = filtro_paises_do_g20(df_populacao).reset_index()
 df_imc_homens = filtro_paises_do_g20(df_imc_homens).reset_index()
 df_imc_mulheres = filtro_paises_do_g20(df_imc_mulheres).reset_index()
 df_calorias = filtro_paises_do_g20(df_calorias).reset_index()
-print(df_imc_mulheres)
 
 # Criando o DataFrame Final
 df_final = pd.DataFrame()
@@ -25,8 +24,17 @@ df_final["População"] = df_populacao["População"]
 df_final["IMC dos Homens"] = df_imc_homens["IMC dos Homens"]
 df_final["IMC das Mulheres"] = df_imc_mulheres["IMC das Mulheres"]
 df_final["Média de Calorias"] = df_calorias["Média de Calorias"]
-df_final['IMC Médio'] = (df_final['IMC dos Homens'] + df_final['IMC das Mulheres']) / 2
+df_final["IMC Médio"] = (df_final["IMC dos Homens"] + df_final["IMC das Mulheres"]) / 2
 
-
+# É criada a conversão dos valores de População para um float
 df_final["População"] = df_final["População"].apply(traduz_milhares)
-print(df_final)
+
+# É criada uma lista com as colunas que iremos fazer a média
+colunas_trabalhadas = ["População", "IMC Médio", "Média de Calorias"]
+
+# É criada uma tabela contendo a média de população, calorias, IMC de acordo por Países ao longo dos anos
+df_media_por_anos = df_final.groupby("country")[colunas_trabalhadas].mean().reset_index()
+
+
+
+
