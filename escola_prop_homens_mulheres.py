@@ -5,6 +5,7 @@ from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
 import pandas as pd
 from variaveis_globais import *
+from cores import lista_cores, lista_alpha
 
 # Dataframe a ser usado
 dataframe_homens = filtro_paises_do_g20(pd.read_csv("dados/anos_homens_na_escola.csv"), True, "country")
@@ -17,10 +18,11 @@ print(dataframe_total)
 
 # Dados
 year = 1970
-#sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
+
 raw_data = {"country": list(dataframe_total["country"]), 
             "Homens": list(dataframe_homens[f"{year}"]/dataframe_total[f"{year}"]),
-            "Mulheres": list(dataframe_mulheres[f"{year}"]/dataframe_total[f"{year}"])}
+            "Mulheres": list(dataframe_mulheres[f"{year}"]/dataframe_total[f"{year}"]),
+            "alpha": dataframe_total["country"].apply(lista_alpha)}
 data_source = ColumnDataSource(raw_data)
 sorted_countries = list(pd.DataFrame(raw_data).sort_values(by=["Mulheres"])["country"])
 
@@ -35,6 +37,7 @@ plot = figure(width=900,
 bars = plot.hbar_stack(["Homens", "Mulheres"], 
                        y = "country", height=0.9, 
                        color = ["Blue", "Red"], 
+                       alpha = "alpha",
                        source = data_source)
 
 # Atualização do gráfico
@@ -72,9 +75,8 @@ def slider_action(attr, old, new):
     '''
     global year
     year = slider.value
-    raw_data = {"country": list(dataframe_total["country"]), 
-            "Homens": list(dataframe_homens[f"{year}"]/dataframe_total[f"{year}"]),
-            "Mulheres": list(dataframe_mulheres[f"{year}"]/dataframe_total[f"{year}"])}
+    raw_data["Homens"] = list(dataframe_homens[f"{year}"]/dataframe_total[f"{year}"])
+    raw_data["Mulheres"] = list(dataframe_mulheres[f"{year}"]/dataframe_total[f"{year}"])
     bars[0].data_source.data = raw_data
 
 slider.on_change("value", slider_action)
