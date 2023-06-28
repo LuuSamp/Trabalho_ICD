@@ -35,14 +35,18 @@ def box_plot_life(datapath):
     #CRINDO A COLUNA DE CORES
     dicionario_de_cores = DICT_CORES
     lista_de_cores = []
+    lista_de_preenchimentos = []
 
     for cada_pais in dataframe_quantis["country"]:
         if cada_pais in dicionario_de_cores.keys():
             lista_de_cores.append(dicionario_de_cores[cada_pais])
+            lista_de_preenchimentos.append(ALPHA_DESTAQUES)
         else:
             lista_de_cores.append("gray")
+            lista_de_preenchimentos.append(ALPHA_COMUNS)
 
     dataframe_quantis["color"] = lista_de_cores
+    dataframe_quantis["preenchimento"] = lista_de_preenchimentos
 
 
     #CRIANDO O BOXPLOT
@@ -70,7 +74,7 @@ def box_plot_life(datapath):
                  source=data_source, 
                  color="color", 
                  line_color="black", 
-                 alpha = 0.7)
+                 alpha = "preenchimento")
     boxplot.vbar("country", 
                  0.7, 
                  "q25", 
@@ -78,7 +82,7 @@ def box_plot_life(datapath):
                  source=data_source, 
                  color="color", 
                  line_color="black", 
-                 alpha = 0.7)
+                 alpha = "preenchimento")
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('Integrante', '@country'), ('Média', '@q50 anos'),
