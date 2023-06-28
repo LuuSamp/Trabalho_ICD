@@ -72,8 +72,6 @@ def box_plot_life(datapath):
     boxplot.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
     boxplot.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
 
-    boxplot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
-
     boxplot.xaxis.axis_label = "Países" 
     boxplot.yaxis.axis_label = "Anos" 
 
