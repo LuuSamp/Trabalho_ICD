@@ -93,10 +93,12 @@ def converte_iso3(pais_iso2):
 # Criação de Data Frames "tratados" a partir da utilização da função "reorganiza":
 df_IDH = reorganiza("dados\hdi_human_development_index.csv", "IDH", 1990, 2010)
 
+# Média:
+
 # Adicionando uma coluna iso3 no DataFrame:
 coluna_iso2 = df_IDH["country"].apply(converte_iso2)
 coluna_iso3 = coluna_iso2.apply(converte_iso3)
-df_IDH["iso3"] = coluna_iso3
+df_IDH["iso_a3"] = coluna_iso3
 
 # Utilizando a função  "filtro_paises_do_g20" para filtrar apenas os países do g20:
 df_IDH_g20 = filtro_paises_do_g20(df_IDH, False, agrupamento="country")
@@ -108,6 +110,12 @@ del df_IDH_g20["year"]
 # Carregando os dados dos países usando geopandas:
 world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
 
+# 
+world = pd.merge(
+    left = world,
+    right = df_IDH_g20.filter(items=['IDH','iso_a3']), 
+    on='iso_a3'
+)
 # Criando um objeto GeoJSONDataSource:
 dados_geograficos = GeoJSONDataSource(geojson=world.to_json())
 
@@ -126,5 +134,5 @@ mapa_IDH.patches('xs', 'ys', fill_alpha=0.7, line_color='black', line_width=1,
 # Exibindo o mapa
 output_file("mapa_mundial.html")
 show(mapa_IDH)
-# print(world.head())
+print(world.head())
 # print(df_IDH.head())
