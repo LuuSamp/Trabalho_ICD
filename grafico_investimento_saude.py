@@ -80,5 +80,12 @@ ranking_investimento_saude_g20.toolbar.logo = None
 ranking_investimento_saude_g20.toolbar.autohide = True 
 ranking_investimento_saude_g20.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
+# Adicionando legenda:
+ranking_investimento_saude_g20.legend.location = "bottom_right"
+ranking_investimento_saude_g20.legend.title = ""
+ranking_investimento_saude_g20.legend.border_line_color = COR_DA_LINHA
+ranking_investimento_saude_g20.legend.border_line_width = ESPESSURA_DA_LINHA
+ranking_investimento_saude_g20.legend.border_line_alpha = ALPHA_DA_LINHA
+
 output_file("Ranking_investimento_saude_g20.html")
 show(ranking_investimento_saude_g20)
