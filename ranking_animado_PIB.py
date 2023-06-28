@@ -21,7 +21,7 @@ raw_data = {"country": list(sorted_dataframe["country"]),
 data_source = ColumnDataSource(raw_data)
 
 # O gráfico
-plot = figure(width=700, height=500, title="PIB dos países do G20 (em bilhões)", y_range=sorted_dataframe["country"], tools = "")
+plot = figure(width=700, height=500, title="PIB dos países do G20 (em bilhões)", x_range = (0, 16000), y_range=sorted_dataframe["country"], tools = "")
 bars = plot.hbar(y = "country", right = "GDP", height = 0.9, source = data_source)
 
 # Atualização do gráfico
