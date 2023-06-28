@@ -54,17 +54,6 @@ color_mapper = LinearColorMapper(
     high = df_gini_g20_media['gini'].max(), 
     nan_color = '#d9d9d9')
 
-# Criando barras de cores:
-color_bar = ColorBar(
-    color_mapper=color_mapper, 
-    label_standoff=6,
-    width = 500, 
-    height = 20,
-    border_line_color=None,
-    location = (0,0), 
-    orientation = 'horizontal', 
-)
-
 # Configurando a figura e adicionando o gráfico:
 plot = figure(title="Mapa Mundial", width = 1080, height = 720)
 plot.patches('xs', 'ys', fill_alpha=0.7, line_color='black', line_width=1,
