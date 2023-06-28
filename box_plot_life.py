@@ -46,7 +46,7 @@ def box_plot_life(datapath):
         else:
             lista_de_cores.append("gray")
             lista_de_preenchimentos.append(ALPHA_COMUNS)
-            lista_de_legenda.append("G20 Country")
+            lista_de_legenda.append("Other Countries")
 
     dataframe_quantis["color"] = lista_de_cores
     dataframe_quantis["preenchimento"] = lista_de_preenchimentos
