@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, column
-from bokeh.models import Slider, ColumnDataSource, Button, HoverTool, NumeralTickFormatter
+from bokeh.models import Slider, ColumnDataSource, Button, HoverTool, NumeralTickFormatter, FixedTicker
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
@@ -25,8 +25,17 @@ data_source = ColumnDataSource(raw_data)
 sorted_countries = list(pd.DataFrame(raw_data).sort_values(by=["Mulheres"])["country"])
 
 # O gráfico
-plot = figure(width=800, height=500, title="Proporção nos anos escolares de homens e mulheres", x_range = (0, 1), y_range=sorted_countries)
-bars = plot.hbar_stack(["Homens", "Mulheres"], y = "country", height=0.9, color = ["Blue", "Red"], source = data_source)
+plot = figure(width=900, 
+              height=500, 
+              title="Proporção nos anos escolares de homens e mulheres (1970-2015)", 
+              x_range = (0, 1), 
+              y_range=sorted_countries,
+              tools = "")
+
+bars = plot.hbar_stack(["Homens", "Mulheres"], 
+                       y = "country", height=0.9, 
+                       color = ["Blue", "Red"], 
+                       source = data_source)
 
 # Atualização do gráfico
 def update_chart():
@@ -77,7 +86,28 @@ plot.ray(x=.5, y=0, length=1, angle=1.57079633, color='black', line_dash = "dash
 plot.xaxis.formatter = NumeralTickFormatter(format="0 %")
 plot.title.text_font = FONTE_TEXTO
 plot.title.text_font_size = TAMANHO_TITULO
+plot.background_fill_color = BACKGROUND_FILL
 
+
+plot.xaxis.ticker=FixedTicker(ticks=[tick/100 for tick in range(0, 101, 10)])
+
+plot.xaxis.axis_label_text_font = FONTE_TEXTO
+plot.yaxis.axis_label_text_font = FONTE_TEXTO
+
+plot.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+plot.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+
+plot.xgrid.grid_line_color = LINHAS_GRADE
+plot.ygrid.grid_line_color = LINHAS_GRADE
+
+plot.title.text_font = FONTE_TEXTO
+plot.title.text_font_size =TAMANHO_TITULO
+plot.title.align = ALINHAMENTO_TITULO
+plot.title.text_baseline = BASELINE_TITULO
+
+plot.toolbar.logo = None 
+plot.toolbar.autohide = True 
+# plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
 # A GUI
 curdoc().add_root(column(button, slider, plot))
