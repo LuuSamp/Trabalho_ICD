@@ -17,11 +17,11 @@ dataframe = filtro_paises_do_g20(dataframe, True, "country")
 year = 1990
 sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
 raw_data = {"country": list(sorted_dataframe["country"]), 
-            "GDP": list(sorted_dataframe[f"{year}"])}
+            "GDP": list(sorted_dataframe[f"{year}"]/1000000000)}
 data_source = ColumnDataSource(raw_data)
 
 # O gráfico
-plot = figure(width=700, height=500, title="PIB dos países do G20", y_range=sorted_dataframe["country"], tools = "")
+plot = figure(width=700, height=500, title="PIB dos países do G20 (em bilhões)", y_range=sorted_dataframe["country"], tools = "")
 bars = plot.hbar(y = "country", right = "GDP", height = 0.9, source = data_source)
 
 # Atualização do gráfico
@@ -61,7 +61,7 @@ def slider_action(attr, old, new):
     year = slider.value
     sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
     raw_data = {"country": list(sorted_dataframe["country"]), 
-                "GDP": list(sorted_dataframe[f"{year}"])}
+                "GDP": list(sorted_dataframe[f"{year}"]/1000000000)}
     bars.data_source.data = raw_data
 
 slider.on_change("value", slider_action)
