@@ -72,8 +72,9 @@ investimento_educacao.title.align = "center"
 # Tamanho do nome dos países alterado
 investimento_educacao.below[0].major_label_text_font_size = "14px"
 
-# Adicionando ferramenta Hover
-hover = HoverTool(tooltips=[('País', '@country'), ('Média de anos na Escola', '@Média de anos na Escola{$0,00}')])
+# É retirado as barras de fundo do background
+investimento_educacao.xgrid.grid_line_color = None
+investimento_educacao.ygrid.grid_line_color = None
 
 # Tamanho dos valores do eixo y alterado 
 investimento_educacao.yaxis.major_label_text_font_size = "12pt"
