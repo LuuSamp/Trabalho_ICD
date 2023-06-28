@@ -46,17 +46,39 @@ def box_plot_life(datapath):
 
 
     #CRIANDO O BOXPLOT
-    source = ColumnDataSource(dataframe_quantis)
+    data_source = ColumnDataSource(dataframe_quantis)
 
-    boxplot = figure(x_range=dataframe_quantis["country"], title="Expectativa de Vida G20 (1950-2020)",
-                     width = 1080, height = 720, y_range=(30, 85))
+    boxplot = figure(x_range=dataframe_quantis["country"], 
+                     title="Expectativa de Vida G20 (1950-2020)",
+                     width = LARGURA, 
+                     height = ALTURA, 
+                     y_range=(30, 85),
+                     tools = "")
     
-    whisker = Whisker(base="country", upper="q95", lower="q05", source=source, line_color="gray")
+    whisker = Whisker(base="country", 
+                      upper="q95", 
+                      lower="q05", 
+                      source=data_source, 
+                      line_color=CORES_COMUNS)
     whisker.upper_head.size = whisker.lower_head.size = 20
     boxplot.add_layout(whisker)
 
-    boxplot.vbar("country", 0.7, "q50", "q75", source=source, color="color", line_color="black", alpha = 0.7)
-    boxplot.vbar("country", 0.7, "q25", "q50", source=source, color="color", line_color="black", alpha = 0.7)
+    boxplot.vbar("country", 
+                 0.7, 
+                 "q50", 
+                 "q75", 
+                 source=data_source, 
+                 color="color", 
+                 line_color="black", 
+                 alpha = 0.7)
+    boxplot.vbar("country", 
+                 0.7, 
+                 "q25", 
+                 "q50", 
+                 source=data_source, 
+                 color="color", 
+                 line_color="black", 
+                 alpha = 0.7)
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('Integrante', '@country'), ('Média', '@q50 anos'),
@@ -65,7 +87,7 @@ def box_plot_life(datapath):
     boxplot.add_tools(hover)
 
     #CONFIGURAÇÕES ESTÉTICAS
-    boxplot.background_fill_color = (241, 242, 244, 0.5)
+    boxplot.background_fill_color = BACKGROUND_FILL
 
     boxplot.xaxis.major_label_orientation = 0.7
 
@@ -86,8 +108,12 @@ def box_plot_life(datapath):
 
     boxplot.title.text_font = FONTE_TEXTO
     boxplot.title.text_font_size =TAMANHO_TITULO
-    boxplot.title.align = "center"
-    boxplot.title.text_baseline = "middle"
+    boxplot.title.align = ALINHAMENTO_TITULO
+    boxplot.title.text_baseline = BASELINE_TITULO
+
+    boxplot.toolbar.logo = None 
+    boxplot.toolbar.autohide = True 
+    boxplot.toolbar_location = POSICAO_BARRA_FERRAMENTAS 
 
     show(boxplot)
     save(boxplot)
