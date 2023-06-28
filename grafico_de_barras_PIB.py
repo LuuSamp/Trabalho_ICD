@@ -26,17 +26,21 @@ def graf_barras_pib(datapath):
     dicionario_de_cores = DICT_CORES
     lista_de_cores = []
     lista_de_preenchimento = []
+    lista_de_legenda = []
 
     for cada_pais in dataframe["country"]:
         if cada_pais in dicionario_de_cores.keys():
             lista_de_cores.append(dicionario_de_cores[cada_pais])
             lista_de_preenchimento.append(ALPHA_DESTAQUES)
+            lista_de_legenda.append(cada_pais)
         else:
             lista_de_cores.append(CORES_COMUNS)
             lista_de_preenchimento.append(ALPHA_COMUNS)
+            lista_de_legenda.append("Others Countries")
 
     dataframe["color"] = lista_de_cores
     dataframe["preenchimento"] = lista_de_preenchimento
+    dataframe["legenda"] = lista_de_legenda
 
     #TRANSFORMANDO EM CDS
     data_source = ColumnDataSource(dataframe)
@@ -57,7 +61,8 @@ def graf_barras_pib(datapath):
                   alpha="preenchimento",
                   line_color = COR_DA_LINHA,
                   line_alpha = ALPHA_DA_LINHA,
-                  line_width = ESPESSURA_DA_LINHA)
+                  line_width = ESPESSURA_DA_LINHA,
+                  legend_field="legenda")
     
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('País', '@country'), 
@@ -94,6 +99,12 @@ def graf_barras_pib(datapath):
     bar_plot.toolbar.logo = None 
     bar_plot.toolbar.autohide = True 
     bar_plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
+    bar_plot.legend.location = "top_right"
+    bar_plot.legend.title = ""
+    bar_plot.legend.border_line_color = COR_DA_LINHA
+    bar_plot.legend.border_line_width = ESPESSURA_DA_LINHA
+    bar_plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
     show(bar_plot)
     save(bar_plot)
