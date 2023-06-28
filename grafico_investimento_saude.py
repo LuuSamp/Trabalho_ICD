@@ -46,4 +46,34 @@ ranking_investimento_saude_g20.vbar(x="country", top="Investimento em Saúde", s
                                     color="Cor", alpha="Preenchimento", line_color=COR_DA_LINHA, line_width=ESPESSURA_DA_LINHA, 
                                     line_alpha=ALPHA_DA_LINHA)
 
+# Adicionando elementos estéticos ao Ranking:
+ranking_investimento_saude_g20.background_fill_color = BACKGROUND_FILL
 
+ranking_investimento_saude_g20.xaxis.major_label_orientation = 0.7
+
+ranking_investimento_saude_g20.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
+ranking_investimento_saude_g20.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
+
+ranking_investimento_saude_g20.xaxis.axis_label = "Países" 
+ranking_investimento_saude_g20.yaxis.axis_label = "Porcentagem de Investimento em Saúde" 
+
+ranking_investimento_saude_g20.xaxis.axis_label_text_font = FONTE_TEXTO
+ranking_investimento_saude_g20.yaxis.axis_label_text_font = FONTE_TEXTO
+
+ranking_investimento_saude_g20.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+ranking_investimento_saude_g20.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+
+ranking_investimento_saude_g20.xgrid.grid_line_color = LINHAS_GRADE
+ranking_investimento_saude_g20.ygrid.grid_line_color = LINHAS_GRADE
+
+ranking_investimento_saude_g20.title.text_font = FONTE_TEXTO
+ranking_investimento_saude_g20.title.text_font_size =TAMANHO_TITULO
+ranking_investimento_saude_g20.title.align = ALINHAMENTO_TITULO
+ranking_investimento_saude_g20.title.text_baseline = BASELINE_TITULO
+
+ranking_investimento_saude_g20.toolbar.logo = None 
+ranking_investimento_saude_g20.toolbar.autohide = True 
+ranking_investimento_saude_g20.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
+output_file("Ranking_investimento_saude_g20.html")
+show(ranking_investimento_saude_g20)
