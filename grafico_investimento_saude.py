@@ -46,6 +46,11 @@ ranking_investimento_saude_g20.vbar(x="country", top="Investimento em Saúde", s
                                     color="Cor", alpha="Preenchimento", line_color=COR_DA_LINHA, line_width=ESPESSURA_DA_LINHA, 
                                     line_alpha=ALPHA_DA_LINHA)
 
+# Implementando ferramenta Hover:
+hover = HoverTool(tooltips=[('País', '@country'), 
+                                ('Investimento em Saúde', '@Investimento em Saúde')])
+ranking_investimento_saude_g20.add_tools(hover)
+
 # Adicionando elementos estéticos ao Ranking:
 ranking_investimento_saude_g20.background_fill_color = BACKGROUND_FILL
 
