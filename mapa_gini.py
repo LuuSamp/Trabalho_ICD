@@ -54,12 +54,6 @@ color_mapper = LinearColorMapper(
     high = df_gini_g20_media['gini'].max(), 
     nan_color = '#d9d9d9')
 
-# Ajustando ferramenta para popup com mouse:
-hover = HoverTool(
-    tooltips = [ ('País','@name'),
-                ('gini','@gini')
-    ])
-
 # Criando barras de cores:
 color_bar = ColorBar(
     color_mapper=color_mapper, 
@@ -80,8 +74,12 @@ paises_g20 = plot.patches('xs', 'ys', source=dados_geograficos_g20,
                  line_color = 'grey', line_width = 0.25, fill_alpha = 1)
 
 # Adicionando hover:
-hover.renderers = [paises_g20]
+hover = HoverTool(
+    tooltips = [('País','@name'),
+                ('gini','@gini')],
+    renderers = [paises_g20]
+    )
 plot.add_tools(hover)
 
-# GUI:
+# GUI
 curdoc().add_root(plot)
