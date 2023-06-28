@@ -107,9 +107,6 @@ coluna_iso2 = df_IDH_g20_media["country"].apply(converte_iso2)
 coluna_iso3 = coluna_iso2.apply(converte_iso3)
 df_IDH_g20_media["iso_a3"] = coluna_iso3
 
-# Deletando a coluna "year":
-# del df_IDH_g20["year"]
-
 # Carregando os dados dos países usando geopandas:
 world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
 
@@ -124,19 +121,11 @@ world1 = pd.merge(
 dados_geograficos = GeoJSONDataSource(geojson=world.to_json())
 dados_geograficos_g20 = GeoJSONDataSource(geojson=world1.to_json())
 
-# Obtendo os valores mínimo e máximo de IDH:
-# minimo_IDH = df_IDH_g20_media['IDH'].min()
-# maximo_IDH = df_IDH_g20_media['IDH'].max()
-
-# Criando a paleta de cores:
-#palette = Viridis256[::-1]  # Invertendo a ordem da paleta para corresponder aos valores mais altos de IDH
-
 # Definindo paleta de cores
 palette = Reds[6]
 palette = palette[::-1]
 
 # Fazendo cortes lineares na escala para para aplicar paleta
-# Para cortes logaritmos utilize LogColorMapper
 color_mapper = LinearColorMapper(
     palette = palette, 
     low = df_IDH_g20_media['IDH'].min(), 
