@@ -161,12 +161,16 @@ color_bar = ColorBar(
 )
 
 # Configurando a figura e adicionando o gráfico:
-mapa_IDH = figure(title="Mapa Mundial", tools = [hover])
+mapa_IDH = figure(title="Mapa Mundial")
 mapa_IDH.patches('xs', 'ys', fill_alpha=0.7, line_color='black', line_width=1,
                  source=dados_geograficos, fill_color = "grey")
-mapa_IDH.patches('xs', 'ys', source=dados_geograficos_g20, 
+paises_g20 = mapa_IDH.patches('xs', 'ys', source=dados_geograficos_g20, 
                  fill_color = {'field' :'IDH', 'transform':color_mapper}, 
                  line_color = 'grey', line_width = 0.25, fill_alpha = 1)
+
+hover.renderers = [paises_g20]
+
+mapa_IDH.add_tools(hover)
 
 # Exibindo o mapa
 output_file("mapa_mundial.html")
