@@ -8,7 +8,9 @@ from traducao_g20 import filtro_paises_do_g20
 from funcao_maximo_minimo import funcao_maximo_minimo
 import pandas as pd
 from bokeh.transform import linear_cmap
-from bokeh.palettes import Viridis256
+from bokeh.palettes import YlGnBu, Reds
+from bokeh.models import LinearColorMapper, LogColorMapper, ColorBar
+from bokeh.models import HoverTool
 
 dicionario_iso2 = {"BD": "Bangladesh", "BE": "Belgium", "BF": "Burkina Faso", "BG": "Bulgaria", "BA": "Bosnia and Herzegovina", 
  "BB": "Barbados", "WF": "Wallis and Futuna", "BL": "Saint Barthelemy", "BM": "Bermuda", "BN": "Brunei", "BO": "Bolivia", 
@@ -98,46 +100,74 @@ df_IDH_g20 = filtro_paises_do_g20(df_IDH, False, agrupamento="country")
 df_IDH_g20 = df_IDH_g20.sort_values("IDH", ascending=False)
 
 # Criando um novo DataFrame com a média de IDH para cada país:
-df_IDH_g20_media = df_IDH_g20.groupby('country')['IDH'].mean()
-print(df_IDH_g20_media)
+df_IDH_g20_media = df_IDH_g20.groupby('country')['IDH'].mean().to_frame().reset_index()
 
-'''
 # Adicionando uma coluna iso3 no DataFrame:
-coluna_iso2 = df_IDH["country"].apply(converte_iso2)
+coluna_iso2 = df_IDH_g20_media["country"].apply(converte_iso2)
 coluna_iso3 = coluna_iso2.apply(converte_iso3)
-df_IDH["iso_a3"] = coluna_iso3
+df_IDH_g20_media["iso_a3"] = coluna_iso3
 
 # Deletando a coluna "year":
-del df_IDH_g20["year"]
+# del df_IDH_g20["year"]
 
 # Carregando os dados dos países usando geopandas:
 world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
 
-# 
+# Criando Data Frame para colorir os países do g20:
 world1 = pd.merge(
     left = world,
-    right = df_IDH_g20.filter(items=['IDH','iso_a3']), 
+    right = df_IDH_g20_media.filter(items=['IDH','iso_a3']), 
     on='iso_a3'
 )
-# Criando um objeto GeoJSONDataSource:
+
+# Criando os objetos GeoJSONDataSource:
 dados_geograficos = GeoJSONDataSource(geojson=world.to_json())
+dados_geograficos_g20 = GeoJSONDataSource(geojson=world1.to_json())
 
 # Obtendo os valores mínimo e máximo de IDH:
-minimo_IDH = df_IDH_g20['IDH'].min()
-maximo_IDH = df_IDH_g20['IDH'].max()
+# minimo_IDH = df_IDH_g20_media['IDH'].min()
+# maximo_IDH = df_IDH_g20_media['IDH'].max()
 
 # Criando a paleta de cores:
-palette = Viridis256[::-1]  # Invertendo a ordem da paleta para corresponder aos valores mais altos de IDH
+#palette = Viridis256[::-1]  # Invertendo a ordem da paleta para corresponder aos valores mais altos de IDH
+
+# Definindo paleta de cores
+palette = Reds[6]
+palette = palette[::-1]
+
+# Fazendo cortes lineares na escala para para aplicar paleta
+# Para cortes logaritmos utilize LogColorMapper
+color_mapper = LinearColorMapper(
+    palette = palette, 
+    low = df_IDH_g20_media['IDH'].min(), 
+    high = df_IDH_g20_media['IDH'].max(), 
+    nan_color = '#d9d9d9')
+
+# Ajustando ferramenta para popup com mouse
+hover = HoverTool(
+    tooltips = [ ('País','@name'),
+                ('IDH','@IDH')
+    ])
+
+# Criando barras de cores:
+color_bar = ColorBar(
+    color_mapper=color_mapper, 
+    label_standoff=6,
+    width = 500, 
+    height = 20,
+    border_line_color=None,
+    location = (0,0), 
+    orientation = 'horizontal', 
+)
 
 # Configurando a figura e adicionando o gráfico:
-mapa_IDH = figure(title="Mapa Mundial")
+mapa_IDH = figure(title="Mapa Mundial", tools = [hover])
 mapa_IDH.patches('xs', 'ys', fill_alpha=0.7, line_color='black', line_width=1,
-                 source=dados_geograficos)
-mapa_IDH.patches()
+                 source=dados_geograficos, fill_color = "grey")
+mapa_IDH.patches('xs', 'ys', source=dados_geograficos_g20, 
+                 fill_color = {'field' :'IDH', 'transform':color_mapper}, 
+                 line_color = 'grey', line_width = 0.25, fill_alpha = 1)
 
 # Exibindo o mapa
 output_file("mapa_mundial.html")
 show(mapa_IDH)
-print(world.head())
-# print(df_IDH.head())
-'''
