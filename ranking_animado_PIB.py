@@ -6,6 +6,9 @@ from bokeh.io import curdoc
 import pandas as pd
 from variaveis_globais import *
 
+FIRST_YEAR = 1910
+LAST_YEAR = 2010
+
 # Dataframe a ser usado
 dataframe = pd.read_csv("dados/total_gdp_ppp_inflation_adjusted.csv")
 for year in range(1800, 2014):
@@ -14,7 +17,7 @@ print(dataframe)
 dataframe = filtro_paises_do_g20(dataframe, True, "country")
 
 # Dados
-year = 1990
+year = FIRST_YEAR
 sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
 raw_data = {"country": list(sorted_dataframe["country"]), 
             "GDP": list(sorted_dataframe[f"{year}"]/1000000000)}
@@ -28,8 +31,8 @@ bars = plot.hbar(y = "country", right = "GDP", height = 0.9, source = data_sourc
 def update_chart():
     global year
     year += 1
-    if year > 2010:
-        year = 1990
+    if year > LAST_YEAR:
+        year = FIRST_YEAR
     slider.value = year
 
 # O botão
@@ -51,7 +54,7 @@ def button_action():
 button.on_click(button_action)
 
 # O Slider
-slider = Slider(start = 1990, end = 2010, value = 1990, step=1, title="Year", width = 800, align = "center")
+slider = Slider(start = FIRST_YEAR, end = LAST_YEAR, value = FIRST_YEAR, step=1, title="Year", width = 800, align = "center")
 
 def slider_action(attr, old, new):
     '''
