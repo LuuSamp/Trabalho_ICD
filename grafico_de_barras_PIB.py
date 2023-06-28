@@ -11,15 +11,18 @@ def graf_barras_pib(datapath):
     Essa função tem como objetivo produzir um gráfico de barras com a média do PIB de cada
     país do G20 e da UE durante o período de 20 anos (1990-2010) de forma ordenada.
     '''
+
+    #CONFIGURANDO A SAÍDA
+    output_file("..\\ranking_pib.html")
     
     #TRATAMENTO DA BASE DE DADOS
-    dataframe = reorganiza(datapath, "PIB", 1990, 2010) #vai fazer um recorte nos dados
+    dataframe = reorganiza(datapath, "PIB", 1990, 2010) 
     dataframe["PIB"] = dataframe["PIB"].apply(traduz_milhares)
-    dataframe = filtro_paises_do_g20(dataframe, agrupamento="country") #vai filtrar apenas os países do g20
-    dataframe = dataframe.sort_values(["PIB"], ascending=False).reset_index(drop=True) #vai ordenar o dataframe do menor para o maior
-
+    dataframe = filtro_paises_do_g20(dataframe, agrupamento="country")
+    dataframe = dataframe.sort_values(["PIB"], ascending=False).reset_index(drop=True)
     dataframe["PIB"] = dataframe["PIB"]/1000000000
-    
+
+    #CONFIGURANDO A COLUNA DE CORES E PREENCHIMENTO
     dicionario_de_cores = DICT_CORES
     lista_de_cores = []
     lista_de_preenchimento = []
@@ -34,29 +37,27 @@ def graf_barras_pib(datapath):
 
     dataframe["color"] = lista_de_cores
     dataframe["preenchimento"] = lista_de_preenchimento
-    print(dataframe)
 
-    source = ColumnDataSource(dataframe) #vai transformar em CDS
+    #TRANSFORMANDO EM CDS
+    source = ColumnDataSource(dataframe)
 
     #CONFECÇÃO DO GRÁFICO
-
-    #configuração do nome do arquivo
-    output_file("ranking_pib.html")
-
-    #criação do objeto figure
-    bar_plot = figure(title="Média dos PIB's do G20 (1990-2010) ", width = LARGURA, height = ALTURA, 
-                      x_range=dataframe['country'], y_range=(0, 15000))
+    bar_plot = figure(title="Média dos PIB's do G20 (1990-2010) ", 
+                      width = LARGURA, 
+                      height = ALTURA, 
+                      x_range=dataframe['country'], 
+                      y_range=(0, 15000))
     
-    bar_plot.background_fill_color = (241, 242, 244, 0.5)
+    bar_plot.vbar(x='country', top='PIB', color="color", source=source, width=0.8, alpha="preenchimento")
     
-    #adição da ferramenta hover
-    hover = HoverTool(tooltips=[('País', '@country'), ('PIB (Bilhões de Dólares)', '@PIB{$0,00}')])
+    #ADICIONANDO A FERRAMENTA DO HOVER
+    hover = HoverTool(tooltips=[('País', '@country'), 
+                                ('PIB (Bilhões de Dólares)', '@PIB{$0,00}')])
     bar_plot.add_tools(hover)
     
-    #criação do gráfico de barras em si
-    bar_plot.vbar(x='country', top='PIB', color='color', source=source, width=0.8, alpha="preenchimento")
+    #CONFIGURAÇÕES ESTÉTICAS
+    bar_plot.background_fill_color = (241, 242, 244, 0.5)
     
-    #CONFIGURAÇÕES ESTÉTICAS DOS EIXOS
     bar_plot.xaxis.major_label_orientation = 0.7
 
     bar_plot.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
@@ -76,12 +77,12 @@ def graf_barras_pib(datapath):
     bar_plot.xgrid.grid_line_color = LINHAS_GRADE
     bar_plot.ygrid.grid_line_color = LINHAS_GRADE
 
-    #CONFIGURAÇÃO DO TÍTULO
     bar_plot.title.text_font = FONTE_TEXTO
     bar_plot.title.text_font_size =TAMANHO_TITULO
     bar_plot.title.align = "center"
     bar_plot.title.text_baseline = "middle"
 
     show(bar_plot)
+    save(bar_plot)
     
 graf_barras_pib("dados\\gdp_total.csv")
