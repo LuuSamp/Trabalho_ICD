@@ -3,7 +3,6 @@ from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 from funcao_maximo_minimo import funcao_maximo_minimo
 
-BACKGROUND = "#a1a1a1"
 FONTE_TEXTO = "Arial"
 TAMANHO_TITULO = "20pt"
 TAMANHO_TITULO_EIXOS = "15pt"
@@ -21,4 +20,12 @@ DICT_CORES = funcao_maximo_minimo(dataframe_idh, "IDH", "country")
 
 CORES_COMUNS = "gray"
 ALPHA_DESTAQUES = 0.8
-ALPHA_COMUNS = 0.4
+ALPHA_COMUNS = 0.2
+ESPESSURA_DESTAQUES = 3
+ESPESSURA_COMUNS = 2
+BACKGROUND_FILL = (241, 242, 244, 0.5)
+LARGURA = 1080
+ALTURA = 720
+POSICAO_BARRA_FERRAMENTAS = "below"
+ALINHAMENTO_TITULO = "center"
+BASELINE_TITULO = "middle"
