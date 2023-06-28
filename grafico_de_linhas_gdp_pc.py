@@ -40,6 +40,16 @@ def grafico_de_linhas_gdp(datapath):
     #DICIONÁRIO COM OS PAÍSES DESTACADOS
     paises_destacaveis = DICT_CORES
 
+    lista_de_legenda = []
+    for indice in range(dataframe.shape[0]):
+        if dataframe["country"][indice] in paises_destacaveis.keys():
+            lista_de_legenda.append(dataframe["country"][indice])
+            print(dataframe["country"][indice])
+        else:
+            lista_de_legenda.append("G20 Countries")
+
+    dataframe["legenda"] = lista_de_legenda
+
     #CRIAÇÃO DAS LINHAS DE CADA PAÍS
     for country in dataframe["country"].unique():
         country_data = dataframe[dataframe["country"]==country]
@@ -52,7 +62,7 @@ def grafico_de_linhas_gdp(datapath):
                            source=data_source, 
                            color=paises_destacaveis[country], 
                            line_width=ESPESSURA_DESTAQUES, 
-                           line_alpha=ALPHA_DESTAQUES)
+                           line_alpha=ALPHA_DESTAQUES,)
         
         #OUTROS PAÍSES
         else:
@@ -62,6 +72,8 @@ def grafico_de_linhas_gdp(datapath):
                            color=CORES_COMUNS, 
                            line_width=ESPESSURA_COMUNS, 
                            line_alpha=ALPHA_COMUNS)
+            
+        
 
     #CONFIGURAÇÕES ESTÉTICAS
     line_plot.background_fill_color = BACKGROUND_FILL
@@ -85,7 +97,6 @@ def grafico_de_linhas_gdp(datapath):
 
     line_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
 
-
     line_plot.title.text_font = FONTE_TEXTO
     line_plot.title.text_font_size =TAMANHO_TITULO
     line_plot.title.align = ALINHAMENTO_TITULO
@@ -94,6 +105,12 @@ def grafico_de_linhas_gdp(datapath):
     line_plot.toolbar.logo = None 
     line_plot.toolbar.autohide = True 
     line_plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
+    line_plot.legend.location = "top_left"
+    line_plot.legend.title = ""
+    line_plot.legend.border_line_color = COR_DA_LINHA
+    line_plot.legend.border_line_width = ESPESSURA_DA_LINHA
+    line_plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
     show(line_plot)
     save(line_plot)
