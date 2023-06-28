@@ -37,6 +37,7 @@ plot = figure(width=900,
 bars = plot.hbar_stack(["Homens", "Mulheres"], 
                        y = "country", height=0.9, 
                        color = ["Blue", "Red"], 
+                       legend_label = ["Homens", "Mulheres"],
                        alpha = "alpha",
                        source = data_source)
 
@@ -109,7 +110,12 @@ plot.title.text_baseline = BASELINE_TITULO
 
 plot.toolbar.logo = None 
 plot.toolbar.autohide = True 
-# plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
+plot.legend.location = "right"
+plot.legend.title = ""
+plot.legend.border_line_color = COR_DA_LINHA
+plot.legend.border_line_width = ESPESSURA_DA_LINHA
+plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
 # A GUI
 curdoc().add_root(column(row(button, slider), plot))
