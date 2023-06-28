@@ -3,7 +3,7 @@ from bokeh.models import GeoJSONDataSource
 import geopandas as gpd
 import pandas as pd
 from bokeh.palettes import Blues
-from bokeh.models import LinearColorMapper
+from bokeh.models import LinearColorMapper, ColorBar
 from bokeh.models import HoverTool
 from converte_iso import converte_iso2, converte_iso3
 
@@ -37,14 +37,36 @@ def cria_mapa(dataframe, main_column_name: str, palette = Blues[6]):
         low = dataframe[main_column_name].min(), 
         high = dataframe[main_column_name].max(), 
         nan_color = '#d9d9d9')
+    
+    # Criando barras de cores:
+    color_bar = ColorBar(
+    color_mapper=color_mapper, 
+    label_standoff=6,
+    width = 500, 
+    height = 20,
+    border_line_color=None,
+    location = (0,0), 
+    orientation = 'horizontal', 
+)
 
     # Configurando a figura e adicionando o gráfico:
-    plot = figure(title="Mapa Mundial", width = 1080, height = 720)
-    plot.patches('xs', 'ys', fill_alpha=0.7, line_color='black', line_width=1,
-                    source=dados_geograficos, fill_color = "grey")
-    paises_g20 = plot.patches('xs', 'ys', source=dados_geograficos_selecionados, 
-                    fill_color = {'field': main_column_name, 'transform': color_mapper}, 
-                    line_color = 'grey', line_width = 0.25, fill_alpha = 1)
+    plot = figure(title="Mapa Mundial", 
+                  width = 1080, 
+                  height = 720)
+    
+    plot.patches('xs', 'ys', 
+                 fill_alpha=0.7, 
+                 line_color='black', 
+                 line_width=1, 
+                 source=dados_geograficos, fill_color = "grey")
+    
+    paises_g20 = plot.patches('xs', 'ys', 
+                              source=dados_geograficos_selecionados, 
+                              fill_color = {'field': main_column_name, 'transform': color_mapper}, 
+                              line_color = 'grey', line_width = 0.25, fill_alpha = 1)
+    
+    # Adicionando barra com grade de cor: 
+    plot.add_layout(color_bar, 'below')
 
     # Adicionando hover:
     hover = HoverTool(
