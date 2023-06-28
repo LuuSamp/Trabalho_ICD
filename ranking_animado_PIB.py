@@ -5,6 +5,7 @@ from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
 import pandas as pd
 from variaveis_globais import *
+from cores import lista_cores, lista_alpha
 
 FIRST_YEAR = 1910
 LAST_YEAR = 2010
@@ -19,13 +20,15 @@ dataframe = filtro_paises_do_g20(dataframe, True, "country")
 # Dados
 year = FIRST_YEAR
 sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
-raw_data = {"country": list(sorted_dataframe["country"]), 
-            "GDP": list(sorted_dataframe[f"{year}"]/1000000000)}
+raw_data = {"country": list(dataframe["country"]), 
+            "GDP": list(dataframe[f"{year}"]/1000000000),
+            "color": dataframe["country"].apply(lista_cores),
+            "alpha": dataframe["country"].apply(lista_alpha)}
 data_source = ColumnDataSource(raw_data)
 
 # O gráfico
 plot = figure(width=700, height=500, title="PIB dos países do G20 (em bilhões)", x_range = (0, 16000), y_range=sorted_dataframe["country"], tools = "")
-bars = plot.hbar(y = "country", right = "GDP", height = 0.9, source = data_source)
+bars = plot.hbar(y = "country", right = "GDP", color = "color", alpha = "alpha", height = 0.9, source = data_source)
 
 # Atualização do gráfico
 def update_chart():
@@ -62,9 +65,8 @@ def slider_action(attr, old, new):
     '''
     global year
     year = slider.value
-    sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
-    raw_data = {"country": list(sorted_dataframe["country"]), 
-                "GDP": list(sorted_dataframe[f"{year}"]/1000000000)}
+    dataframe.sort_values(by=[f"{year}"])
+    raw_data["GDP"] = list(dataframe[f"{year}"]/1000000000)
     bars.data_source.data = raw_data
 
 slider.on_change("value", slider_action)
