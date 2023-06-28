@@ -1,9 +1,10 @@
-from bokeh.plotting import figure, column
-from bokeh.models import Slider, ColumnDataSource, Button
+from bokeh.plotting import figure, column, row
+from bokeh.models import Slider, ColumnDataSource, Button, HoverTool, NumeralTickFormatter, FixedTicker
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
 import pandas as pd
+from variaveis_globais import *
 
 # Dataframe a ser usado
 dataframe = pd.read_csv("dados/total_gdp_ppp_inflation_adjusted.csv")
@@ -20,7 +21,7 @@ raw_data = {"country": list(sorted_dataframe["country"]),
 data_source = ColumnDataSource(raw_data)
 
 # O gráfico
-plot = figure(width=700, height=500, title="PIB dos países do G20", y_range=sorted_dataframe["country"])
+plot = figure(width=700, height=500, title="PIB dos países do G20", y_range=sorted_dataframe["country"], tools = "")
 bars = plot.hbar(y = "country", right = "GDP", height = 0.9, source = data_source)
 
 # Atualização do gráfico
@@ -32,7 +33,7 @@ def update_chart():
     slider.value = year
 
 # O botão
-button = Button(label = "Play")
+button = Button(label = "Play", align = "center")
 
 callback = None
 def button_action():
@@ -50,7 +51,7 @@ def button_action():
 button.on_click(button_action)
 
 # O Slider
-slider = Slider(start = 1990, end = 2010, value = 1990, step=1, title="Year")
+slider = Slider(start = 1990, end = 2010, value = 1990, step=1, title="Year", width = 800, align = "center")
 
 def slider_action(attr, old, new):
     '''
@@ -64,6 +65,26 @@ def slider_action(attr, old, new):
     bars.data_source.data = raw_data
 
 slider.on_change("value", slider_action)
+
+# Alterações estéticas
+plot.xaxis.formatter = NumeralTickFormatter(format="$0,0")
+plot.title.text_font = FONTE_TEXTO
+plot.title.text_font_size = TAMANHO_TITULO
+plot.background_fill_color = BACKGROUND_FILL
+
+plot.xaxis.axis_label_text_font = FONTE_TEXTO
+plot.yaxis.axis_label_text_font = FONTE_TEXTO
+
+plot.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+plot.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+
+plot.title.text_font = FONTE_TEXTO
+plot.title.text_font_size =TAMANHO_TITULO
+plot.title.align = ALINHAMENTO_TITULO
+plot.title.text_baseline = BASELINE_TITULO
+
+plot.toolbar.logo = None 
+plot.toolbar.autohide = True 
 
 # A GUI
 curdoc().add_root(column(button, slider, plot))
