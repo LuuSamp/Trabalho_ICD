@@ -1,4 +1,4 @@
-from bokeh.plotting import figure, column
+from bokeh.plotting import figure, column, row
 from bokeh.models import Slider, ColumnDataSource, Button, HoverTool, NumeralTickFormatter, FixedTicker
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
@@ -46,7 +46,7 @@ def update_chart():
     slider.value = year
 
 # O botão
-button = Button(label = "Play")
+button = Button(label = "Play", align = "center")
 
 callback = None
 def button_action():
@@ -64,7 +64,7 @@ def button_action():
 button.on_click(button_action)
 
 # O Slider
-slider = Slider(start = 1970, end = 2015, value = 1970, step=1, title="Year")
+slider = Slider(start = 1970, end = 2015, value = 1970, step=1, title="Year", width = 800, align = "center")
 
 def slider_action(attr, old, new):
     '''
@@ -110,4 +110,4 @@ plot.toolbar.autohide = True
 # plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
 # A GUI
-curdoc().add_root(column(button, slider, plot))
+curdoc().add_root(column(row(button, slider), plot))
