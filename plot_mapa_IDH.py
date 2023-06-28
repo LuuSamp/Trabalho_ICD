@@ -151,12 +151,15 @@ color_bar = ColorBar(
 )
 
 # Configurando a figura e adicionando o gráfico:
-mapa_IDH = figure(title="Mapa Mundial", 
-                  width = 1080, 
-                  height = 720, 
+mapa_IDH = figure(title="IDH do G20", 
+                  width = LARGURA, 
+                  height = ALTURA, 
                   x_range = Range1d(-180, 180, bounds="auto"), 
                   y_range = Range1d(-90, 90, bounds="auto"),
                   tools="pan,reset,wheel_zoom,box_zoom")
+
+# Adicionando barra com grade de cor: 
+mapa_IDH.add_layout(color_bar, 'below')
 
 mapa_IDH.toolbar.logo = None 
 mapa_IDH.toolbar.autohide = True 
@@ -176,6 +179,16 @@ paises_g20 = mapa_IDH.patches('xs', 'ys', source=dados_geograficos_g20,
 # Adicionando hover:
 hover.renderers = [paises_g20]
 mapa_IDH.add_tools(hover)
+
+# Configurações estéticas:
+mapa_IDH.xaxis[0].ticker.desired_num_ticks = 20
+mapa_IDH.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
+mapa_IDH.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
+
+mapa_IDH.title.text_font = FONTE_TEXTO
+mapa_IDH.title.text_font_size =TAMANHO_TITULO
+mapa_IDH.title.align = ALINHAMENTO_TITULO
+mapa_IDH.title.text_baseline = BASELINE_TITULO
 
 # Exibindo o mapa:
 output_file("mapa_mundial.html")
