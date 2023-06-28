@@ -14,7 +14,6 @@ LAST_YEAR = 2010
 dataframe = pd.read_csv("dados/total_gdp_ppp_inflation_adjusted.csv")
 for year in range(1800, 2014):
     dataframe[str(year)] = dataframe[str(year)].apply(traduz_milhares)
-print(dataframe)
 dataframe = filtro_paises_do_g20(dataframe, True, "country")
 
 # Dados
