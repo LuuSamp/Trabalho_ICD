@@ -1,10 +1,9 @@
-
 from bokeh.plotting import figure
 from bokeh.models import GeoJSONDataSource
 import geopandas as gpd
 import pandas as pd
 from bokeh.palettes import Blues
-from bokeh.models import LinearColorMapper, ColorBar
+from bokeh.models import LinearColorMapper
 from bokeh.models import HoverTool
 from converte_iso import converte_iso2, converte_iso3
 
