@@ -42,11 +42,11 @@ def graf_barras_pib(datapath):
     source = ColumnDataSource(dataframe)
 
     #CONFECÇÃO DO GRÁFICO
-    bar_plot = figure(title="Média dos PIB's do G20 (1990-2010) ", 
+    bar_plot = figure(title="Média dos PIB's do G20 (1990-2010)", 
                       width = LARGURA, 
                       height = ALTURA, 
                       x_range=dataframe['country'], 
-                      y_range=(0, 15000))
+                      y_range=(0, 15000),)
     
     bar_plot.vbar(x='country', top='PIB', color="color", source=source, width=0.8, alpha="preenchimento")
     
