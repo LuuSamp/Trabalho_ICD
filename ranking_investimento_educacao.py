@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.io import output_file
 import random
 import pandas as pd
@@ -47,11 +47,15 @@ for cada_pais in df_ordenado["country"]:
 df_ordenado["color"] = lista_de_cores
 df_ordenado["preenchimento"] = lista_de_preenchimento
 
+
+# Criando um ColumnDataSource
+source = ColumnDataSource(df_ordenado)
+
 # É adicionado o objeto base do gráfico
 investimento_educacao = figure(x_range=df_ordenado["country"], height=650, width=1300, title="Média de anos na Escola", toolbar_location=None, tools="")
 
 # É adicionado o gráfico de barras 
-investimento_educacao.vbar(x=df_ordenado["country"], top=df_ordenado["Média de anos na Escola"], width=0.9, color="color", alpha="preenchimento")
+investimento_educacao.vbar(x="country", top="Média de anos na Escola", source=source, width=0.9, color="color", alpha="preenchimento")
 
 # É alterado o background do gráfico
 investimento_educacao.xgrid.grid_line_color = None
@@ -60,13 +64,16 @@ investimento_educacao.xgrid.grid_line_color = None
 investimento_educacao.xaxis.major_label_orientation = 45
 
 # É alterado o tamanho do título
-investimento_educacao.title.text_font_size = "18pt"
+investimento_educacao.title.text_font_size = TAMANHO_TITULO
 
 # Título Centralizado
 investimento_educacao.title.align = "center"
 
 # Tamanho do nome dos países alterado
-investimento_educacao.below[0].major_label_text_font_size = '14px'
+investimento_educacao.below[0].major_label_text_font_size = "14px"
+
+# Adicionando ferramenta Hover
+hover = HoverTool(tooltips=[('País', '@country'), ('Média de anos na Escola', '@Média de anos na Escola{$0,00}')])
 
 # Tamanho dos valores do eixo y alterado 
 investimento_educacao.yaxis.major_label_text_font_size = "12pt"
