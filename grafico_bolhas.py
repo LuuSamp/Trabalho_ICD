@@ -33,19 +33,23 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     # Criação de ColumnDataSource.
     source = ColumnDataSource(df_final)
 
-    # Criação de colunas referentes a cores e transparência.
+    # Criação de colunas referentes a cores, transparência e legenda.
     lista_de_cores = []
     lista_de_preenchimento = []
+    lista_legenda = []
 
     for cada_pais in df_final["country"]:
         if cada_pais in DICT_CORES.keys():
             lista_de_cores.append(DICT_CORES[cada_pais])
             lista_de_preenchimento.append(ALPHA_DESTAQUES)
+            lista_legenda.append(cada_pais)
         else:
             lista_de_cores.append(CORES_COMUNS)
             lista_de_preenchimento.append(ALPHA_COMUNS)
+            lista_legenda.append("Other Countries")
     df_final["color"] = lista_de_cores
     df_final["preenchimento"] = lista_de_preenchimento
+    df_final["legenda"] = lista_legenda
 
     sem_destaques = ColumnDataSource(df_final[df_final["color"]=="gray"]) 
     paises_com_destaque = ColumnDataSource(df_final[df_final["color"] != "gray"])
@@ -67,7 +71,8 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
                         fill_alpha = "preenchimento", 
                         line_alpha=ALPHA_DA_LINHA, 
                         line_color=COR_DA_LINHA, 
-                        line_width=ESPESSURA_DA_LINHA)
+                        line_width=ESPESSURA_DA_LINHA,
+                        legend_field="legenda")
     imc_calorias.circle(x="Média de Calorias", 
                         y="IMC Médio", 
                         size="População em Proporção", 
@@ -76,7 +81,8 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
                         fill_alpha = "preenchimento", 
                         line_alpha=ALPHA_DA_LINHA, 
                         line_color=COR_DA_LINHA, 
-                        line_width=ESPESSURA_DA_LINHA)
+                        line_width=ESPESSURA_DA_LINHA,
+                        legend_field="country")
 
     # Configurando a ferramenta HoverTool.
     hover = HoverTool(tooltips=[("País", "@{country}"), ("IMC Médio", "@{IMC Médio}"), 
@@ -108,6 +114,12 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     imc_calorias.title.text_font_size =TAMANHO_TITULO
     imc_calorias.title.align = ALINHAMENTO_TITULO
     imc_calorias.title.text_baseline = BASELINE_TITULO
+
+    imc_calorias.legend.location = "bottom_right"
+    imc_calorias.legend.title = ""
+    imc_calorias.legend.border_line_color = COR_DA_LINHA
+    imc_calorias.legend.border_line_width = ESPESSURA_DA_LINHA
+    imc_calorias.legend.border_line_alpha = ALPHA_DA_LINHA
 
     imc_calorias.toolbar.logo = None 
     imc_calorias.toolbar.autohide = True 
