@@ -1,7 +1,7 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
+from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Range1d
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
@@ -23,14 +23,13 @@ def grafico_de_linhas_gdp(datapath):
     dataframe["PIB_PC"] = dataframe["PIB_PC"].apply(traduz_milhares).astype(float)
     dataframe = filtro_paises_do_g20(dataframe, agrupamento="year")    
 
-    source = ColumnDataSource(dataframe)
-
     #CONFECÇÃO DO GRÁFICO
     line_plot = figure(title="PIB Per Capita G20 (1910-2020)",
                        width = 1080,
                        height = 720,
-                       x_range = (1910, 2020), 
-                       y_range = (0, 70000))
+                       x_range = Range1d(1910, 2020, bounds="auto"), 
+                       y_range = Range1d(0, 70000, bounds="auto"),
+                       tools="pan,box_zoom,wheel_zoom,reset")
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('País', '@country'), 
@@ -44,17 +43,28 @@ def grafico_de_linhas_gdp(datapath):
     #CRIAÇÃO DAS LINHAS DE CADA PAÍS
     for country in dataframe["country"].unique():
         country_data = dataframe[dataframe["country"]==country]
+        data_source = ColumnDataSource(country_data)
 
         #PAÍS DESTACADOS
         if country in paises_destacaveis.keys():
-            line_plot.line(x="year", y="PIB_PC", source=country_data, color=paises_destacaveis[country], line_width=3, line_alpha=0.8)
+            line_plot.line(x="year", 
+                           y="PIB_PC", 
+                           source=data_source, 
+                           color=paises_destacaveis[country], 
+                           line_width=ESPESSURA_DESTAQUES, 
+                           line_alpha=ALPHA_DESTAQUES)
         
         #OUTROS PAÍSES
         else:
-            line_plot.line(x="year", y="PIB_PC", source=country_data, color=CORES_COMUNS, line_width=2, line_alpha=0.25)
+            line_plot.line(x="year", 
+                           y="PIB_PC", 
+                           source=data_source, 
+                           color=CORES_COMUNS, 
+                           line_width=ESPESSURA_COMUNS, 
+                           line_alpha=ALPHA_COMUNS)
 
     #CONFIGURAÇÕES ESTÉTICAS
-    line_plot.background_fill_color = (241, 242, 244, 0.5)
+    line_plot.background_fill_color = BACKGROUND_FILL
 
     line_plot.xaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_X
     line_plot.xaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
@@ -75,11 +85,16 @@ def grafico_de_linhas_gdp(datapath):
 
     line_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
 
+
     line_plot.title.text_font = FONTE_TEXTO
-    line_plot.title.text_font_size = TAMANHO_TITULO
-    line_plot.title.align = "center"
-    line_plot.title.text_baseline = "middle"
-    
+    line_plot.title.text_font_size =TAMANHO_TITULO
+    line_plot.title.align = ALINHAMENTO_TITULO
+    line_plot.title.text_baseline = BASELINE_TITULO
+
+    line_plot.toolbar.logo = None 
+    line_plot.toolbar.autohide = True 
+    line_plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
     show(line_plot)
     save(line_plot)
 
