@@ -112,13 +112,14 @@ def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
 
             #VAMOS CRIAR UM NOVO DATAFRAME SÓ COM DA UNIÃO EUROPEIA E VAMOS JUNTAR ELES AGRUPANDO POR ANO
             del dataframe_ue["country"]
-            dataframe_ue = dataframe_ue.groupby("year").mean().round(2).reset_index()
+            dataframe_ue = dataframe_ue.groupby("year").mean().round(4).reset_index()
             dataframe_ue["country"] = "European Union"
 
         if agrupamento == "country":
 
             #VAMOS CRIAR UM NOVO DATAFRAME SÓ COM DA UNIÃO EUROPEIA E VAMOS JUNTAR ELES AGRUPANDO POR ANO"
-            dataframe_ue = dataframe_ue.groupby("country").mean().round(2).reset_index()
+            dataframe_ue = dataframe_ue.groupby("country").mean().round(4).reset_index()
+            dataframe = dataframe.groupby("country").mean().round(4).reset_index()
 
          #VAMOS RETIRAR DO DATAFRAME ORIGINAL OS QUE SERIAM DA UNIÃO EUROPEIA
         for indice in range(dataframe.shape[0]):
