@@ -39,11 +39,21 @@ def linha_escola(datapath1,datapath2):
 
     # Países em destaque.
         if country in DICT_CORES.keys():
-            grafico_linha_escola.line(x="year", y="Média de anos na Escola", source=country_data, color=DICT_CORES[country], line_width=ESPESSURA_DESTAQUES, line_alpha=ALPHA_DESTAQUES)
+            grafico_linha_escola.line(x="year", 
+                                      y="Média de anos na Escola", 
+                                      source=country_data, color=DICT_CORES[country], 
+                                      line_width=ESPESSURA_DESTAQUES, 
+                                      line_alpha=ALPHA_DESTAQUES,
+                                      legend_label = country)
             
     # Países sem destaque.
         else:
-            grafico_linha_escola.line(x="year", y="Média de anos na Escola", source=country_data, color="gray", line_width=ESPESSURA_COMUNS, line_alpha=ALPHA_COMUNS)
+            grafico_linha_escola.line(x="year", 
+                                      y="Média de anos na Escola", 
+                                      source=country_data, color="gray", 
+                                      line_width=ESPESSURA_COMUNS, 
+                                      line_alpha=ALPHA_COMUNS,
+                                      legend_label = "Other Countries")
 
     # Implementação de ferramenta HoverTool.
     hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('Média de tempo na Escola', '@{Média de anos na Escola}{0,0.00} anos')])
