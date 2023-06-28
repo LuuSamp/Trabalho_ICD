@@ -36,18 +36,21 @@ def box_plot_life(datapath):
     dicionario_de_cores = DICT_CORES
     lista_de_cores = []
     lista_de_preenchimentos = []
+    lista_de_legenda = []
 
     for cada_pais in dataframe_quantis["country"]:
         if cada_pais in dicionario_de_cores.keys():
             lista_de_cores.append(dicionario_de_cores[cada_pais])
             lista_de_preenchimentos.append(ALPHA_DESTAQUES)
+            lista_de_legenda.append(cada_pais)
         else:
             lista_de_cores.append("gray")
             lista_de_preenchimentos.append(ALPHA_COMUNS)
+            lista_de_legenda.append("G20 Country")
 
     dataframe_quantis["color"] = lista_de_cores
     dataframe_quantis["preenchimento"] = lista_de_preenchimentos
-
+    dataframe_quantis["legenda"] = lista_de_legenda
 
     #CRIANDO O BOXPLOT
     data_source = ColumnDataSource(dataframe_quantis)
@@ -76,7 +79,9 @@ def box_plot_life(datapath):
                  line_color=COR_DA_LINHA, 
                  alpha = "preenchimento",
                  line_alpha = ALPHA_DA_LINHA, 
-                 line_width = ESPESSURA_DA_LINHA)
+                 line_width = ESPESSURA_DA_LINHA,
+                 legend_field="legenda")
+    
     boxplot.vbar("country", 
                  0.7, 
                  "q25", 
@@ -86,7 +91,8 @@ def box_plot_life(datapath):
                  line_color=COR_DA_LINHA, 
                  alpha = "preenchimento",
                  line_alpha = ALPHA_DA_LINHA,
-                 line_width = ESPESSURA_DA_LINHA)
+                 line_width = ESPESSURA_DA_LINHA,
+                 legend_field="legenda")
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('Integrante', '@country'), ('Média', '@q50 anos'),
@@ -122,6 +128,12 @@ def box_plot_life(datapath):
     boxplot.toolbar.logo = None 
     boxplot.toolbar.autohide = True 
     boxplot.toolbar_location = POSICAO_BARRA_FERRAMENTAS 
+
+    boxplot.legend.location = "bottom_right"
+    boxplot.legend.title = ""
+    boxplot.legend.border_line_color = COR_DA_LINHA
+    boxplot.legend.border_line_width = ESPESSURA_DA_LINHA
+    boxplot.legend.border_line_alpha = ALPHA_DA_LINHA
 
     show(boxplot)
     save(boxplot)
