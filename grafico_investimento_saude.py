@@ -21,34 +21,38 @@ df_investimento_saude_g20 = df_investimento_saude_g20.sort_values(by='Investimen
 dicionario_de_cores = DICT_CORES
 lista_de_cores = []
 lista_de_preenchimento = []
+lista_de_legenda = []
 
 for cada_pais in df_investimento_saude_g20["country"]:
     if cada_pais in dicionario_de_cores.keys():
         lista_de_cores.append(dicionario_de_cores[cada_pais])
         lista_de_preenchimento.append(ALPHA_DESTAQUES)
+        lista_de_legenda.append(cada_pais)
     else:
         lista_de_cores.append(CORES_COMUNS)
         lista_de_preenchimento.append(ALPHA_COMUNS)
+        lista_de_legenda.append("Other Countries")
 
 # Adicionando coluna para cores e preenchimentos:
 df_investimento_saude_g20["Cor"] = lista_de_cores
 df_investimento_saude_g20["Preenchimento"] = lista_de_preenchimento
+df_investimento_saude_g20["Legenda"] = lista_de_legenda
 
 # Criando um ColumnDataSource:
 source = ColumnDataSource(df_investimento_saude_g20)
 
 # Base do Gráfico:
-ranking_investimento_saude_g20 = figure(x_range=df_investimento_saude_g20["country"], y_range=(0,20), 
+ranking_investimento_saude_g20 = figure(x_range=df_investimento_saude_g20["country"], y_range=(0,30), 
                                         height=ALTURA, width=LARGURA, title="Média dos Investimentos em Saúde nos últimos anos", tools="")
 
 # Criando o Gráfico de Barras:
 ranking_investimento_saude_g20.vbar(x="country", top="Investimento em Saúde", source=source, width=0.9, 
                                     color="Cor", alpha="Preenchimento", line_color=COR_DA_LINHA, line_width=ESPESSURA_DA_LINHA, 
-                                    line_alpha=ALPHA_DA_LINHA)
+                                    line_alpha=ALPHA_DA_LINHA, legend_field = "Legenda")
 
 # Implementando ferramenta Hover:
 hover = HoverTool(tooltips=[('País', '@country'), 
-                                ('Investimento em Saúde', '@Investimento em Saúde')])
+                                ('Investimento em Saúde', '@{Investimento em Saúde}%')])
 ranking_investimento_saude_g20.add_tools(hover)
 
 # Adicionando elementos estéticos ao Ranking:
@@ -81,7 +85,7 @@ ranking_investimento_saude_g20.toolbar.autohide = True
 ranking_investimento_saude_g20.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
 # Adicionando legenda:
-ranking_investimento_saude_g20.legend.location = "bottom_right"
+ranking_investimento_saude_g20.legend.location = "top_right"
 ranking_investimento_saude_g20.legend.title = ""
 ranking_investimento_saude_g20.legend.border_line_color = COR_DA_LINHA
 ranking_investimento_saude_g20.legend.border_line_width = ESPESSURA_DA_LINHA
