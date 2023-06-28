@@ -62,7 +62,8 @@ def grafico_de_linhas_gdp(datapath):
                            source=data_source, 
                            color=paises_destacaveis[country], 
                            line_width=ESPESSURA_DESTAQUES, 
-                           line_alpha=ALPHA_DESTAQUES,)
+                           line_alpha=ALPHA_DESTAQUES,
+                           legend_label = country)
         
         #OUTROS PAÍSES
         else:
@@ -71,7 +72,8 @@ def grafico_de_linhas_gdp(datapath):
                            source=data_source, 
                            color=CORES_COMUNS, 
                            line_width=ESPESSURA_COMUNS, 
-                           line_alpha=ALPHA_COMUNS)
+                           line_alpha=ALPHA_COMUNS,
+                           legend_label = "Other Countries")
             
         
 
