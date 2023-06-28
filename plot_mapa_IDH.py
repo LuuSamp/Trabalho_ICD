@@ -10,7 +10,8 @@ import pandas as pd
 from bokeh.transform import linear_cmap
 from bokeh.palettes import YlGnBu, Reds
 from bokeh.models import LinearColorMapper, LogColorMapper, ColorBar
-from bokeh.models import HoverTool
+from bokeh.models import HoverTool, Range1d
+from variaveis_globais import *
 
 dicionario_iso2 = {"BD": "Bangladesh", "BE": "Belgium", "BF": "Burkina Faso", "BG": "Bulgaria", "BA": "Bosnia and Herzegovina", 
  "BB": "Barbados", "WF": "Wallis and Futuna", "BL": "Saint Barthelemy", "BM": "Bermuda", "BN": "Brunei", "BO": "Bolivia", 
@@ -150,9 +151,24 @@ color_bar = ColorBar(
 )
 
 # Configurando a figura e adicionando o gráfico:
-mapa_IDH = figure(title="Mapa Mundial", width = 1080, height = 720)
-mapa_IDH.patches('xs', 'ys', fill_alpha=0.7, line_color='black', line_width=1,
-                 source=dados_geograficos, fill_color = "grey")
+mapa_IDH = figure(title="Mapa Mundial", 
+                  width = 1080, 
+                  height = 720, 
+                  x_range = Range1d(-180, 180, bounds="auto"), 
+                  y_range = Range1d(-90, 90, bounds="auto"),
+                  tools="pan,reset,wheel_zoom,box_zoom")
+
+mapa_IDH.toolbar.logo = None 
+mapa_IDH.toolbar.autohide = True 
+mapa_IDH.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
+mapa_IDH.patches('xs', 'ys', 
+                 fill_alpha=0.7, 
+                 line_color='black', 
+                 line_width=1,
+                 source=dados_geograficos, 
+                 fill_color = "grey")
+
 paises_g20 = mapa_IDH.patches('xs', 'ys', source=dados_geograficos_g20, 
                  fill_color = {'field' :'IDH', 'transform':color_mapper}, 
                  line_color = 'grey', line_width = 0.25, fill_alpha = 1)
