@@ -23,12 +23,13 @@ sorted_dataframe = dataframe.sort_values(by=[f"{year}"])
 raw_data = {"country": list(dataframe["country"]), 
             "GDP": list(dataframe[f"{year}"]/1000000000),
             "color": dataframe["country"].apply(lista_cores),
-            "alpha": dataframe["country"].apply(lista_alpha)}
+            "alpha": dataframe["country"].apply(lista_alpha),
+            "legend": dataframe["country"].apply(lambda country: country if country in DICT_CORES else "Other Countries")}
 data_source = ColumnDataSource(raw_data)
 
 # O gráfico
 plot = figure(width=700, height=500, title="PIB dos países do G20 (em bilhões)", x_range = (0, 16000), y_range=sorted_dataframe["country"], tools = "")
-bars = plot.hbar(y = "country", right = "GDP", color = "color", alpha = "alpha", height = 0.9, source = data_source)
+bars = plot.hbar(y = "country", right = "GDP", color = "color", alpha = "alpha", legend_field = "legend", height = 0.9, source = data_source)
 
 # Atualização do gráfico
 def update_chart():
@@ -90,6 +91,12 @@ plot.title.text_baseline = BASELINE_TITULO
 
 plot.toolbar.logo = None 
 plot.toolbar.autohide = True 
+
+plot.legend.location = "bottom_right"
+plot.legend.title = ""
+plot.legend.border_line_color = COR_DA_LINHA
+plot.legend.border_line_width = ESPESSURA_DA_LINHA
+plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
 # A GUI
 curdoc().add_root(column(button, slider, plot))
