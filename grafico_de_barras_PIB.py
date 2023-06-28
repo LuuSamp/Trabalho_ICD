@@ -36,7 +36,7 @@ def graf_barras_pib(datapath):
         else:
             lista_de_cores.append(CORES_COMUNS)
             lista_de_preenchimento.append(ALPHA_COMUNS)
-            lista_de_legenda.append("Others Countries")
+            lista_de_legenda.append("Other Countries")
 
     dataframe["color"] = lista_de_cores
     dataframe["preenchimento"] = lista_de_preenchimento
