@@ -4,27 +4,24 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, HoverTool, Whisker, NumeralTickFormatter
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
-from transformador_de_log import transformador_log10
 from variaveis_globais import *
 
-def box_plot_hiv(datapath):
+def box_plot_life(datapath):
     '''
     Função com o objetivo de receber um datapath de uma base de dados, trata e converte ela e depois 
-    produz um boxplot para cada país do g20 sobre mortes anuais de HIV
+    produz um boxplot para a espectativa de vida dos países do G20.
     '''
     #CONFIGURANDO O ARQUIVO DE SAÍDA
-    output_file("boxplot_hiv.html")
+    output_file("..\\boxplot_life.html")
 
     #TRATAMENTO DA BASE DE DADOS
-    dataframe = reorganiza(datapath, "MORTES_HIV", 1950, 2020) #vai fazer um recorte nos dados
-    dataframe["MORTES_HIV"] = dataframe["MORTES_HIV"].apply(traduz_milhares).astype(float)
+    dataframe = reorganiza(datapath, "LIFE_EXP", 1950, 2020) #vai fazer um recorte nos dados
+    dataframe["LIFE_EXP"] = dataframe["LIFE_EXP"].apply(traduz_milhares).astype(float)
     dataframe = filtro_paises_do_g20(dataframe, True, "year") #vai filtrar apenas os países do g20
 
-    #MANOBRA PARA CONSEGUIR FAZER O BOXPLOT
-    dataframe = dataframe.fillna(0)
 
-    #CALCULANDO OS QUANTIS PARA CONFECCIONAR OS BOXPLOTS
-    dataframe_quantis = dataframe.groupby('country')['MORTES_HIV'].agg([lambda x: x.quantile(0.05),
+    #CALCULANDO OS QUANTIS E PREPARANDO OS DADOS PARA CONFECCIONAR OS BOXPLOTS
+    dataframe_quantis = dataframe.groupby('country')['LIFE_EXP'].agg([lambda x: x.quantile(0.05),
                                                                               lambda x: x.quantile(0.25), 
                                                                               lambda x: x.quantile(0.50),
                                                                               lambda x: x.quantile(0.75),
@@ -35,7 +32,7 @@ def box_plot_hiv(datapath):
     
     dataframe_quantis = dataframe_quantis.sort_values("q50", ascending=True).reset_index()
 
-    #CONFIGURANDO AS CORES
+    #CRINDO A COLUNA DE CORES
     dicionario_de_cores = DICT_CORES
     lista_de_cores = []
 
@@ -60,8 +57,6 @@ def box_plot_hiv(datapath):
 
     boxplot.vbar("country", 0.7, "q50", "q75", source=source, color="color", line_color="black", alpha = 0.7)
     boxplot.vbar("country", 0.7, "q25", "q50", source=source, color="color", line_color="black", alpha = 0.7)
-
-    boxplot.xaxis.major_label_orientation = 0.7
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('Integrante', '@country'), ('Média', '@q50 anos'),
@@ -91,11 +86,12 @@ def box_plot_hiv(datapath):
     boxplot.xgrid.grid_line_color = LINHAS_GRADE
     boxplot.ygrid.grid_line_color = LINHAS_GRADE
 
-    #CONFIGURAÇÃO DO TÍTULO
     boxplot.title.text_font = FONTE_TEXTO
     boxplot.title.text_font_size =TAMANHO_TITULO
     boxplot.title.align = "center"
     boxplot.title.text_baseline = "middle"
-    show(boxplot)
 
-box_plot_hiv("dados\\life_expectancy_male.csv")
+    show(boxplot)
+    save(boxplot)
+
+box_plot_life("dados\\life_expectancy_male.csv")
