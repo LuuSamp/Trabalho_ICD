@@ -11,25 +11,26 @@ def grafico_de_linhas_gdp(datapath):
 
     '''
     a função tem como objetivo receber o path dos arquivos e o 
-    título do gráfico e gerar automaticamente um gráfico com bokeh
+    título do gráfico e gerar automaticamente um gráfico com bokeh 
+    sobre o PIB ou GDP Per Capita dos integrantes do G20
     '''
 
     #CONFIGURANDO A SAÍDA
     output_file("..\\grafico_de_linhas_pib_pc.html")
 
     #TRATAMENTO DA BASE DE DADOS
-    dataframe = reorganiza(datapath, "PIB_PC", 1910, 2010)
+    dataframe = reorganiza(datapath, "PIB_PC", 1910, 2020)
     dataframe["PIB_PC"] = dataframe["PIB_PC"].apply(traduz_milhares).astype(float)
     dataframe = filtro_paises_do_g20(dataframe, agrupamento="year")    
 
     source = ColumnDataSource(dataframe)
 
     #CONFECÇÃO DO GRÁFICO
-    line_plot = figure(title="PIB Per Capita G20 (1910-2010)",
+    line_plot = figure(title="PIB Per Capita G20 (1910-2020)",
                        width = 1080,
                        height = 720,
-                       x_range = (1910, 2010), 
-                       y_range = (0, 60000))
+                       x_range = (1910, 2020), 
+                       y_range = (0, 70000))
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('País', '@country'), 
