@@ -4,12 +4,28 @@ from bokeh.io import output_file
 import random
 import pandas as pd
 from traducao_g20 import filtro_paises_do_g20
+from reorganizador import reorganiza
 
-dataframe = pd.read_csv("dados/investimento_educacao.csv")
-dataframe = filtro_paises_do_g20(dataframe, True, "country")
-print(dataframe)
-dataframe.iloc[:,1:] = dataframe.iloc[:,1:].interpolate(method = "linear", axis = 1, limit_direction="both")
-print(dataframe)
+#dataframe = pd.read_csv("dados/investimento_educacao.csv")
+#dataframe = filtro_paises_do_g20(dataframe, True, "country")
+#print(dataframe)
+#dataframe.iloc[:,1:] = dataframe.iloc[:,1:].interpolate(method = "linear", axis = 1, limit_direction="both")
+#print(dataframe)
+
+
+df_escola = reorganiza(datapath = "dados/anos_homens_na_escola.csv", column_name = "Média de anos na Escola", first_year = 1970, last_year = 2015, csv = False)
+df_escola = filtro_paises_do_g20(df_escola, "Média de anos na Escola").reset_index()
+
+df_anos_escola = pd.DataFrame()
+df_anos_escola["country"] = df_escola["country"]
+df_anos_escola["year"] = df_escola["year"]
+df_anos_escola["Média de anos na Escola"] = df_escola["Média de anos na Escola"]
+
+# É criada uma lista com as colunas que iremos fazer a média.
+colunas_trabalhadas = ["Média de anos na Escola"]
+
+# É criada uma tabela contendo a média dos anos
+df_media_por_anos = df_anos_escola.groupby("country")[colunas_trabalhadas].mean().reset_index()
 
 # É adicionado uma lista com países e valores aleatórios relacionados a cada um.
 paises = [
