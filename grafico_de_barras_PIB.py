@@ -47,14 +47,17 @@ def graf_barras_pib(datapath):
                       height = ALTURA, 
                       x_range=dataframe['country'], 
                       y_range=(0, 15000),
-                      tools = "")
+                      tools = "",)
     
     bar_plot.vbar(x='country', 
                   top='PIB', 
                   color="color", 
                   source=data_source, 
-                  width=0.8, 
-                  alpha="preenchimento")
+                  width=0.9, 
+                  alpha="preenchimento",
+                  line_color = COR_DA_LINHA,
+                  line_alpha = ALPHA_DA_LINHA,
+                  line_width = ESPESSURA_DA_LINHA)
     
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('País', '@country'), 
