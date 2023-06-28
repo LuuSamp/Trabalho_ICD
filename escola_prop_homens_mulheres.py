@@ -4,6 +4,7 @@ from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
 import pandas as pd
+from variaveis_globais import *
 
 # Dataframe a ser usado
 dataframe_homens = filtro_paises_do_g20(pd.read_csv("dados/anos_homens_na_escola.csv"), True, "country")
@@ -24,7 +25,7 @@ data_source = ColumnDataSource(raw_data)
 sorted_countries = list(pd.DataFrame(raw_data).sort_values(by=["Mulheres"])["country"])
 
 # O gráfico
-plot = figure(width=700, height=500, title="Proporção nos anos escolares de homens e mulheres", y_range=sorted_countries)
+plot = figure(width=800, height=500, title="Proporção nos anos escolares de homens e mulheres", y_range=sorted_countries)
 bars = plot.hbar_stack(["Homens", "Mulheres"], y = "country", height=0.9, color = ["Blue", "Red"], source = data_source)
 
 # Atualização do gráfico
@@ -69,11 +70,14 @@ def slider_action(attr, old, new):
 
 slider.on_change("value", slider_action)
 
-# Alterações estéticas
-plot.xaxis.formatter = NumeralTickFormatter(format="0 %")
-
 # Linha central
 plot.ray(x=.5, y=0, length=1, angle=1.57079633, color='black')
+
+# Alterações estéticas
+plot.xaxis.formatter = NumeralTickFormatter(format="0 %")
+plot.title.text_font = FONTE_TEXTO
+plot.title.text_font_size = TAMANHO_TITULO
+
 
 # A GUI
 curdoc().add_root(column(button, slider, plot))
