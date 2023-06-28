@@ -5,11 +5,9 @@ from bokeh.models import GeoJSONDataSource
 import geopandas as gpd
 from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
-from funcao_maximo_minimo import funcao_maximo_minimo
 import pandas as pd
-from bokeh.transform import linear_cmap
-from bokeh.palettes import YlGnBu, Reds
-from bokeh.models import LinearColorMapper, LogColorMapper, ColorBar
+from bokeh.palettes import Reds
+from bokeh.models import LinearColorMapper, ColorBar
 from bokeh.models import HoverTool
 
 # Dicionário pego do site country.io
