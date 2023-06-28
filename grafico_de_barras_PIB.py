@@ -39,16 +39,22 @@ def graf_barras_pib(datapath):
     dataframe["preenchimento"] = lista_de_preenchimento
 
     #TRANSFORMANDO EM CDS
-    source = ColumnDataSource(dataframe)
+    data_source = ColumnDataSource(dataframe)
 
     #CONFECÇÃO DO GRÁFICO
     bar_plot = figure(title="Média dos PIB's do G20 (1990-2010)", 
                       width = LARGURA, 
                       height = ALTURA, 
                       x_range=dataframe['country'], 
-                      y_range=(0, 15000),)
+                      y_range=(0, 15000),
+                      tools = "")
     
-    bar_plot.vbar(x='country', top='PIB', color="color", source=source, width=0.8, alpha="preenchimento")
+    bar_plot.vbar(x='country', 
+                  top='PIB', 
+                  color="color", 
+                  source=data_source, 
+                  width=0.8, 
+                  alpha="preenchimento")
     
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('País', '@country'), 
@@ -56,7 +62,7 @@ def graf_barras_pib(datapath):
     bar_plot.add_tools(hover)
     
     #CONFIGURAÇÕES ESTÉTICAS
-    bar_plot.background_fill_color = (241, 242, 244, 0.5)
+    bar_plot.background_fill_color = BACKGROUND_FILL
     
     bar_plot.xaxis.major_label_orientation = 0.7
 
@@ -79,8 +85,12 @@ def graf_barras_pib(datapath):
 
     bar_plot.title.text_font = FONTE_TEXTO
     bar_plot.title.text_font_size =TAMANHO_TITULO
-    bar_plot.title.align = "center"
-    bar_plot.title.text_baseline = "middle"
+    bar_plot.title.align = ALINHAMENTO_TITULO
+    bar_plot.title.text_baseline = BASELINE_TITULO
+
+    bar_plot.toolbar.logo = None 
+    bar_plot.toolbar.autohide = True 
+    bar_plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
     show(bar_plot)
     save(bar_plot)
