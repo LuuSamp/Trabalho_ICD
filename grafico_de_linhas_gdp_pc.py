@@ -25,8 +25,8 @@ def grafico_de_linhas_gdp(datapath):
 
     #CONFECÇÃO DO GRÁFICO
     line_plot = figure(title="PIB Per Capita G20 (1910-2020)",
-                       width = 1080,
-                       height = 720,
+                       width = LARGURA,
+                       height = ALTURA,
                        x_range = Range1d(1910, 2020, bounds="auto"), 
                        y_range = Range1d(0, 70000, bounds="auto"),
                        tools="pan,box_zoom,wheel_zoom,reset")
