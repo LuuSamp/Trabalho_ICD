@@ -3,12 +3,16 @@ from bokeh.plotting import figure
 from bokeh.models import GeoJSONDataSource
 import geopandas as gpd
 import pandas as pd
-from bokeh.palettes import Reds
+from bokeh.palettes import Blues
 from bokeh.models import LinearColorMapper, ColorBar
 from bokeh.models import HoverTool
 from converte_iso import converte_iso2, converte_iso3
 
-def cria_mapa(dataframe, main_column_name, palette):
+def cria_mapa(dataframe, main_column_name: str, palette = Blues[6]):
+    '''
+    Recebe um dataframe com uma coluna "country", o nome de uma coluna com valores e uma paleta de cores.
+    Retorna um objeto figure do bokeh que contém um gráfico com os países contidos destacados e os valores neles
+    '''
     # Adicionando uma coluna iso3 no DataFrame:
     coluna_iso2 = dataframe["country"].apply(converte_iso2)
     coluna_iso3 = coluna_iso2.apply(converte_iso3)
