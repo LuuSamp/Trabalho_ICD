@@ -1,7 +1,7 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, HoverTool, Whisker, NumeralTickFormatter
+from bokeh.models import ColumnDataSource, HoverTool, Whisker
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
@@ -63,7 +63,7 @@ def box_plot_life(datapath):
                       upper="q95", 
                       lower="q05", 
                       source=data_source, 
-                      line_color=CORES_COMUNS)
+                      line_color=COR_DA_LINHA)
     whisker.upper_head.size = whisker.lower_head.size = 20
     boxplot.add_layout(whisker)
 
@@ -73,16 +73,20 @@ def box_plot_life(datapath):
                  "q75", 
                  source=data_source, 
                  color="color", 
-                 line_color="black", 
-                 alpha = "preenchimento")
+                 line_color=COR_DA_LINHA, 
+                 alpha = "preenchimento",
+                 line_alpha = ALPHA_DA_LINHA, 
+                 line_width = ESPESSURA_DA_LINHA)
     boxplot.vbar("country", 
                  0.7, 
                  "q25", 
                  "q50", 
                  source=data_source, 
                  color="color", 
-                 line_color="black", 
-                 alpha = "preenchimento")
+                 line_color=COR_DA_LINHA, 
+                 alpha = "preenchimento",
+                 line_alpha = ALPHA_DA_LINHA,
+                 line_width = ESPESSURA_DA_LINHA)
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('Integrante', '@country'), ('Média', '@q50 anos'),
