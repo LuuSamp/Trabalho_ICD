@@ -19,18 +19,21 @@ def grafico_ranking_co2(datapath):
     dicionario_de_cores = DICT_CORES
     lista_de_cores = []
     lista_de_preenchimento = []
+    lista_de_legenda = []
 
     for cada_pais in df_co2["country"]:
         if cada_pais in dicionario_de_cores.keys():
             lista_de_cores.append(dicionario_de_cores[cada_pais])
             lista_de_preenchimento.append(ALPHA_DESTAQUES)
+            lista_de_legenda.append(cada_pais)
         else:
             lista_de_cores.append(CORES_COMUNS)
             lista_de_preenchimento.append(ALPHA_COMUNS)
+            lista_de_legenda.append("Other Countries")
 
     df_co2["color"] = lista_de_cores
     df_co2["preenchimento"] = lista_de_preenchimento
-
+    df_co2["legenda"] = lista_de_legenda
 
     # Criando um ColumnDataSource
     source = ColumnDataSource(df_co2)
@@ -39,7 +42,16 @@ def grafico_ranking_co2(datapath):
     ranking_co2 = figure(x_range=df_co2["country"], y_range=(0,20),height=ALTURA, width=LARGURA, title="Emissão de Carbono por Habitante", tools="")
 
     # Criação do Gráfico de Barras
-    ranking_co2.vbar(x="country", top="CO2", source=source, width=0.9, color="color", alpha="preenchimento", line_color=COR_DA_LINHA, line_width=ESPESSURA_DA_LINHA, line_alpha=ALPHA_DA_LINHA)
+    ranking_co2.vbar(x="country", 
+                     top="CO2", 
+                     source=source, 
+                     width=0.9, 
+                     color="color", 
+                     alpha="preenchimento", 
+                     line_color=COR_DA_LINHA, 
+                     line_width=ESPESSURA_DA_LINHA, 
+                     line_alpha=ALPHA_DA_LINHA,
+                     legend_field="legenda")
 
     # Implementação de Ferramenta Hover
     hover = HoverTool(tooltips=[('País', '@country'), 
@@ -71,10 +83,17 @@ def grafico_ranking_co2(datapath):
     ranking_co2.title.align = ALINHAMENTO_TITULO
     ranking_co2.title.text_baseline = BASELINE_TITULO
 
+    ranking_co2.legend.location = "top_right"
+    ranking_co2.legend.title = ""
+    ranking_co2.legend.border_line_color = COR_DA_LINHA
+    ranking_co2.legend.border_line_width = ESPESSURA_DA_LINHA
+    ranking_co2.legend.border_line_alpha = ALPHA_DA_LINHA
+
     ranking_co2.toolbar.logo = None 
     ranking_co2.toolbar.autohide = True 
     ranking_co2.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
     output_file("../Ranking_CO2.html")
     show(ranking_co2)
+
 grafico_ranking_co2("dados/co2.csv")
