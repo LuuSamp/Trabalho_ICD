@@ -11,10 +11,8 @@ from cores import lista_cores, lista_alpha
 dataframe_homens = filtro_paises_do_g20(pd.read_csv("dados/anos_homens_na_escola.csv"), True, "country")
 dataframe_mulheres = filtro_paises_do_g20(pd.read_csv("dados/anos_mulheres_na_escola.csv"), True, "country")
 dataframe_total = dataframe_homens.copy()
-print(dataframe_total)
 for year in range(1970, 2016):
     dataframe_total[str(year)] = dataframe_homens[str(year)] + dataframe_mulheres[str(year)]
-print(dataframe_total)
 
 # Dados
 year = 1970
