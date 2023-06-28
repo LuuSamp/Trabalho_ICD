@@ -1,106 +1,118 @@
 from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource, HoverTool
+from bokeh.models import ColumnDataSource, HoverTool, Range1d
 from bokeh.io import output_file
 import pandas as pd
+import numpy as np
 from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza, traduz_milhares
 from variaveis_globais import *
 
-# As bases de dados são convertidas a partir da função reorganiza.
+# Reorganizando o DataFrame.
 df_populacao = reorganiza(datapath = "dados/pop.csv", column_name = "População", first_year = 1990, last_year = 2008, csv = False)
 df_imc_homens = reorganiza(datapath = "dados/body_mass_index_bmi_men_kgperm2.csv", column_name = "IMC dos Homens", first_year = 1990, last_year = 2008, csv = False)
 df_imc_mulheres = reorganiza(datapath = "dados/body_mass_index_bmi_women_kgperm2.csv", column_name = "IMC das Mulheres", first_year = 1990, last_year = 2008, csv = False)
 df_calorias = reorganiza(datapath = "dados/food_supply_kilocalories_per_person_and_day.csv", column_name = "Média de Calorias", first_year = 1990, last_year = 2008, csv = False)
 
-df_populacao = filtro_paises_do_g20(df_populacao, "População").reset_index()
-df_imc_homens = filtro_paises_do_g20(df_imc_homens, "IMC dos Homens").reset_index()
-df_imc_mulheres = filtro_paises_do_g20(df_imc_mulheres, "IMC das Mulheres").reset_index()
-df_calorias = filtro_paises_do_g20(df_calorias, "Média de Calorias").reset_index()
+df_populacao = filtro_paises_do_g20(df_populacao, False)
+df_populacao["População"] = df_populacao["População"].apply(traduz_milhares).astype(float)
 
-# Criando o DataFrame Final
+df_populacao = filtro_paises_do_g20(df_populacao, True, agrupamento="country")
+df_imc_homens = filtro_paises_do_g20(df_imc_homens, True, agrupamento="country")
+df_imc_mulheres = filtro_paises_do_g20(df_imc_mulheres, True, agrupamento="country")
+df_calorias = filtro_paises_do_g20(df_calorias, True, agrupamento="country")
+
+# Criação de DataFrame Final.
 df_final = pd.DataFrame()
 df_final["country"] = df_populacao["country"]
-df_final["year"] = df_populacao["year"]
 df_final["População"] = df_populacao["População"]
-df_final["IMC dos Homens"] = df_imc_homens["IMC dos Homens"]
-df_final["IMC das Mulheres"] = df_imc_mulheres["IMC das Mulheres"]
 df_final["Média de Calorias"] = df_calorias["Média de Calorias"]
-df_final["IMC Médio"] = (df_final["IMC dos Homens"] + df_final["IMC das Mulheres"]) / 2
-
-# É criada a conversão dos valores de População para um float.
-df_final["População"] = df_final["População"].apply(traduz_milhares)
-
-# É criada uma lista com as colunas que iremos fazer a média.
-colunas_trabalhadas = ["População", "IMC Médio", "Média de Calorias"]
-
-# É criada uma tabela contendo a média de população, calorias, IMC de acordo por Países ao longo dos anos.
-df_media_por_anos = df_final.groupby("country")[colunas_trabalhadas].mean().reset_index()
-
-# Ajustei a proporção da população para se adequar ao gráfico.
-df_media_por_anos["População em Proporção"] = df_media_por_anos["População"]/7000000
-
-# É criado um ColumnDataSource.
-source = ColumnDataSource(df_media_por_anos)
+df_final["IMC Médio"] = (df_imc_homens["IMC dos Homens"] + df_imc_mulheres["IMC das Mulheres"]) / 2
+df_final["População em Proporção"] = np.sqrt(df_final["População"])/200
+print(df_final)
 
 
-# Criando colunas referentes a cores.
+
+# Criação de ColumnDataSource.
+source = ColumnDataSource(df_final)
+
+# Criação de colunas referentes a cores e transparência.
 lista_de_cores = []
 lista_de_preenchimento = []
 
-for cada_pais in df_media_por_anos["country"]:
+for cada_pais in df_final["country"]:
     if cada_pais in DICT_CORES.keys():
         lista_de_cores.append(DICT_CORES[cada_pais])
-        lista_de_preenchimento.append(0.7)
+        lista_de_preenchimento.append(ALPHA_DESTAQUES)
     else:
-        lista_de_cores.append("gray")
-        lista_de_preenchimento.append(0.15)
-df_media_por_anos["color"] = lista_de_cores
-df_media_por_anos["preenchimento"] = lista_de_preenchimento
+        lista_de_cores.append(CORES_COMUNS)
+        lista_de_preenchimento.append(ALPHA_COMUNS)
+df_final["color"] = lista_de_cores
+df_final["preenchimento"] = lista_de_preenchimento
 
-sem_destaques = ColumnDataSource(df_media_por_anos[df_media_por_anos["color"]=="gray"]) 
-paises_com_destaque = ColumnDataSource(df_media_por_anos[df_media_por_anos["color"] != "gray"])
+sem_destaques = ColumnDataSource(df_final[df_final["color"]=="gray"]) 
+paises_com_destaque = ColumnDataSource(df_final[df_final["color"] != "gray"])
     
 # Objeto base do gráfico.
-imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", width=1240, height=600, x_range=(2200,3800), y_range=(19,28))
+imc_calorias = figure(title="Média de calorias consumidas por IMC no G20", 
+                      width=LARGURA, 
+                      height=ALTURA, 
+                      x_range=Range1d(2150,3800,bounds="auto"), 
+                      y_range=Range1d(19,29,bounds="auto"), 
+                      tools="pan,box_zoom,wheel_zoom,reset")
 
-# Plotar o scatter plot.
-imc_calorias.circle(x="Média de Calorias", y="IMC Médio", size="População em Proporção", source=sem_destaques, color="color", fill_alpha = "preenchimento")
-imc_calorias.circle(x="Média de Calorias", y="IMC Médio", size="População em Proporção", source=paises_com_destaque, color="color", fill_alpha = "preenchimento")
+# Gráfico de Bolhas.
+imc_calorias.circle(x="Média de Calorias", 
+                    y="IMC Médio", 
+                    size="População em Proporção", 
+                    source=sem_destaques, 
+                    color="color", 
+                    fill_alpha = "preenchimento", 
+                    line_alpha=ALPHA_DA_LINHA, 
+                    line_color=COR_DA_LINHA, 
+                    line_width=ESPESSURA_DA_LINHA)
+imc_calorias.circle(x="Média de Calorias", 
+                    y="IMC Médio", 
+                    size="População em Proporção", 
+                    source=paises_com_destaque, 
+                    color="color", 
+                    fill_alpha = "preenchimento", 
+                    line_alpha=ALPHA_DA_LINHA, 
+                    line_color=COR_DA_LINHA, 
+                    line_width=ESPESSURA_DA_LINHA)
 
-# Desativando as linhas de grade vertical e horizontal
-imc_calorias.xgrid.grid_line_color = None
-imc_calorias.ygrid.grid_line_color = None
+# Configurando a ferramenta HoverTool.
+hover = HoverTool(tooltips=[("País", "@{country}"), ("IMC Médio", "@{IMC Médio}"), 
+                            ("Média de Calorias", "@{Média de Calorias}{0,0.00} kcal"), 
+                            ("População Média", "@{População}{0,0.00}")])
+imc_calorias.add_tools(hover)
 
-# É adicionado nome nos eixos
-imc_calorias.xaxis.axis_label = "Média de Calorias"
-imc_calorias.yaxis.axis_label = "IMC Médio"
+# Configuração de ferramentas estéticas.
+imc_calorias.background_fill_color = BACKGROUND_FILL
 
-# O título é colocado no centro
-imc_calorias.title.align = "center"
+imc_calorias.xaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_X
+imc_calorias.xaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
+imc_calorias.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
+imc_calorias.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
 
-# É alterado o tamanho do título
-imc_calorias.title.text_font_size = "18pt"
+imc_calorias.xaxis.axis_label = "Média de Calorias" 
+imc_calorias.yaxis.axis_label = "IMC Médio" 
 
-# Tamanho dos valores do eixo x alterado 
-imc_calorias.xaxis.major_label_text_font_size = "12pt"
-
-# Tamanho dos valores do eixo y alterado 
-imc_calorias.yaxis.major_label_text_font_size = "12pt"
-
-# Alterando tamanho dos eixos
-imc_calorias.xaxis.axis_label_text_font_size = "14pt"
-imc_calorias.yaxis.axis_label_text_font_size = "14pt"
-
-# Modificando fonte dos eixos e título
 imc_calorias.xaxis.axis_label_text_font = FONTE_TEXTO
 imc_calorias.yaxis.axis_label_text_font = FONTE_TEXTO
+
+imc_calorias.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+imc_calorias.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
+
+imc_calorias.xgrid.grid_line_color = LINHAS_GRADE
+imc_calorias.ygrid.grid_line_color = LINHAS_GRADE
+
 imc_calorias.title.text_font = FONTE_TEXTO
+imc_calorias.title.text_font_size =TAMANHO_TITULO
+imc_calorias.title.align = ALINHAMENTO_TITULO
+imc_calorias.title.text_baseline = BASELINE_TITULO
 
-# Alterarando a cor do background
-imc_calorias.background_fill_color = "#F8F2FF"
-
-# Configurando a ferramenta HoverTool
-hover = HoverTool(tooltips=[("País", "@{country}"), ("IMC Médio", "@{IMC Médio}"), ("Média de Calorias", "@{Média de Calorias}{0,0.00}"), ("População Média", "@{População}{0,0.00}")])
-imc_calorias.add_tools(hover)
+imc_calorias.toolbar.logo = None 
+imc_calorias.toolbar.autohide = True 
+imc_calorias.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
 show(imc_calorias)
