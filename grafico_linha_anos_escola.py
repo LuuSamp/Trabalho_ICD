@@ -1,6 +1,5 @@
 from bokeh.plotting import figure 
-from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, HoverTool, Range1d
+from bokeh.models import ColumnDataSource, HoverTool, Range1d, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
@@ -31,7 +30,8 @@ def linha_escola(datapath1,datapath2):
                                 height=ALTURA, 
                                 x_range=Range1d(1970, 2015, bounds="auto"), 
                                 y_range=Range1d(0, 16, bounds="auto"), 
-                                tools="pan,box_zoom,wheel_zoom,reset")
+                                tools="pan,box_zoom,wheel_zoom,reset",
+                                name="Anos Na Escola")
 
     # Adionando colunas referentes a transparência e cor dos países.
     for country in df_anos_escola["country"].unique():
@@ -95,7 +95,16 @@ def linha_escola(datapath1,datapath2):
     grafico_linha_escola.toolbar.autohide = True 
     grafico_linha_escola.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
-    show(grafico_linha_escola)
-    output_file("../desenvolvimento_educacional.html")
+    descricao = Paragraph(text="""Neste gráfico de Linhas, é relacionada a média de anos de presença na escola ao <br>
+                                    longo dos anos, em que cada linha representa um país. A visualização tem o objetivo <br>
+                                    de identificar melhorias na frequência dos alunos nas escolas e detectar tendências <br>
+                                    futuras com base nos padrões observados. Além disso, foram utilizadas cores para destacar <br>
+                                    alguns países, sendo a cor azul para os melhores desempenhos e a cor vermelha para os <br>
+                                    piores desempenhos no quesito de IDH (Índice de Desenvolvimento Humano). Por meio do <br>
+                                    módulo HoverTool, foi criada uma ferramenta de interatividade que, ao passar o cursor <br>
+                                    do mouse sobre cada linha, exibe o país, o ano correspondente e a média de anos na escola <br>
+                                    para aquele período. O título foi posicionado no centro para alinhar-se com as informações <br>
+                                    do gráfico. Por fim, vários rótulos foram padronizados em todos os gráficos usando o <br>
+                                    módulo variaveis_globais, proporcionando uma estética consistente para cada representação.""")
 
-linha_escola("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")
+    return grafico_linha_escola, descricao
