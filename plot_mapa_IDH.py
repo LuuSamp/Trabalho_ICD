@@ -7,7 +7,7 @@ from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
 from bokeh.palettes import Reds
 from bokeh.models import LinearColorMapper, ColorBar, Range1d
-from bokeh.models import HoverTool, Paragraph
+from bokeh.models import HoverTool, Div
 from variaveis_globais import *
 
 def grafico_mapa_IDH(datapath_IDH):
@@ -197,7 +197,7 @@ def grafico_mapa_IDH(datapath_IDH):
     mapa_IDH.title.align = ALINHAMENTO_TITULO
     mapa_IDH.title.text_baseline = BASELINE_TITULO
 
-    descricao = Paragraph(text="""
+    descricao = Div(text="""
                                     Este gráfico do Mapa Mundial tem o objetivo de destacar os países do G20 em relação aos<br> 
                                     seus níveis de Índice de Desenvolvimento Humano (IDH). Utilizando uma paleta de cores<br> 
                                     com tons de vermelho, os países são categorizados em diferentes gradientes, revelando<br> 
@@ -211,4 +211,4 @@ def grafico_mapa_IDH(datapath_IDH):
                                     e China. Portanto, essa visualização é fundamental para compreender todas as próximas análises<br> 
                                     e interpretações.  
                                     """)
-    return mapa_IDH
+    return mapa_IDH, descricao
