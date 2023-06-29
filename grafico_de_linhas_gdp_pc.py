@@ -40,16 +40,6 @@ def grafico_de_linhas_gdp(datapath):
     #DICIONÁRIO COM OS PAÍSES DESTACADOS
     paises_destacaveis = DICT_CORES
 
-    lista_de_legenda = []
-    for indice in range(dataframe.shape[0]):
-        if dataframe["country"][indice] in paises_destacaveis.keys():
-            lista_de_legenda.append(dataframe["country"][indice])
-            print(dataframe["country"][indice])
-        else:
-            lista_de_legenda.append("G20 Countries")
-
-    dataframe["legenda"] = lista_de_legenda
-
     #CRIAÇÃO DAS LINHAS DE CADA PAÍS
     for country in dataframe["country"].unique():
         country_data = dataframe[dataframe["country"]==country]
