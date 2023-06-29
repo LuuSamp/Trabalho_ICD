@@ -1,6 +1,5 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.io import output_file
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Range1d, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
@@ -15,9 +14,6 @@ def grafico_de_linhas_gdp(datapath):
     sobre o PIB ou GDP Per Capita dos integrantes do G20
     '''
 
-    #CONFIGURANDO A SAÍDA
-    output_file("..\\grafico_de_linhas_pib_pc.html")
-
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "PIB_PC", 1910, 2020)
     dataframe["PIB_PC"] = dataframe["PIB_PC"].apply(traduz_milhares).astype(float)
@@ -29,7 +25,8 @@ def grafico_de_linhas_gdp(datapath):
                        height = ALTURA,
                        x_range = Range1d(1910, 2020, bounds="auto"), 
                        y_range = Range1d(0, 70000, bounds="auto"),
-                       tools="pan,box_zoom,wheel_zoom,reset")
+                       tools="pan,box_zoom,wheel_zoom,reset",
+                       name="PIB Per Capita")
 
     #ADICIONANDO A FERRAMENTA DO HOVER
     hover = HoverTool(tooltips=[('País', '@country'), 
