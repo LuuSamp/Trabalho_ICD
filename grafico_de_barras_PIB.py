@@ -1,6 +1,5 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.io import output_file
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Div, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
@@ -12,9 +11,6 @@ def graf_barras_pib(datapath):
     país do G20 e da UE durante o período de 20 anos (1990-2010) de forma ordenada.
     '''
 
-    #CONFIGURANDO A SAÍDA
-    output_file("..\\ranking_pib.html")
-    
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "PIB", 1990, 2010) 
     dataframe["PIB"] = dataframe["PIB"].apply(traduz_milhares)
@@ -51,7 +47,8 @@ def graf_barras_pib(datapath):
                       height = ALTURA, 
                       x_range=dataframe['country'], 
                       y_range=(0, 15000),
-                      tools = "",)
+                      tools = "",
+                      name="PIB Médio")
     
     bar_plot.vbar(x='country', 
                   top='PIB', 
