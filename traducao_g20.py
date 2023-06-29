@@ -84,7 +84,7 @@ def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
 ]
 
     #VAI RETIRAR TODAS AS LINHAS QUE NÃO SÃO DO G20 E RESETAR O ÍNDICE
-    for indice_de_cada_linha in range (dataframe.shape[0]):
+    for indice_de_cada_linha in range(dataframe.shape[0]):
         if dataframe["country"][indice_de_cada_linha] in paises_do_g20:
             pass
         else:
