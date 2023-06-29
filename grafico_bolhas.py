@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource, HoverTool, Range1d
+from bokeh.models import ColumnDataSource, HoverTool, Range1d, Paragraph
 from bokeh.io import output_file
 import pandas as pd
 import numpy as np
@@ -29,9 +29,6 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     df_final["Média de Calorias"] = df_calorias["Média de Calorias"]
     df_final["IMC Médio"] = (df_imc_homens["IMC dos Homens"] + df_imc_mulheres["IMC das Mulheres"]) / 2
     df_final["População em Proporção"] = np.sqrt(df_final["População"])/200
-    
-    # Criação de ColumnDataSource.
-    source = ColumnDataSource(df_final)
 
     # Criação de colunas referentes a cores, transparência e legenda.
     lista_de_cores = []
@@ -60,7 +57,8 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
                         height=ALTURA, 
                         x_range=Range1d(2150,3800,bounds="auto"), 
                         y_range=Range1d(19,29,bounds="auto"), 
-                        tools="pan,box_zoom,wheel_zoom,reset")
+                        tools="pan,box_zoom,wheel_zoom,reset",
+                        name="grafico_bolhas_imc")
 
     # Gráfico de Bolhas.
     imc_calorias.circle(x="Média de Calorias", 
@@ -125,7 +123,16 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     imc_calorias.toolbar.autohide = True 
     imc_calorias.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
-    show(imc_calorias)
-    output_file("../grafico_bolhas.html")
+    descricao = Paragraph(text="""O gráfico de Bolhas tem como objetivo comparar se há uma correlação entre a quantidade <br>
+                                    média de calorias disponíveis e o Índice de Massa Corporal (IMC) das pessoas. Além disso, <br>
+                                    o tamanho das bolhas foi utilizado para representar o tamanho da população, a fim de <br>
+                                    verificar se isso influencia nos resultados do gráfico. Também foram definidos limites <br>
+                                    para exibir as bolhas em uma área central do gráfico. As cores foram usadas para destacar <br>
+                                    os países com bom desempenho (cor azul) e os países sem destaque (cor vermelha) na área de <br>
+                                    IDH (Índice de Desenvolvimento Humano). As grades de fundo foram removidas, pois não eram <br>
+                                    relevantes para o contexto do gráfico. Através da ferramenta HoverTool, é possível visualizar <br>
+                                    o país, o IMC médio e a média de calorias disponíveis ao passar o mouse sobre as bolhas. <br>
+                                    Conforme mencionado anteriormente, os rótulos foram padronizados com base no módulo variaveis_globais.
+                                """)
 
-grafico_bolhas("dados/pop.csv", "dados/body_mass_index_bmi_men_kgperm2.csv", "dados/body_mass_index_bmi_women_kgperm2.csv", "dados/food_supply_kilocalories_per_person_and_day.csv")
+    return imc_calorias, descricao
