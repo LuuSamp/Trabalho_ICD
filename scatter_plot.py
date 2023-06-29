@@ -1,7 +1,7 @@
 # Bibliotecas e módulos necessários:
 from reorganizador import reorganiza
 import pandas as pd
-from bokeh.models import ColumnDataSource, HoverTool, Range1d, Paragraph
+from bokeh.models import ColumnDataSource, HoverTool, Range1d, Div
 from bokeh.plotting import figure, output_file
 from bokeh.models import Title 
 from traducao_g20 import filtro_paises_do_g20 
@@ -118,7 +118,7 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
     scatter_plot.toolbar.autohide = True 
     scatter_plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
-    descricao = Paragraph(text="""
+    descricao = Div(text="""
                                     Esse gráfico tem como objetivo comparar os países do G20 com relação a dois assuntos muito importantes na área da<br>
                                     Saúde: a Vacinação de Crianças e a Mortalidade Infantil do período de 1990 à 2010. Além disso, foram destacados<br>
                                     quatro países que tiveram os dois maiores e os dois menores Índices de Desenvolvimento Humano. Os países com cores<br> 
