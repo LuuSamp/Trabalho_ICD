@@ -1,6 +1,6 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.io import output_file, save, show
+from bokeh.io import output_file
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Range1d, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
