@@ -1,7 +1,7 @@
 from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
-from bokeh.models import ColumnDataSource, HoverTool, Paragraph
+from bokeh.models import ColumnDataSource, HoverTool, Div
 from bokeh.plotting import figure, show
 from bokeh.io import output_file
 
@@ -97,7 +97,7 @@ def grafico_investimento_saude(datapath_investimento_saude):
     ranking_investimento_saude_g20.legend.border_line_width = ESPESSURA_DA_LINHA
     ranking_investimento_saude_g20.legend.border_line_alpha = ALPHA_DA_LINHA
 
-    descricao = Paragraph(text="""
+    descricao = Div(text="""
                                   Esse ranking procura mostrar os países do G20 que mais investem na área da saúde no período dos<br> 
                                   anos de 1995 a 2010. Além disso, foram destacados quatro países que tiveram os dois maiores e<br> 
                                   os dois menores Índices de Desenvolvimento Humano. Os países com cores de tons vermelhos são a<br> 
