@@ -1,7 +1,7 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
 from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Range1d
+from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Range1d, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
@@ -104,7 +104,19 @@ def grafico_de_linhas_gdp(datapath):
     line_plot.legend.border_line_width = ESPESSURA_DA_LINHA
     line_plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
-    show(line_plot)
-    save(line_plot)
+    descricao = Paragraph(text="""Esse gráfico, embora esteja relacionado com o anterior, tem como objetivo representar a evolução <br>
+                                    do PIB per capita dos países. Olhando para os destaques, vemos claramente uma tendência. Os países <br>
+                                    com maior IDH possuem um dos maiores PIB's per capita e China e Índia vão na contramão disso. <br>
+                                    Como foi antecipado na descrição anterior, mesmo que a China nos últimos anos tenha um dos maiores <br>
+                                    PIB's brutos do planeta, sua população é gigantesca e toda essa riqueza produzida quando é normalizada <br>
+                                    pela população retorna um valor bem abaixo do esperado. O mesmo acontece para a Índia. Ambas com populações <br>
+                                    acima do 1 bilhão de habitantes. Destaco também, por mais que não seja um dos países destacados, a Arábia Saudita <br>
+                                    na década de 1970 até meados da década de 1980 teve um aumento gritante no seu PIB per capita e isso tem uma <br>
+                                    explicação história simples: A Primeira Crise do Petróleo. Quando os países membros da OPEP, Organização dos Países <br>
+                                    Exportadores de Petróleo, resolveu aumentar muito o valor do combustível fóssil, que é a principal alavanca da <br>
+                                    economia saudita há muito tempo, e isso aumentou muito a arrecadação do país e o seu PIB per capita, uma vez que a <br>
+                                    população não cresceu no mesmo rítimo. Por fim, destaco que nesse gráfico a maioria das ferramentas foram adicionadas, <br>
+                                    mas só é possível utilizá-las dentro dos limites da janela de visualização dos dados. 
+    """)
 
-grafico_de_linhas_gdp("dados\\gdp_pcap.csv")
+    return line_plot, descricao
