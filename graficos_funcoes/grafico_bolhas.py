@@ -1,11 +1,11 @@
-from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource, HoverTool, Range1d, Paragraph
-from bokeh.io import output_file
+from bokeh.plotting import figure
+from bokeh.models import HoverTool, Range1d, Paragraph
 import pandas as pd
 import numpy as np
 from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza, traduz_milhares
 from variaveis_globais import *
+from CDS import transformador_CDS
 
 def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulheres, datapath_calorias):
     # Reorganizando o DataFrame.
@@ -48,8 +48,8 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     df_final["preenchimento"] = lista_de_preenchimento
     df_final["legenda"] = lista_legenda
 
-    sem_destaques = ColumnDataSource(df_final[df_final["color"]=="gray"]) 
-    paises_com_destaque = ColumnDataSource(df_final[df_final["color"] != "gray"])
+    sem_destaques = transformador_CDS(df_final[df_final["color"]=="gray"]) 
+    paises_com_destaque = transformador_CDS(df_final[df_final["color"] != "gray"])
         
     # Objeto base do gráfico.
     imc_calorias = figure(title="Calorias disponíveis por IMC no G20", 

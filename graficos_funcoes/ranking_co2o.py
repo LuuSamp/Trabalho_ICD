@@ -1,10 +1,9 @@
-from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource, HoverTool, Paragraph
-from bokeh.io import output_file
-import pandas as pd
+from bokeh.plotting import figure
+from bokeh.models import HoverTool, Paragraph
 from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza
 from variaveis_globais import *
+from CDS import transformador_CDS
 
 def grafico_ranking_co2(datapath):
     # Tratamento de dados
@@ -36,7 +35,7 @@ def grafico_ranking_co2(datapath):
     df_co2["legenda"] = lista_de_legenda
 
     # Criando um ColumnDataSource
-    source = ColumnDataSource(df_co2)
+    source = transformador_CDS(df_co2)
 
     # Base do Gráfico
     ranking_co2 = figure(x_range=df_co2["country"], 
