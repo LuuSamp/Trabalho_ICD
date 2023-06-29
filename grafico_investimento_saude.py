@@ -1,15 +1,15 @@
 from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
-from bokeh.models import ColumnDataSource, HoverTool, Div
+from bokeh.models import ColumnDataSource, HoverTool, Div, NumeralTickFormatter
 from bokeh.plotting import figure
 
 def grafico_investimento_saude(datapath_investimento_saude):
 
     '''
     Essa função deve receber um DataFrame relacionado aos investimentos dos países
-    em saúde. Ela tem o objetivo de retornar um ranking (gráfico de barras)dos países 
-    do G20 que mais investem em saúde nos últimos anos.
+    em saúde. Ela tem o objetivo de retornar um ranking(gráfico de barras) dos países 
+    do G20 que mais investem em saúde nos anos de 1995 a 2010.
     '''
 
     # Criando um Data Frame "tratado" a partir da utilização da função "reorganiza": 
@@ -88,6 +88,8 @@ def grafico_investimento_saude(datapath_investimento_saude):
     ranking_investimento_saude_g20.toolbar.logo = None 
     ranking_investimento_saude_g20.toolbar.autohide = True 
     ranking_investimento_saude_g20.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
+    ranking_investimento_saude_g20.yaxis.formater = NumeralTickFormatter(format = "0.0%") 
 
     # Adicionando legenda:
     ranking_investimento_saude_g20.legend.location = "top_right"
