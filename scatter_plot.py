@@ -3,7 +3,7 @@ from reorganizador import reorganiza
 import pandas as pd
 from bokeh.models import ColumnDataSource, HoverTool, Range1d, Div
 from bokeh.plotting import figure, output_file
-from bokeh.models import Title 
+from bokeh.models import Title, NumeralTickFormatter 
 from traducao_g20 import filtro_paises_do_g20 
 from variaveis_globais import *
 
@@ -117,6 +117,8 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
     scatter_plot.toolbar.logo = None 
     scatter_plot.toolbar.autohide = True 
     scatter_plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+
+    scatter_plot.xaxis.formater = NumeralTickFormatter(format = "0.0%")    
 
     descricao = Div(text="""
                                     Esse gráfico tem como objetivo comparar os países do G20 com relação a dois assuntos muito importantes na área da<br>
