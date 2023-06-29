@@ -2,8 +2,7 @@ from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
 from bokeh.models import ColumnDataSource, HoverTool, Div
-from bokeh.plotting import figure, show
-from bokeh.io import output_file
+from bokeh.plotting import figure
 
 def grafico_investimento_saude(datapath_investimento_saude):
 
@@ -110,4 +109,4 @@ def grafico_investimento_saude(datapath_investimento_saude):
                                   em saúde, enquanto a Austrália que possui o maior IDH está em sexto lugar no ranking de investimentos. 
                                     """)
 
-    return ranking_investimento_saude_g20
+    return ranking_investimento_saude_g20, descricao
