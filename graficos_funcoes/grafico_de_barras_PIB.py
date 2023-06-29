@@ -1,6 +1,6 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.models import HoverTool, NumeralTickFormatter, Div, Paragraph
+from bokeh.models import HoverTool, NumeralTickFormatter, Div
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
@@ -104,7 +104,7 @@ def graf_barras_pib(datapath):
     bar_plot.legend.border_line_width = ESPESSURA_DA_LINHA
     bar_plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
-    descricao = Paragraph(text="""Esse gráfico tem como objetivo representar a média do PIB dos integrantes do G20 do período de 1990 à 2010. <br>
+    descricao = Div(text="""Esse gráfico tem como objetivo representar a média do PIB dos integrantes do G20 do período de 1990 à 2010. <br>
                                     Assim como em todos os gráficos, chamamos atenção para os Estados Unidos, Austrália, China e Índia. <br> 
                                     Vemos que na questão econômica, a ordem se inverte e que não traduz a mesma ideia quando olhamos para o IDH. <br>
                                     A China, com um PID muitas vezes maior do que o da Austrália, não consegue transformar isso em melhoras significativas <br>
