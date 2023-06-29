@@ -10,6 +10,8 @@ NUM_MINOR_TICKS = 0
 NUM_MAJOR_TICKS_X = 20
 NUM_MAJOR_TICKS_Y = 15
 LINHAS_GRADE = None
+LARGURA = 1080
+ALTURA = 720
 
 dataframe_idh = reorganiza("dados\idh_total.csv", "IDH", 1990, 2010)
 dataframe_idh = filtro_paises_do_g20(dataframe_idh, agrupamento="country")
