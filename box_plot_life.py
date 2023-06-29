@@ -1,6 +1,5 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.io import output_file
 from bokeh.models import ColumnDataSource, HoverTool, Whisker, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
@@ -11,8 +10,6 @@ def box_plot_life(datapath):
     Função com o objetivo de receber um datapath de uma base de dados, trata e converte ela e depois 
     produz um boxplot para a espectativa de vida dos países do G20.
     '''
-    #CONFIGURANDO O ARQUIVO DE SAÍDA
-    output_file("..\\boxplot_life.html")
 
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "LIFE_EXP", 1950, 2020) #vai fazer um recorte nos dados
@@ -60,7 +57,8 @@ def box_plot_life(datapath):
                      width = LARGURA, 
                      height = ALTURA, 
                      y_range=(30, 85),
-                     tools = "")
+                     tools = "",
+                     name="Expectativa de Vida")
     
     whisker = Whisker(base="country", 
                       upper="q95", 
