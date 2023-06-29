@@ -1,3 +1,4 @@
+import pandas as pd
 
 def funcao_maximo_minimo(dataframe, nome_coluna, nome_coluna_pais):
     '''
@@ -6,29 +7,24 @@ def funcao_maximo_minimo(dataframe, nome_coluna, nome_coluna_pais):
     coluna e os dois menores valores dessa coluna. Ela vai associar os valores aos 
     nomes dos países que cada um representa e especificar uma cor para cada país.
     '''
+    
+    # Pegando os maiores valores da coluna e associando aos seus países:
     maiores_valores = dataframe[nome_coluna].nlargest(2)
     maiores_paises = dataframe[nome_coluna_pais].iloc[maiores_valores.index].tolist()
 
+    # Pegando os menores valores da coluna e associando aos seus países:
     menores_valores = dataframe[nome_coluna].nsmallest(2)
     menores_paises = dataframe[nome_coluna_pais].iloc[menores_valores.index].tolist()
 
-    cores = {
-        'primeiro_maior': 'darkred',
-        'segundo_maior': 'red',
-        'primeiro_menor': 'darkblue',
-        'segundo_menor': 'lightblue'
+    # Juntando as duas listas de maiores e menores países:
+    lista_total = maiores_paises + menores_paises
+
+    # Criando o dicionário que atribui as cores para cada país:
+    dicionario_paises_cores = {
+        lista_total[0]: "#084C9F",
+        lista_total[1]: "#2685F8",
+        lista_total[2]: "#900C3F",
+        lista_total[3]: "#FA4343"
     }
 
-    mapeamento = {
-        maiores_paises[0]: 'primeiro_maior',
-        maiores_paises[1]: 'segundo_maior',
-        menores_paises[0]: 'primeiro_menor',
-        menores_paises[1]: 'segundo_menor'
-    }
-
-    dicionario = {}
-
-    for pais in maiores_paises + menores_paises:
-        dicionario[pais] = cores[mapeamento[pais]]
-
-    return dicionario
+    return dicionario_paises_cores
