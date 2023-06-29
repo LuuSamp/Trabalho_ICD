@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource, HoverTool
+from bokeh.models import ColumnDataSource, HoverTool, Paragraph
 from bokeh.io import output_file
 import pandas as pd
 from traducao_g20 import filtro_paises_do_g20
@@ -39,7 +39,13 @@ def grafico_ranking_co2(datapath):
     source = ColumnDataSource(df_co2)
 
     # Base do Gráfico
-    ranking_co2 = figure(x_range=df_co2["country"], y_range=(0,20),height=ALTURA, width=LARGURA, title="Emissão de Carbono por Habitante", tools="")
+    ranking_co2 = figure(x_range=df_co2["country"], 
+                         y_range=(0,20),
+                         height=ALTURA, 
+                         width=LARGURA, 
+                         title="Emissão de Carbono por Habitante", 
+                         tools="",
+                         name="Emissão de CO2")
 
     # Criação do Gráfico de Barras
     ranking_co2.vbar(x="country", 
@@ -93,7 +99,18 @@ def grafico_ranking_co2(datapath):
     ranking_co2.toolbar.autohide = True 
     ranking_co2.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
-    output_file("../Ranking_CO2.html")
-    show(ranking_co2)
+    descricao = Paragraph(text="""Esse Ranking busca ordenar os países de acordo com a emissão de carbono realizada <br>
+                                 por cada um deles. As barras do gráfico foram colocadas de maneira vertical para que <br>
+                                 itens com barras mais longas ou mais altas sejam visualmente distintos dos itens com <br>
+                                 barras mais curtas ou mais baixas, facilitando a identificação dos melhores ou piores <br>
+                                 classificados e também contribuindo para a compreensão das diferenças entre os países. <br>
+                                 Além disso, é válido ressaltar que algumas das barras foram destacadas com cor, sendo <br>
+                                 a cor azul utilizada para representar os melhores e a cor vermelha para representar as <br>
+                                 piores nações no quesito de IDH (Índice de Desenvolvimento Humano). Outro ponto a ser <br>
+                                 destacado é a utilização de ferramentas interativas por meio da função HoverTool, que <br>
+                                 permite a visualização dos dados de cada barra, incluindo informações sobre o país e <br>
+                                 o valor do investimento realizado. O título foi colocado no centro para alinhar-se com <br>
+                                as informações do gráfico. Os nomes dos países foram rotacionados para facilitar a <br>
+                                leitura. Quanto aos rótulos, foram padronizados com base no módulo de variáveis globais.""")
 
-grafico_ranking_co2("dados/co2.csv")
+    return ranking_co2, descricao
