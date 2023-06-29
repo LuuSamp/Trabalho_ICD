@@ -58,7 +58,7 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
                         x_range=Range1d(2150,3800,bounds="auto"), 
                         y_range=Range1d(19,29,bounds="auto"), 
                         tools="pan,box_zoom,wheel_zoom,reset",
-                        name="grafico_bolhas_imc")
+                        name="IMC X Calorias")
 
     # Gráfico de Bolhas.
     imc_calorias.circle(x="Média de Calorias", 
