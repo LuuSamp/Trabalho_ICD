@@ -1,4 +1,5 @@
 import pandas as pd  
+from reorganizador import reorganiza, traduz_milhares
 
 def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
     '''
@@ -106,11 +107,8 @@ def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
         dataframe["PAIS_UE"] = lista_de_confirmacao
         
         dataframe_ue = dataframe[dataframe["PAIS_UE"]==True]
-
-        lista_de_paises = []
-        for indice in dataframe_ue.shape[0]:
-            lista_de_paises.append("European Union")
-        dataframe_ue["country"] = lista_de_paises
+        dataframe_ue.loc[:, "country"] = "European Union"
+       
    
         if agrupamento == "year":
 
@@ -118,10 +116,7 @@ def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
             del dataframe_ue["country"]
             dataframe_ue = dataframe_ue.groupby("year").mean().round(4).reset_index()
 
-            lista_de_paises = []
-            for indice in dataframe_ue.shape[0]:
-                lista_de_paises.append("European Union")
-            dataframe_ue["country"] = lista_de_paises
+            dataframe_ue.loc[:, "country"] = "European Union"
 
         if agrupamento == "country":
 
