@@ -1,7 +1,7 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, HoverTool, Whisker
+from bokeh.io import output_file
+from bokeh.models import ColumnDataSource, HoverTool, Whisker, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
@@ -135,7 +135,14 @@ def box_plot_life(datapath):
     boxplot.legend.border_line_width = ESPESSURA_DA_LINHA
     boxplot.legend.border_line_alpha = ALPHA_DA_LINHA
 
-    show(boxplot)
-    save(boxplot)
+    descricao = Paragraph(text="""Esse gráfico tem como objetivo apresentar a distribuição dentre os dados de expectativa de vida <br>
+                                    de cada integrante do G20 de 1950 à 2020. O destaque permanece para os mesmos países, Estados Unidos, <br>
+                                    Austrália, China e Índia, donos dos melhores e piores IDH's do G20, respectivamente. Podemos observar que <br>
+                                    conseguimos visualizar algo uma tendência coerente com o IDH. Vemos que EUA e Austrália possuíram uma espectativa <br>
+                                    de vida maiores que China e Índia. Porém a China, mesmo com o IDH baixo, não possuí uma das menores expectativas de vida <br>
+                                    algo que pode ser explicado por diversos fatores. Alguns expecialistas, por exemplo, atribuem a longevidade de alguns povos <br>
+                                    asiáticos à alimentação e à cultura muito específica. Novamente, pontuo que escolhemos não disponibilizar <br>
+                                    todas as ferramentas, mas apenas o Hover. Não seria coerente permitir ao usuário se mover por todo <br>
+                                    o espaço disponível, sendo que todos os dados estão agrupados nessa janela de visualização.""")
 
-box_plot_life("dados\\life_expectancy_male.csv")
+    return boxplot, descricao
