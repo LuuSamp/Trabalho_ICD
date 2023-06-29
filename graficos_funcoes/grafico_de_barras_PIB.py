@@ -1,9 +1,10 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Div, Paragraph
+from bokeh.models import HoverTool, NumeralTickFormatter, Div, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
+from CDS import transformador_CDS
 
 def graf_barras_pib(datapath):
     '''
@@ -39,7 +40,7 @@ def graf_barras_pib(datapath):
     dataframe["legenda"] = lista_de_legenda
 
     #TRANSFORMANDO EM CDS
-    data_source = ColumnDataSource(dataframe)
+    data_source = transformador_CDS(dataframe)
 
     #CONFECÇÃO DO GRÁFICO
     bar_plot = figure(title="Média dos PIB's do G20 (1990-2010)", 

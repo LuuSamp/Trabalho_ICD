@@ -1,9 +1,10 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter, Range1d, Paragraph
+from bokeh.models import HoverTool, NumeralTickFormatter, Range1d, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
+from CDS import transformador_CDS
 
 
 def grafico_de_linhas_gdp(datapath):
@@ -40,7 +41,7 @@ def grafico_de_linhas_gdp(datapath):
     #CRIAÇÃO DAS LINHAS DE CADA PAÍS
     for country in dataframe["country"].unique():
         country_data = dataframe[dataframe["country"]==country]
-        data_source = ColumnDataSource(country_data)
+        data_source = transformador_CDS(country_data)
 
         #PAÍS DESTACADOS
         if country in paises_destacaveis.keys():

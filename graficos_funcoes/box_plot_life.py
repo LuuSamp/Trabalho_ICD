@@ -1,9 +1,10 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.models import ColumnDataSource, HoverTool, Whisker, Paragraph
+from bokeh.models import HoverTool, Whisker, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
+from CDS import transformador_CDS
 
 def box_plot_life(datapath):
     '''
@@ -50,7 +51,7 @@ def box_plot_life(datapath):
     dataframe_quantis["legenda"] = lista_de_legenda
 
     #CRIANDO O BOXPLOT
-    data_source = ColumnDataSource(dataframe_quantis)
+    data_source = transformador_CDS(dataframe_quantis)
 
     boxplot = figure(x_range=dataframe_quantis["country"], 
                      title="Expectativa de Vida G20 (1950-2020)",

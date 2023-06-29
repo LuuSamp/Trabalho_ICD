@@ -1,15 +1,16 @@
 from bokeh.plotting import figure 
-from bokeh.models import ColumnDataSource, HoverTool, Range1d, Paragraph
+from bokeh.models import HoverTool, Range1d, Paragraph
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
 from variaveis_globais import *
+from CDS import transformador_CDS
 
-def linha_escola(datapath1,datapath2):
+def linha_escola(datapath_homens,datapath2_mulheres):
     # Tratamento da base de dados.
-    df_homens = reorganiza(datapath1, column_name = "Média de anos na Escola por Homens", first_year = 1970, last_year = 2015, csv = False)
+    df_homens = reorganiza(datapath_homens, column_name = "Média de anos na Escola por Homens", first_year = 1970, last_year = 2015, csv = False)
     df_homens["Média de anos na Escola por Homens"] = df_homens["Média de anos na Escola por Homens"].apply(traduz_milhares).astype(float)
-    df_mulheres = reorganiza(datapath2, column_name = "Média de anos na Escola por Mulheres", first_year = 1970, last_year = 2015, csv = False)
+    df_mulheres = reorganiza(datapath2_mulheres, column_name = "Média de anos na Escola por Mulheres", first_year = 1970, last_year = 2015, csv = False)
     df_mulheres["Média de anos na Escola por Mulheres"] = df_mulheres["Média de anos na Escola por Mulheres"].apply(traduz_milhares).astype(float)
     df_homens = filtro_paises_do_g20(df_homens, agrupamento="year")
     df_mulheres = filtro_paises_do_g20(df_mulheres, agrupamento="year")
@@ -22,7 +23,7 @@ def linha_escola(datapath1,datapath2):
     df_anos_escola["Média de anos na Escola"] = (df_anos_escola["Média de anos na Escola por Mulheres"] + df_anos_escola["Média de anos na Escola por Homens"]) / 2
 
     # Criação de ColumnDataSource.
-    data_source = ColumnDataSource(df_anos_escola)
+    data_source = transformador_CDS(df_anos_escola)
 
     # Objeto base do gráfico.
     grafico_linha_escola = figure(title="Média de anos na escola", 
