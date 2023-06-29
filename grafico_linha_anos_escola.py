@@ -85,6 +85,12 @@ def linha_escola(datapath1,datapath2):
     grafico_linha_escola.title.align = ALINHAMENTO_TITULO
     grafico_linha_escola.title.text_baseline = BASELINE_TITULO
 
+    grafico_linha_escola.legend.location = "bottom_right"
+    grafico_linha_escola.legend.title = ""
+    grafico_linha_escola.legend.border_line_color = COR_DA_LINHA
+    grafico_linha_escola.legend.border_line_width = ESPESSURA_DA_LINHA
+    grafico_linha_escola.legend.border_line_alpha = ALPHA_DA_LINHA
+
     grafico_linha_escola.toolbar.logo = None 
     grafico_linha_escola.toolbar.autohide = True 
     grafico_linha_escola.toolbar_location = POSICAO_BARRA_FERRAMENTAS
@@ -93,4 +99,3 @@ def linha_escola(datapath1,datapath2):
     output_file("../desenvolvimento_educacional.html")
 
 linha_escola("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")
-
