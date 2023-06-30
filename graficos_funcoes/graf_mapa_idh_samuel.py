@@ -37,7 +37,7 @@ def grafico_mapa_IDH(datapath_IDH):
     # Criando mapa através da função "cria_mapa":
     plot = cria_mapa(df_IDH_g20_media, "gini", palette)
 
-    plot.name = "Coeficiente de Gini"
+    plot.name = "Índice de Desenvolvimento Humano"
 
     descricao = DESCRICAO_MAPA_GINI
 
