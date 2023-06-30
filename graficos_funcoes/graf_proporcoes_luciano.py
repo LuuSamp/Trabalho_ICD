@@ -1,11 +1,11 @@
 from bokeh.plotting import figure, column, row
-from bokeh.models import Slider, ColumnDataSource, Button, HoverTool, NumeralTickFormatter, FixedTicker
+from bokeh.models import Slider, ColumnDataSource, Button, NumeralTickFormatter, FixedTicker
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
 import pandas as pd
 from variaveis_globais import *
-from cores import lista_cores, lista_alpha
+from cores import lista_alpha
 
 def educacao_por_genero(datapath_homens, datapath_mulheres):
 
