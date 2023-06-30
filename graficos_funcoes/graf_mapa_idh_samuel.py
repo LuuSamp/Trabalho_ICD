@@ -5,7 +5,7 @@ import geopandas as gpd
 from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
-from bokeh.palettes import Reds
+from bokeh.palettes import Blues
 from bokeh.models import LinearColorMapper, ColorBar, Range1d
 from bokeh.models import HoverTool
 from variaveis_globais import *
@@ -52,7 +52,7 @@ def grafico_mapa_IDH(datapath_IDH):
     dados_geograficos_g20 = GeoJSONDataSource(geojson=world1.to_json())
 
     # Definindo paleta de cores:
-    palette = Reds[6]
+    palette = Blues[6]
     palette = palette[::-1]
 
     # Fazendo cortes lineares na escala para para aplicar paleta:

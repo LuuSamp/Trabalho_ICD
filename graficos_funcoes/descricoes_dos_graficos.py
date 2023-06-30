@@ -123,4 +123,18 @@ DESCRICAO_BARRAS_ANIMADO_PIB = Div(text="""<p> Este gráfico tem como principal 
 
 DESCRICAO_PROPORCAO_HOMENS_MULHERES = Div(text="""<p> Este gráfico tem como principal objetivo comparar a média de anos que mulheres e homens ficam na escola.</p>
                                         <p> É possível notar que, em vários países do g20, a média dos anos escolares das mulheres ultrapassou a média dos anos dos homens. </p>""",
-                                   align = "center", width = 1080)
+                                   align = "center", width = 1080
+                                   )
+
+DESCRICAO_BARRAS_SAUDE = Div(text="""
+                                  Esse ranking procura mostrar os países do G20 que mais investem na área da saúde no período dos<br> 
+                                  anos de 1995 a 2010. Além disso, foram destacados quatro países que tiveram os dois maiores e<br> 
+                                  os dois menores Índices de Desenvolvimento Humano. Os países com cores de tons vermelhos são a<br> 
+                                  Índia e a China que representam os países com os menores IDHs, enquanto os países com cores de<br> 
+                                  tons azuis são a Austrália e os Estados Unidos que representam os países com os maiores IDHs.<br> 
+                                  Pode-se perceber que, em relação ao gráfico, a Índia, que possui um IDH muito baixo também possui 
+                                  uma média de investimentos muito baixa em saúde, sendo ela o país com a pior média do G20. Já<br>
+                                  a China que possui o segundo menor IDH, possui um investimento mediano com relação aos outros<br>
+                                  países. Por outro lado, os EUA que possui o segundo maior IDH é o país com o maior investimento<br>
+                                  em saúde, enquanto a Austrália que possui o maior IDH está em sexto lugar no ranking de investimentos. 
+                                    """)
