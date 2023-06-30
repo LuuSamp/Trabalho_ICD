@@ -63,7 +63,7 @@ def grafico_investimento_saude(datapath_investimento_saude):
                           orientacao_xaxis=0.7,
                           posicao_legenda="top_right")
 
-    ranking_investimento_saude_g20.yaxis.formater = NumeralTickFormatter(format = "0.0%") 
+    ranking_investimento_saude_g20.yaxis.formatter = NumeralTickFormatter(format = "0.0%") 
 
     descricao = DESCRICAO_BARRAS_SAUDE
 

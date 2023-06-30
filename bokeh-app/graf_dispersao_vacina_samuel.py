@@ -71,7 +71,7 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
                           orientacao_xaxis=0,
                           posicao_legenda="top_right")
     
-    scatter_plot.xaxis.formater = NumeralTickFormatter(format = "0.0%")    
+    scatter_plot.xaxis.formatter = NumeralTickFormatter(format = "0.0%")    
 
     descricao = DESCRICAO_DISPERSAO_VACINA
 
