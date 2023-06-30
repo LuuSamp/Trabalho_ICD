@@ -31,13 +31,24 @@ def grafico_investimento_saude(datapath_investimento_saude):
     source = ColumnDataSource(df_investimento_saude_g20)
 
     # Base do Gráfico:
-    ranking_investimento_saude_g20 = figure(x_range=df_investimento_saude_g20["country"], y_range=(0,30), 
-                                            height=ALTURA, width=LARGURA, title="Média dos Investimentos em Saúde nos últimos anos", tools="")
+    ranking_investimento_saude_g20 = figure(x_range=df_investimento_saude_g20["country"], 
+                                            y_range=(0,30), 
+                                            height=ALTURA, 
+                                            width=LARGURA, 
+                                            title="Média dos Investimentos em Saúde nos últimos anos", 
+                                            tools="")
 
     # Criando o Gráfico de Barras:
-    ranking_investimento_saude_g20.vbar(x="country", top="Investimento em Saúde", source=source, width=0.9, 
-                                        color="Cor", alpha="Preenchimento", line_color=COR_DA_LINHA, line_width=ESPESSURA_DA_LINHA, 
-                                        line_alpha=ALPHA_DA_LINHA, legend_field = "Legenda")
+    ranking_investimento_saude_g20.vbar(x="country", 
+                                        top="Investimento em Saúde", 
+                                        source=source, 
+                                        width=0.9, 
+                                        color="Cor", 
+                                        alpha="Preenchimento", 
+                                        line_color=COR_DA_LINHA, 
+                                        line_width=ESPESSURA_DA_LINHA, 
+                                        line_alpha=ALPHA_DA_LINHA, 
+                                        legend_field = "Legenda")
 
     # Implementando ferramenta Hover:
     hover = HoverTool(tooltips=[('País', '@country'), 
