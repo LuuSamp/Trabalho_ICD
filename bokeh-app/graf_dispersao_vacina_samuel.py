@@ -28,7 +28,7 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
     # Criando um DataFrame com todas as colunas necessárias:
     df_final = pd.DataFrame()
     df_final["country"] = df_vacina_g20["country"]
-    df_final["Porcentagem de Vacinação"] = df_vacina_g20["Porcentagem de Vacinação"]
+    df_final["Porcentagem de Vacinação"] = df_vacina_g20["Porcentagem de Vacinação"]/100
     df_final["Mortes a cada 1000 nascimentos"] = df_mortes_g20["Mortes a cada 1000 nascimentos"]
 
     # Criação de colunas referentes a cores, transparência e legenda:
@@ -41,7 +41,7 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
     scatter_plot = figure(title="Vacinação e Mortalidade Infantil", 
                         width=LARGURA, 
                         height=ALTURA, 
-                        x_range=Range1d(63,100,bounds="auto"), 
+                        x_range=Range1d(0.63,1.00,bounds="auto"), 
                         y_range=Range1d(0,95,bounds="auto"), 
                         tools="pan,box_zoom,wheel_zoom,reset",
                         name="Vacinação X Mortalidade Infantil")
