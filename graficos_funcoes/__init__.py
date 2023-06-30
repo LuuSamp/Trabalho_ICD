@@ -7,6 +7,7 @@ from graf_barras_emissao_carbono_kaiky import grafico_ranking_co2
 from graf_mapa_gini_luciano import grafico_mapa_Gini
 from graf_mapa_idh_samuel import grafico_mapa_IDH
 from graf_barras_pib_animado_luciano import ranking_animado_PIB
+from graf_proporcoes_luciano import educacao_por_genero
 
 
 dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados\life_expectancy_male.csv"),
@@ -17,4 +18,5 @@ dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados\life_expec
                           "Emissão de CO2": grafico_ranking_co2("dados\co2.csv"),
                           "Coeficiente de Gini": grafico_mapa_Gini("dados\gini_2100.csv"),
                           "Índice de Desenvolvimento Humano": grafico_mapa_IDH("dados\hdi_human_development_index.csv"),
-                          "PIB por ano": ranking_animado_PIB("dados\gdp_total_yearly_growth.csv")}
+                          "PIB por ano": ranking_animado_PIB("dados\gdp_total_yearly_growth.csv"),
+                          "Comparação de anos escolares homens e mulheres": educacao_por_genero("dados\\anos_homens_na_escola.csv", "dados\\anos_mulheres_na_escola.csv")}
