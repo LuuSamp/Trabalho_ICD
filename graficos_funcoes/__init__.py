@@ -1,9 +1,9 @@
-from box_plot_life import box_plot_life
-from grafico_bolhas import grafico_bolhas
-from grafico_de_barras_PIB import graf_barras_pib
-from grafico_de_linhas_gdp_pc import grafico_de_linhas_gdp
-from grafico_linha_anos_escola import linha_escola
-from ranking_co2o import grafico_ranking_co2
+from graf_boxplot_expectativa_de_vida_matheus import box_plot_life
+from graf_bolhas_calorias_imc_kaiky import grafico_bolhas
+from graf_barras_pib_total_medio_matheus import graf_barras_pib
+from graf_linhas_pib_pc_matheus import grafico_de_linhas_gdp
+from graf_linhas_anos_na_escola_kaiky import linha_escola
+from graf_barras_emissao_carbono_kaiky import grafico_ranking_co2
 
 
 dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados\life_expectancy_male"),

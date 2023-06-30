@@ -1,5 +1,4 @@
 import pandas as pd  
-from reorganizador import reorganiza, traduz_milhares
 
 def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
     '''
