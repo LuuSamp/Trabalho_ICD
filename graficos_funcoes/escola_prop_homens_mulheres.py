@@ -119,8 +119,3 @@ def educacao_por_genero(datapath_homens, datapath_mulheres):
 
     # A GUI
     return (column(row(button, slider), plot))
-
-curdoc().add_root(
-    educacao_por_genero("dados/anos_homens_na_escola.csv",
-                    "dados/anos_mulheres_na_escola.csv")
-)
