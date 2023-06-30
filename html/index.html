@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(177, 130, 234);
+            font-family: Arial, sans-serif;
+        }
+        
+        .navbar {
+            background-color: black;
+            color: rgb(255, 255, 255);
+            padding: 10px;
+            text-align: center;
+            height: 17vh;
+        }
+
+        .navbar h1 {
+            font-size: 55px; /* Ajuste o tamanho do título conforme necessário */
+        }
+
+        .github_logo img {
+            position: absolute;
+            top: 3%; 
+            right: 2%; 
+            width: 7vw; 
+            height: auto; 
+        }
+
+        .container {
+        text-align: center;
+        margin-top: 60vh;
+        }
+ 
+         table {
+        display: inline-block;
+        border-collapse: collapse;
+        width: 20vw;
+        table-layout: fixed;
+        }
+
+        th, td {
+        width: 25%;
+        height: 33.33%;
+        padding: 10px;
+        text-align: center;
+        }
+   
+        th {
+        background-color: #560274;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        }
+   
+        td {
+        background-color: #ffffff;
+        padding: 5px;
+        text-align: center;
+        }
+   
+        a {
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        }
+   
+        a:hover {
+        text-decoration: none;
+        background-color: rgb(237, 237, 237);
+        }
+
+        td:hover {
+        background-color: rgb(237, 237, 237); 
+        }
+
+        .window {
+        width: 70vw;
+        height: 40vh;
+        background-color: rgb(255, 255, 255);
+        border: 5px solid #560274;
+        padding: 20px;
+        text-align: left;
+        margin: 0 auto;
+        border-radius: 10px;
+        margin-top: -70vh;
+        }
+
+        
+        @media only screen and (max-width: 600px) {
+            /* Estilos específicos para dispositivos com largura máxima de 600px */
+            .navbar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+            }
+            
+            .navbar img {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>TRABALHO DE ICD</h1>
+    </div>
+    <div class="github_logo">
+        <a href="https://github.com/LuuSamp/Trabalho_ICD" target="_blank">
+            <img src="github.png" alt="GitHub" height="65" width="65" >
+        </a>
+    </div>
+    <div class="container">
+        <table>
+            <tr>
+            <th>KAIKY BRAGA</th>
+            </tr>
+            <tr>
+            <td><a href="graf_bolhas.html" target="_blank">IMC X Calorias</a></td>
+            </tr>
+            <tr>
+            <td><a href="graf_linhas_escola.html" target="_blank">Anos na Escola</a></td>
+            </tr>
+            <tr>
+            <td><a href="graf_barras_carbono.html" target="_blank">Emissão de Carbono</a></td>
+            </tr>
+        </table>
+        
+        <table>
+            <tr>
+            <th>LUCIANO SAMPAIO</th>
+            </tr>
+            <tr>
+            <td><a href="graf_mapa_gini.html" target="_blank">Coeficiente de Gini</a></td>
+            </tr>
+            <tr>
+            <td><a href="pagina5.html" target="_blank">Igualdade de Gênero Educação</a></td>
+            </tr>
+            <tr>
+            <td><a href="pagina6.html" target="_blank">Taxa de Natalidade</a></td>
+            </tr>
+        </table>
+        
+        <table>
+            <tr>
+            <th>MATHEUS CARVALHO</th>
+            </tr>
+            <tr>
+            <td><a href="graf_boxplot.html" target="_blank">Expectativa de Vida</a></td>
+            </tr>
+            <tr>
+            <td><a href="graf_pib_total.html" target="_blank">PIB Acumulado</a></td>
+            </tr>
+            <tr>
+            <td><a href="graf_linha_pib.html" target="_blank">PIB Per Capita</a></td>
+            </tr>
+        </table>
+        
+        <table>
+            <tr>
+            <th>SAMUEL LIMA</th>
+            </tr>
+            <tr>
+            <td><a href="graf_mapa_idh.html" target="_blank">IDH</a></td>
+            </tr>
+            <tr>
+            <td><a href="graf_vacinas.html" target="_blank">Vacinação X Mortalidade Infantil</a></td>
+            </tr>
+            <tr>
+            <td><a href="graf_barras_saude.html" target="_blank">Porcentagem Investimento em Saúde</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="window">
+        <p>Inicialmente, o objetivo do trabalho era entregar as visualizações no Bokeh Serve e trabalhamos arduamente durante vários dias para alcançar esse objetivo. No entanto, enfrentamos dificuldades em hospedar nossos gráficos em um servidor web e conseguimos visualizá-los apenas em um servidor local. Infelizmente, essa dificuldade inviabilizou a entrega de gráficos interativos e, por isso, tivemos que alterar nossa estratégia no último dia, enviando gráficos estáticos, mas com todas as ferramentas do Bokeh.
+            <br> <br>
+            Caso queira ver o resultado dos nossos gráficos em um servidor Bokeh local, basta acessar o repositório do GitHub do trabalho clicando no botão no canto superior, clonar o repositório em sua máquina e rodar o arquivo 'main.py' com o Bokeh Serve.
+            <br> <br>
+            Como alternativa, decidimos desistir de tentar colocar o servidor online e enviar apenas os gráficos no formato de página HTML, com algumas interatividades limitadas. Essa página principal serve para direcioná-lo às páginas das visualizações e suas respectivas descrições. Todo o processo de produção está documentado no GitHub.
+            <br> <br>
+            Gostaríamos de destacar, por fim, que a ideia era criar uma análise ordenada, algo próximo de um storytelling. Inicialmente, apresentaríamos o gráfico de mapa do IDH e sugerimos que você comece por lá. Em seguida, destacaríamos os dois países com os maiores e menores IDHs, o que guiará nossa análise. Tentaríamos verificar se essa diferença no índice se traduziria em outras áreas da sociedade, como saúde e educação.</p>
+    </div>
+</body>
+</html>

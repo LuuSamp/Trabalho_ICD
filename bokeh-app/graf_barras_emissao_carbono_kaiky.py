@@ -67,6 +67,8 @@ def grafico_ranking_co2(datapath):
 
     save(ranking_co2)
 
+    ranking_co2.sizing_mode = "stretch_width"
+    
     return ranking_co2, descricao
 
 grafico_ranking_co2("dados/co2.csv")
