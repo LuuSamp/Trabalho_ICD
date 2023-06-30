@@ -4,6 +4,8 @@ from graf_barras_pib_total_medio_matheus import graf_barras_pib
 from graf_linhas_pib_pc_matheus import grafico_de_linhas_gdp
 from graf_linhas_anos_na_escola_kaiky import linha_escola
 from graf_barras_emissao_carbono_kaiky import grafico_ranking_co2
+from graf_mapa_gini_luciano import grafico_mapa_Gini
+from graf_mapa_idh_samuel import grafico_mapa_IDH
 
 
 dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados\life_expectancy_male"),
@@ -11,4 +13,6 @@ dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados\life_expec
                           "PIB Médio": graf_barras_pib("dados\total_gdp_ppp_inflation_adjusted.csv"),
                           "PIB Per Capita": grafico_de_linhas_gdp("dados\gdp_pcap.csv"),
                           "Anos Na Escola": linha_escola("dados\anos_homens_na_escola.csv", "dados\anos_mulheres_na_escola.csv"),
-                          "Emissão de CO2": grafico_ranking_co2("dados\co2.csv")}
+                          "Emissão de CO2": grafico_ranking_co2("dados\co2.csv"),
+                          "Coeficiente de Gini": grafico_mapa_Gini("dados\gini_2100.csv"),
+                          "Índice de Desenvolvimento Humano": grafico_mapa_IDH("dados\hdi_human_development_index.csv")}

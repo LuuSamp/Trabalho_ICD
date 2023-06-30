@@ -75,3 +75,32 @@ DESCRICAO_LINHA_PIB_PC = Div(text="""Esse gráfico, embora esteja relacionado co
                                     população não cresceu no mesmo rítimo. Por fim, destaco que nesse gráfico a maioria das ferramentas foram adicionadas, <br>
                                     mas só é possível utilizá-las dentro dos limites da janela de visualização dos dados. 
     """)
+
+DESCRICAO_MAPA_GINI = Div(text="""
+                                    Este gráfico do Mapa Mundial tem o objetivo de destacar os países do G20 em relação aos<br> 
+                                    seus níveis de Coeficiente de Gini, que mede o nível de desigualdade econômica do país.<br> 
+                                    Utilizando uma paleta de cores com tons de vermelho, os países são categorizados em diferentes<br> 
+                                    gradientes, revelando os países com Gini mais baixos em tons mais claros e os países com<br> 
+                                    Gini mais altos em tons mais escuros. Observando o mapa, podemos notar que a Austrália detentora<br> 
+                                    do maior IDH, tem um índice de Gini bem baixo, ou seja, ela possui um baixo nível de desigualdade.<br> 
+                                    Já os EUA que contém o segundo maior IDH, possui um Gini maior, o que o torna um país com um nível<br> 
+                                    alto de desigualdade. Por outro lado, a Índia que tem o pior IDH possui um índice de Gini mais baixo<br> 
+                                    que o da Austrália tornando-a um país com menos desiguladade, o que não quer dizer algo positivo, já<br> 
+                                    que a grande maioria da sociedade indiana está na pobreza. Enquanto isso, a China que possui o segundo<br> 
+                                    menor IDH, possui um dos maiores níveis de Gini, rivalizando na questão de desigualdade social com Brasil.<br>  
+                                    """)
+
+DESCRICAO_MAPA_IDH = Div(text="""
+                                    Este gráfico do Mapa Mundial tem o objetivo de destacar os países do G20 em relação aos<br> 
+                                    seus níveis de Índice de Desenvolvimento Humano (IDH). Utilizando uma paleta de cores<br> 
+                                    com tons de vermelho, os países são categorizados em diferentes gradientes, revelando<br> 
+                                    os países com IDH mais baixos em tons mais claros e os países com IDH mais altos em tons<br>
+                                    mais escuros. Observando o mapa, podemos notar que a Austrália possui o maior IDH, seguida<br> 
+                                    pelos Estados Unidos com o segundo maior IDH. Por outro lado, a Índia é o país com o menor<br> 
+                                    IDH, seguida pela China, que possui o segundo menor IDH no mundo.<br>
+
+                                    É importante ressaltar que toda a análise deste trabalho se baseia na comparação entre os<br> 
+                                    dois países com os maiores IDHs, Austrália e EUA, e os dois países com os menores IDHs, Índia<br> 
+                                    e China. Portanto, essa visualização é fundamental para compreender todas as próximas análises<br> 
+                                    e interpretações.  
+                                    """)
