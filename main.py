@@ -1,7 +1,7 @@
 from bokeh.plotting import figure, column, row
 from bokeh.models import Button, Select, Paragraph
 from bokeh.io import curdoc
-from dict_fun import dicionario_de_graficos
+from graficos_funcoes import dicionario_de_graficos
 
 selected_plot = 0
 plot, paragraph = list(dicionario_de_graficos.values())[selected_plot]
