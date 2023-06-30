@@ -3,8 +3,6 @@ from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
 from bokeh.palettes import Blues
-from bokeh.models import LinearColorMapper, ColorBar, Range1d
-from bokeh.models import HoverTool
 from variaveis_globais import *
 from converte_iso import *
 from descricoes_dos_graficos import *
@@ -35,7 +33,8 @@ def grafico_mapa_IDH(datapath_IDH):
     coluna_iso3 = coluna_iso2.apply(converte_iso3)
     df_IDH_g20_media["iso_a3"] = coluna_iso3
 
-    # Invertendo a paleta de cores:
+    # Criando e invertendo a paleta de cores:
+    palette = Blues[6]
     palette = palette[::-1]
 
     # Criando mapa através da função "cria_mapa":
