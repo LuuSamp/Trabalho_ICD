@@ -145,6 +145,7 @@ DESCRICAO_DISPERSAO_VACINA = Div(text="""
                                     e, consequentemente, poucas mortes.  
                                     """, width = 1080)
 
+"""
 DESCRICAO_BARRAS_CARBONO.style = {'text-align': 'center'}
 DESCRICAO_BARRAS_PIB.style = {'text-align': 'center'}
 DESCRICAO_BOLHAS_CALORIAS.style = {'text-align': 'center'}
@@ -157,5 +158,7 @@ DESCRICAO_BARRAS_ANIMADO_PIB.style = {'text-align': 'center'}
 DESCRICAO_PROPORCAO_HOMENS_MULHERES.style = {'text-align': 'center'}
 DESCRICAO_BARRAS_SAUDE.style = {'text-align': 'center'}
 DESCRICAO_DISPERSAO_VACINA.style = {'text-align': 'center'}
+"""
+
 
 
