@@ -4,6 +4,7 @@ from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza
 from variaveis_globais import *
 from CDS import transformador_CDS
+from funcoes_esteticas import configuracoes_visuais
 
 def grafico_ranking_co2(datapath):
     # Tratamento de dados
@@ -64,39 +65,11 @@ def grafico_ranking_co2(datapath):
     ranking_co2.add_tools(hover)
 
     # Adição de elementos estéticos ao Ranking
-    ranking_co2.background_fill_color = BACKGROUND_FILL
-
-    ranking_co2.xaxis.major_label_orientation = 0.7
-
-    ranking_co2.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
-    ranking_co2.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-
-    ranking_co2.xaxis.axis_label = "Países" 
-    ranking_co2.yaxis.axis_label = "Média da Emissão de CO2 por Pessoa (Toneladas)" 
-
-    ranking_co2.xaxis.axis_label_text_font = FONTE_TEXTO
-    ranking_co2.yaxis.axis_label_text_font = FONTE_TEXTO
-
-    ranking_co2.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-    ranking_co2.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-
-    ranking_co2.xgrid.grid_line_color = LINHAS_GRADE
-    ranking_co2.ygrid.grid_line_color = LINHAS_GRADE
-
-    ranking_co2.title.text_font = FONTE_TEXTO
-    ranking_co2.title.text_font_size =TAMANHO_TITULO
-    ranking_co2.title.align = ALINHAMENTO_TITULO
-    ranking_co2.title.text_baseline = BASELINE_TITULO
-
-    ranking_co2.legend.location = "top_right"
-    ranking_co2.legend.title = ""
-    ranking_co2.legend.border_line_color = COR_DA_LINHA
-    ranking_co2.legend.border_line_width = ESPESSURA_DA_LINHA
-    ranking_co2.legend.border_line_alpha = ALPHA_DA_LINHA
-
-    ranking_co2.toolbar.logo = None 
-    ranking_co2.toolbar.autohide = True 
-    ranking_co2.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+    configuracoes_visuais(ranking_co2,
+                          titulo_xaxis="Países",
+                          titulo_yaxis="Média da Emissão de CO2 por Pessoa (Toneladas)",
+                          orientacao_xaxis=0.7,
+                          posicao_legenda="top_right")
 
     descricao = Div(text="""Esse Ranking busca ordenar os países de acordo com a emissão de carbono realizada <br>
                                  por cada um deles. As barras do gráfico foram colocadas de maneira vertical para que <br>

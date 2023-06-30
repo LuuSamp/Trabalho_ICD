@@ -5,6 +5,7 @@ from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
 from CDS import transformador_CDS
+from funcoes_esteticas import configuracoes_visuais
 
 def graf_barras_pib(datapath):
     '''
@@ -68,42 +69,14 @@ def graf_barras_pib(datapath):
     bar_plot.add_tools(hover)
     
     #CONFIGURAÇÕES ESTÉTICAS
-    bar_plot.background_fill_color = BACKGROUND_FILL
+    configuracoes_visuais(bar_plot, 
+                          titulo_yaxis="PIB Médio de 1990-2010 (Em Bilhões de Dólares)",
+                          titulo_xaxis="Integrantes do G20",
+                          orientacao_xaxis=0.7,
+                          posicao_legenda="top_right")
     
-    bar_plot.xaxis.major_label_orientation = 0.7
-
-    bar_plot.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
-    bar_plot.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-
     bar_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
-
-    bar_plot.xaxis.axis_label = "Países" 
-    bar_plot.yaxis.axis_label = "Média do PIB (Bilhões de Dólares)" 
-
-    bar_plot.xaxis.axis_label_text_font = FONTE_TEXTO
-    bar_plot.yaxis.axis_label_text_font = FONTE_TEXTO
-
-    bar_plot.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-    bar_plot.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-
-    bar_plot.xgrid.grid_line_color = LINHAS_GRADE
-    bar_plot.ygrid.grid_line_color = LINHAS_GRADE
-
-    bar_plot.title.text_font = FONTE_TEXTO
-    bar_plot.title.text_font_size =TAMANHO_TITULO
-    bar_plot.title.align = ALINHAMENTO_TITULO
-    bar_plot.title.text_baseline = BASELINE_TITULO
-
-    bar_plot.toolbar.logo = None 
-    bar_plot.toolbar.autohide = True 
-    bar_plot.toolbar_location = POSICAO_BARRA_FERRAMENTAS
-
-    bar_plot.legend.location = "top_right"
-    bar_plot.legend.title = ""
-    bar_plot.legend.border_line_color = COR_DA_LINHA
-    bar_plot.legend.border_line_width = ESPESSURA_DA_LINHA
-    bar_plot.legend.border_line_alpha = ALPHA_DA_LINHA
-
+    
     descricao = Div(text="""Esse gráfico tem como objetivo representar a média do PIB dos integrantes do G20 do período de 1990 à 2010. <br>
                                     Assim como em todos os gráficos, chamamos atenção para os Estados Unidos, Austrália, China e Índia. <br> 
                                     Vemos que na questão econômica, a ordem se inverte e que não traduz a mesma ideia quando olhamos para o IDH. <br>

@@ -5,6 +5,7 @@ from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
 from CDS import transformador_CDS
+from funcoes_esteticas import configuracoes_visuais
 
 def box_plot_life(datapath):
     '''
@@ -100,39 +101,11 @@ def box_plot_life(datapath):
     boxplot.add_tools(hover)
 
     #CONFIGURAÇÕES ESTÉTICAS
-    boxplot.background_fill_color = BACKGROUND_FILL
-
-    boxplot.xaxis.major_label_orientation = 0.7
-
-    boxplot.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
-    boxplot.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-
-    boxplot.xaxis.axis_label = "Países" 
-    boxplot.yaxis.axis_label = "Anos" 
-
-    boxplot.xaxis.axis_label_text_font = FONTE_TEXTO
-    boxplot.yaxis.axis_label_text_font = FONTE_TEXTO
-
-    boxplot.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-    boxplot.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-
-    boxplot.xgrid.grid_line_color = LINHAS_GRADE
-    boxplot.ygrid.grid_line_color = LINHAS_GRADE
-
-    boxplot.title.text_font = FONTE_TEXTO
-    boxplot.title.text_font_size =TAMANHO_TITULO
-    boxplot.title.align = ALINHAMENTO_TITULO
-    boxplot.title.text_baseline = BASELINE_TITULO
-
-    boxplot.toolbar.logo = None 
-    boxplot.toolbar.autohide = True 
-    boxplot.toolbar_location = POSICAO_BARRA_FERRAMENTAS 
-
-    boxplot.legend.location = "bottom_right"
-    boxplot.legend.title = ""
-    boxplot.legend.border_line_color = COR_DA_LINHA
-    boxplot.legend.border_line_width = ESPESSURA_DA_LINHA
-    boxplot.legend.border_line_alpha = ALPHA_DA_LINHA
+    configuracoes_visuais(boxplot,
+                          titulo_xaxis="Países",
+                          titulo_yaxis="Expectativa de Vida",
+                          orientacao_xaxis=0.7,
+                          posicao_legenda="bottom_right")
 
     descricao = Div(text="""Esse gráfico tem como objetivo apresentar a distribuição dentre os dados de expectativa de vida <br>
                                     de cada integrante do G20 de 1950 à 2020. O destaque permanece para os mesmos países, Estados Unidos, <br>

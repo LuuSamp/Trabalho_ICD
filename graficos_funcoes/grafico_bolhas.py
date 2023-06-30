@@ -6,6 +6,7 @@ from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza, traduz_milhares
 from variaveis_globais import *
 from CDS import transformador_CDS
+from funcoes_esteticas import configuracoes_visuais
 
 def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulheres, datapath_calorias):
     # Reorganizando o DataFrame.
@@ -89,39 +90,11 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     imc_calorias.add_tools(hover)
 
     # Configuração de ferramentas estéticas.
-    imc_calorias.background_fill_color = BACKGROUND_FILL
-
-    imc_calorias.xaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_X
-    imc_calorias.xaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-    imc_calorias.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
-    imc_calorias.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-
-    imc_calorias.xaxis.axis_label = "Média de Calorias" 
-    imc_calorias.yaxis.axis_label = "IMC Médio" 
-
-    imc_calorias.xaxis.axis_label_text_font = FONTE_TEXTO
-    imc_calorias.yaxis.axis_label_text_font = FONTE_TEXTO
-
-    imc_calorias.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-    imc_calorias.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-
-    imc_calorias.xgrid.grid_line_color = LINHAS_GRADE
-    imc_calorias.ygrid.grid_line_color = LINHAS_GRADE
-
-    imc_calorias.title.text_font = FONTE_TEXTO
-    imc_calorias.title.text_font_size =TAMANHO_TITULO
-    imc_calorias.title.align = ALINHAMENTO_TITULO
-    imc_calorias.title.text_baseline = BASELINE_TITULO
-
-    imc_calorias.legend.location = "bottom_right"
-    imc_calorias.legend.title = ""
-    imc_calorias.legend.border_line_color = COR_DA_LINHA
-    imc_calorias.legend.border_line_width = ESPESSURA_DA_LINHA
-    imc_calorias.legend.border_line_alpha = ALPHA_DA_LINHA
-
-    imc_calorias.toolbar.logo = None 
-    imc_calorias.toolbar.autohide = True 
-    imc_calorias.toolbar_location = POSICAO_BARRA_FERRAMENTAS
+    configuracoes_visuais(imc_calorias, 
+                          titulo_xaxis="Média de Calorias",
+                          titulo_yaxis="IMC Médio" , 
+                          orientacao_xaxis=0, 
+                          posicao_legenda="bottom_right")
 
     descricao = Div(text="""O gráfico de Bolhas tem como objetivo comparar se há uma correlação entre a quantidade <br>
                                     média de calorias disponíveis e o Índice de Massa Corporal (IMC) das pessoas. Além disso, <br>
