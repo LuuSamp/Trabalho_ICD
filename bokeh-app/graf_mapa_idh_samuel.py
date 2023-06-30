@@ -42,6 +42,12 @@ def grafico_mapa_IDH(datapath_IDH):
 
     plot.name = "Índice de Desenvolvimento Humano"
     plot.title = "Índice de Desenvolvimento Humano do G20"
+    
+    #TÍTULO PRINCIPAL (ESTÉTICA E POSICIONAMENTO)
+    plot.title.text_font = FONTE_TEXTO
+    plot.title.text_font_size =TAMANHO_TITULO
+    plot.title.align = ALINHAMENTO_TITULO
+    plot.title.text_baseline = BASELINE_TITULO
 
     descricao = DESCRICAO_MAPA_GINI
 
