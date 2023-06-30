@@ -8,8 +8,8 @@ from graf_mapa_gini_luciano import grafico_mapa_Gini
 from graf_mapa_idh_samuel import grafico_mapa_IDH
 
 
-dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados/life_expectancy_male.csv.csv"),
-                          "IMC X Calorias": grafico_bolhas("dados/pop.csv", "dados\/body_mass_index_bmi_men_kgperm2.csv", "dados\/body_mass_index_bmi_women_kgperm2.csv","dados\/food_supply_kilocalories_per_person_and_day.csv"),
+dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados/life_expectancy_male.csv"),
+                          "IMC X Calorias": grafico_bolhas("dados/pop.csv", "dados/body_mass_index_bmi_men_kgperm2.csv", "dados/body_mass_index_bmi_women_kgperm2.csv","dados/food_supply_kilocalories_per_person_and_day.csv"),
                           "PIB Médio": graf_barras_pib("dados/gdp_total.csv"),
                           "PIB Per Capita": grafico_de_linhas_gdp("dados/gdp_pcap.csv"),
                           "Anos Na Escola": linha_escola("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv"),

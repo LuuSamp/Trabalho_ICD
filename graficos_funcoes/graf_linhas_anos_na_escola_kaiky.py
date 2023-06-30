@@ -10,6 +10,9 @@ from descricoes_dos_graficos import *
 
 def linha_escola(datapath_homens,datapath2_mulheres):
     # Tratamento da base de dados.
+
+    print(f"Carregando {__name__}")
+
     df_homens = reorganiza(datapath_homens, column_name = "Média de anos na Escola por Homens", first_year = 1970, last_year = 2015, csv = False)
     df_homens["Média de anos na Escola por Homens"] = df_homens["Média de anos na Escola por Homens"].apply(traduz_milhares).astype(float)
     df_mulheres = reorganiza(datapath2_mulheres, column_name = "Média de anos na Escola por Mulheres", first_year = 1970, last_year = 2015, csv = False)

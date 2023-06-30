@@ -15,6 +15,8 @@ def grafico_de_linhas_gdp(datapath):
     título do gráfico e gerar automaticamente um gráfico com bokeh 
     sobre o PIB ou GDP Per Capita dos integrantes do G20
     '''
+    
+    print(f"Carregando {__name__}")
 
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "PIB_PC", 1910, 2020)

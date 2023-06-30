@@ -1,7 +1,7 @@
 from bokeh.plotting import figure, column, row
 from bokeh.models import Button, Select, Paragraph
 from bokeh.io import curdoc
-from __init__ import dicionario_de_graficos
+from dict_graficos import dicionario_de_graficos
 
 selected_plot = 0
 plot, paragraph = list(dicionario_de_graficos.values())[selected_plot]
@@ -10,8 +10,8 @@ select = Select(title = "Gráfico:", value = list(dicionario_de_graficos.keys())
 previous_button = Button(label = "Previous")
 next_button = Button(label = "Next")
 
-plot_layout = column(paragraph, plot, name = "plot_layout")
-control_layout = row(previous_button, select, next_button, name = "control_layout")
+plot_layout = column(paragraph, plot, name = "plot_layout", align = "center")
+control_layout = row(previous_button, select, next_button, name = "control_layout", align = "center")
 full_layout = column(plot_layout, control_layout, name = "main_layout")
 
 def change_plot(attr, old, new):
