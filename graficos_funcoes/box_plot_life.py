@@ -1,6 +1,6 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.models import HoverTool, Whisker, Paragraph
+from bokeh.models import HoverTool, Whisker, Div
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
@@ -134,7 +134,7 @@ def box_plot_life(datapath):
     boxplot.legend.border_line_width = ESPESSURA_DA_LINHA
     boxplot.legend.border_line_alpha = ALPHA_DA_LINHA
 
-    descricao = Paragraph(text="""Esse gráfico tem como objetivo apresentar a distribuição dentre os dados de expectativa de vida <br>
+    descricao = Div(text="""Esse gráfico tem como objetivo apresentar a distribuição dentre os dados de expectativa de vida <br>
                                     de cada integrante do G20 de 1950 à 2020. O destaque permanece para os mesmos países, Estados Unidos, <br>
                                     Austrália, China e Índia, donos dos melhores e piores IDH's do G20, respectivamente. Podemos observar que <br>
                                     conseguimos visualizar algo uma tendência coerente com o IDH. Vemos que EUA e Austrália possuíram uma espectativa <br>

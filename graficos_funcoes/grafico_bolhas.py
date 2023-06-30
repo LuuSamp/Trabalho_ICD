@@ -1,5 +1,5 @@
 from bokeh.plotting import figure
-from bokeh.models import HoverTool, Range1d, Paragraph
+from bokeh.models import HoverTool, Range1d, Div
 import pandas as pd
 import numpy as np
 from traducao_g20 import filtro_paises_do_g20
@@ -123,7 +123,7 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     imc_calorias.toolbar.autohide = True 
     imc_calorias.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
-    descricao = Paragraph(text="""O gráfico de Bolhas tem como objetivo comparar se há uma correlação entre a quantidade <br>
+    descricao = Div(text="""O gráfico de Bolhas tem como objetivo comparar se há uma correlação entre a quantidade <br>
                                     média de calorias disponíveis e o Índice de Massa Corporal (IMC) das pessoas. Além disso, <br>
                                     o tamanho das bolhas foi utilizado para representar o tamanho da população, a fim de <br>
                                     verificar se isso influencia nos resultados do gráfico. Também foram definidos limites <br>

@@ -1,6 +1,6 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.models import HoverTool, NumeralTickFormatter, Range1d, Paragraph
+from bokeh.models import HoverTool, NumeralTickFormatter, Range1d, Div
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
@@ -102,7 +102,7 @@ def grafico_de_linhas_gdp(datapath):
     line_plot.legend.border_line_width = ESPESSURA_DA_LINHA
     line_plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
-    descricao = Paragraph(text="""Esse gráfico, embora esteja relacionado com o anterior, tem como objetivo representar a evolução <br>
+    descricao = Div(text="""Esse gráfico, embora esteja relacionado com o anterior, tem como objetivo representar a evolução <br>
                                     do PIB per capita dos países. Olhando para os destaques, vemos claramente uma tendência. Os países <br>
                                     com maior IDH possuem um dos maiores PIB's per capita e China e Índia vão na contramão disso. <br>
                                     Como foi antecipado na descrição anterior, mesmo que a China nos últimos anos tenha um dos maiores <br>

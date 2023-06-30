@@ -1,5 +1,5 @@
 from bokeh.plotting import figure
-from bokeh.models import HoverTool, Paragraph
+from bokeh.models import HoverTool, Div
 from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza
 from variaveis_globais import *
@@ -98,7 +98,7 @@ def grafico_ranking_co2(datapath):
     ranking_co2.toolbar.autohide = True 
     ranking_co2.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
-    descricao = Paragraph(text="""Esse Ranking busca ordenar os países de acordo com a emissão de carbono realizada <br>
+    descricao = Div(text="""Esse Ranking busca ordenar os países de acordo com a emissão de carbono realizada <br>
                                  por cada um deles. As barras do gráfico foram colocadas de maneira vertical para que <br>
                                  itens com barras mais longas ou mais altas sejam visualmente distintos dos itens com <br>
                                  barras mais curtas ou mais baixas, facilitando a identificação dos melhores ou piores <br>

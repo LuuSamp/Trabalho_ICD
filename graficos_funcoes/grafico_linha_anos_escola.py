@@ -1,5 +1,5 @@
 from bokeh.plotting import figure 
-from bokeh.models import HoverTool, Range1d, Paragraph
+from bokeh.models import HoverTool, Range1d, Div
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
@@ -96,7 +96,7 @@ def linha_escola(datapath_homens,datapath2_mulheres):
     grafico_linha_escola.toolbar.autohide = True 
     grafico_linha_escola.toolbar_location = POSICAO_BARRA_FERRAMENTAS
 
-    descricao = Paragraph(text="""Neste gráfico de Linhas, é relacionada a média de anos de presença na escola ao <br>
+    descricao = Div(text="""Neste gráfico de Linhas, é relacionada a média de anos de presença na escola ao <br>
                                     longo dos anos, em que cada linha representa um país. A visualização tem o objetivo <br>
                                     de identificar melhorias na frequência dos alunos nas escolas e detectar tendências <br>
                                     futuras com base nos padrões observados. Além disso, foram utilizadas cores para destacar <br>
