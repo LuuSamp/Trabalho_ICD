@@ -135,4 +135,9 @@ def filtro_paises_do_g20(dataframe, filtrar=True, agrupamento="year"):
         del dataframe['PAIS_UE']
         del dataframe['index']
 
+    else:
+        if agrupamento == "country":
+            dataframe = dataframe.groupby("country").mean().round(2).reset_index()
+            del dataframe["year"]
+
     return dataframe
