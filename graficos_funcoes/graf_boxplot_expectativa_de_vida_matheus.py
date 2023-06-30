@@ -15,6 +15,8 @@ def box_plot_life(datapath):
     produz um boxplot para a espectativa de vida dos países do G20.
     '''
 
+    print(f"Carregando {__name__}")
+    
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "LIFE_EXP", 1950, 2020) #vai fazer um recorte nos dados
     dataframe["LIFE_EXP"] = dataframe["LIFE_EXP"].apply(traduz_milhares).astype(float)
