@@ -8,12 +8,15 @@ from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
 from descricoes_dos_graficos import *
 from fun_cores_legendas_alpha import criador_colunas_esteticas
+from bokeh.io import save, output_file
 
 def graf_barras_pib(datapath):
     '''
     Essa função tem como objetivo produzir um gráfico de barras com a média do PIB de cada
     país do G20 e da UE durante o período de 20 anos (1990-2010) de forma ordenada.
     '''
+
+    output_file("./html/graf_pib_total.html")
 
     print(f"Carregando {__name__}")
     
@@ -67,5 +70,9 @@ def graf_barras_pib(datapath):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BARRAS_PIB
 
+    save(bar_plot)
+
     return bar_plot, descricao
+
+graf_barras_pib("dados/gdp_total.csv")
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bokeh Plot</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.2.0.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+  </head>
+  <body>
+    <div id="e6a4601e-aaa5-48c5-8e0c-d39331791ff6" data-root-id="p1016" style="display: contents;"></div>
+  
+    <script type="application/json" id="p1056">
+      {"64af5988-6835-4485-a04d-ba14140f15cf":{"version":"3.2.0","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1016","attributes":{"name":"Investimento em Sa\u00fade","width":1080,"height":720,"x_range":{"type":"object","name":"FactorRange","id":"p1026","attributes":{"factors":["United States","Germany","Japan","Canada","France","Australia","Mexico","Argentina","United Kingdom","Italy","European Union","China","Turkey","Russia","South Africa","South Korea","Saudi Arabia","Brazil","Indonesia","India"]}},"y_range":{"type":"object","name":"Range1d","id":"p1027","attributes":{"end":0.3}},"x_scale":{"type":"object","name":"CategoricalScale","id":"p1028"},"y_scale":{"type":"object","name":"LinearScale","id":"p1029"},"title":{"type":"object","name":"Title","id":"p1019","attributes":{"text":"M\u00e9dia dos Investimentos em Sa\u00fade nos \u00faltimos anos","text_font":"Arial","text_font_size":"20pt","text_baseline":"middle","align":"center"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1046","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1013","attributes":{"selected":{"type":"object","name":"Selection","id":"p1014","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1015"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAA="},"shape":[20],"dtype":"int32","order":"little"}],["country",{"type":"ndarray","array":["United States","Germany","Japan","Canada","France","Australia","Mexico","Argentina","United Kingdom","Italy","European Union","China","Turkey","Russia","South Africa","South Korea","Saudi Arabia","Brazil","Indonesia","India"],"shape":[20],"dtype":"object","order":"little"}],["year",{"type":"ndarray","array":[1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,{"type":"number","value":"+inf"},1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62,1.2469997624824989e+62],"shape":[20],"dtype":"object","order":"little"}],["Investimento em Sa\u00fade",{"type":"ndarray","array":{"type":"bytes","data":"Ydo391ePxz9kO99PjZfGP+YGQx1WuMU/yIFXy52ZxD9SuB6F61HEP+omMQisHMQ/lWQdjq7Swz8MAiuHFtnCPz//PXjt0sI/jQbwFkhQwD9f1O5XAb6/P4Pfhhiveb0/KVyPwvUovD/P1VbsL7u7PxfwMsNGWbs/GyycpPljuj9LICV2bW+zP+jZrPpcba0/+MJkqmBUqj8zxLEubqOhPw=="},"shape":[20],"dtype":"float64","order":"little"}],["color",{"type":"ndarray","array":["#2685F8","gray","gray","gray","gray","#084C9F","gray","gray","gray","gray","gray","#FA4343","gray","gray","gray","gray","gray","gray","gray","#900C3F"],"shape":[20],"dtype":"object","order":"little"}],["preenchimento",{"type":"ndarray","array":{"type":"bytes","data":"mpmZmZmZ6T+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmek/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmek/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnpPw=="},"shape":[20],"dtype":"float64","order":"little"}],["legenda",{"type":"ndarray","array":["United States","Other Countries","Other Countries","Other Countries","Other Countries","Australia","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","China","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","India"],"shape":[20],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1047","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1048"}}},"glyph":{"type":"object","name":"VBar","id":"p1043","attributes":{"x":{"type":"field","field":"country"},"width":{"type":"value","value":0.9},"top":{"type":"field","field":"Investimento em Sa\u00fade"},"line_alpha":{"type":"value","value":0.7},"line_width":{"type":"value","value":1.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"field","field":"preenchimento"},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"field","field":"preenchimento"}}},"nonselection_glyph":{"type":"object","name":"VBar","id":"p1044","attributes":{"x":{"type":"field","field":"country"},"width":{"type":"value","value":0.9},"top":{"type":"field","field":"Investimento em Sa\u00fade"},"line_alpha":{"type":"value","value":0.1},"line_width":{"type":"value","value":1.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.1},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"VBar","id":"p1045","attributes":{"x":{"type":"field","field":"country"},"width":{"type":"value","value":0.9},"top":{"type":"field","field":"Investimento em Sa\u00fade"},"line_alpha":{"type":"value","value":0.2},"line_width":{"type":"value","value":1.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.2},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1025","attributes":{"logo":null,"autohide":true,"tools":[{"type":"object","name":"HoverTool","id":"p1051","attributes":{"renderers":"auto","tooltips":[["Pa\u00eds","@country"],["Investimento em Sa\u00fade","@{Investimento em Sa\u00fade}%"]]}}]}},"toolbar_location":"below","left":[{"type":"object","name":"LinearAxis","id":"p1035","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1036","attributes":{"num_minor_ticks":0,"desired_num_ticks":15,"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1052","attributes":{"format":"0.0%"}},"axis_label":"Porcentagem de Investimento em Sa\u00fade","axis_label_text_font":"Arial","axis_label_text_font_size":"15pt","major_label_policy":{"type":"object","name":"AllLabels","id":"p1038"}}}],"below":[{"type":"object","name":"CategoricalAxis","id":"p1030","attributes":{"ticker":{"type":"object","name":"CategoricalTicker","id":"p1031"},"formatter":{"type":"object","name":"CategoricalTickFormatter","id":"p1032"},"axis_label":"Pa\u00edses","axis_label_text_font":"Arial","axis_label_text_font_size":"15pt","major_label_orientation":0.7,"major_label_policy":{"type":"object","name":"AllLabels","id":"p1033"}}}],"center":[{"type":"object","name":"Grid","id":"p1034","attributes":{"axis":{"id":"p1030"},"grid_line_color":null}},{"type":"object","name":"Grid","id":"p1039","attributes":{"dimension":1,"axis":{"id":"p1035"},"grid_line_color":null}},{"type":"object","name":"Legend","id":"p1049","attributes":{"title":"","border_line_color":"black","border_line_alpha":0.7,"border_line_width":1.2,"items":[{"type":"object","name":"LegendItem","id":"p1050","attributes":{"label":{"type":"field","field":"legenda"},"renderers":[{"id":"p1046"}]}}]}}],"background_fill_color":"rgba(241, 242, 244, 0.5)"}}]}}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('p1056').textContent;
+              const render_items = [{"docid":"64af5988-6835-4485-a04d-ba14140f15cf","roots":{"p1016":"e6a4601e-aaa5-48c5-8e0c-d39331791ff6"},"root_ids":["p1016"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>

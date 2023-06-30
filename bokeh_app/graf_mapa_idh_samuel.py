@@ -7,6 +7,7 @@ from variaveis_globais import *
 from converte_iso import *
 from descricoes_dos_graficos import *
 from criador_de_mapas import cria_mapa
+from bokeh.io import save, output_file
 
 def grafico_mapa_IDH(datapath_IDH):
 
@@ -15,6 +16,8 @@ def grafico_mapa_IDH(datapath_IDH):
     um mapa mundial que destaca os países do G20 com um gradiente de cor, mostrando através da tonalidade 
     da cor os países que possuem os maiores e os menores Índices de Desenvolvimento Humano.
     '''
+
+    output_file(".\html\graf_mapa_idh.html")
 
     print(f"Carregando {__name__}")
 
@@ -41,7 +44,17 @@ def grafico_mapa_IDH(datapath_IDH):
     plot = cria_mapa(df_IDH_g20_media, "IDH", palette)
 
     plot.name = "Índice de Desenvolvimento Humano"
+    plot.title = "Índice de Desenvolvimento Humano do G20"
+    
+    #TÍTULO PRINCIPAL (ESTÉTICA E POSICIONAMENTO)
+    plot.title.text_font = FONTE_TEXTO
+    plot.title.text_font_size =TAMANHO_TITULO
+    plot.title.align = ALINHAMENTO_TITULO
+    plot.title.text_baseline = BASELINE_TITULO
 
     descricao = DESCRICAO_MAPA_GINI
 
+    save(plot)
+
     return plot, descricao
+grafico_mapa_IDH("dados\hdi_human_development_index.csv")

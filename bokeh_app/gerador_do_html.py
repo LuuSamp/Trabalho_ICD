@@ -5,12 +5,14 @@ from bokeh.models import Div
 
 dicionario = dict_graficos.dicionario_de_graficos
 
-output_file("../index.html")
+for nome, elementos in dicionario.items():
+    output_file(f"html/{nome}.html")
+    save(elementos)
 
-fig = figure(width = 500, height = 500)
-div = Div(text="aaaA")
 
+'''
 coisa_pra_mostrar = tuple([column(*each_plot) for each_plot in dicionario.values()])
 print(coisa_pra_mostrar)
 
-show(*coisa_pra_mostrar)
+show(column(*coisa_pra_mostrar))    
+'''
