@@ -7,7 +7,7 @@ from descricoes_dos_graficos import *
 def grafico_mapa_Gini(datapath_Gini):
 
     '''
-    Essa função deve receber um DataFrame com os coeficiente de Gini dos países
+    Essa função deve receber o caminho do DataFrame com os coeficiente de Gini dos países
     do mundo inteiro. Ela tem o objetivo de criar um mapa mundial e destacar os
     países do G20 de acordo com os seus níveis de Gini.
     '''
@@ -25,9 +25,11 @@ def grafico_mapa_Gini(datapath_Gini):
     # Criando um novo DataFrame com a média de gini para cada país:
     df_gini_g20_media = df_gini_g20.groupby('country')['gini'].mean().to_frame().reset_index()
 
+    # Definindo uma paleta com tons de vermelho: 
     palette = Reds[6]
     palette = palette[::-1]
 
+    # Criando mapa através da função "cria_mapa":
     plot = cria_mapa(df_gini_g20_media, "gini", palette)
 
     plot.name = "Coeficiente de Gini"
