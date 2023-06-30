@@ -7,12 +7,12 @@ import pandas as pd
 from variaveis_globais import *
 from cores import lista_cores, lista_alpha
 
-def ranking_animado_PIB():
+def ranking_animado_PIB(datapath):
     FIRST_YEAR = 1910
     LAST_YEAR = 2010
 
     # Dataframe a ser usado
-    dataframe = pd.read_csv("dados/total_gdp_ppp_inflation_adjusted.csv")
+    dataframe = pd.read_csv(datapath)
     for year in range(1800, 2014):
         dataframe[str(year)] = dataframe[str(year)].apply(traduz_milhares)
     dataframe = filtro_paises_do_g20(dataframe, True, "country")
