@@ -1,5 +1,5 @@
-from bokeh.plotting import figure, column, row
-from bokeh.models import Slider, ColumnDataSource, Button, HoverTool, NumeralTickFormatter, FixedTicker
+from bokeh.plotting import figure, column
+from bokeh.models import Slider, ColumnDataSource, Button, NumeralTickFormatter
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
 from bokeh.io import curdoc
@@ -13,6 +13,7 @@ def ranking_animado_PIB(datapath):
 
     # Dataframe a ser usado
     dataframe = pd.read_csv(datapath)
+
     for year in range(1800, 2014):
         dataframe[str(year)] = dataframe[str(year)].apply(traduz_milhares)
     dataframe = filtro_paises_do_g20(dataframe, True, "country")
