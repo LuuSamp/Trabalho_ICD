@@ -41,6 +41,7 @@ def grafico_mapa_IDH(datapath_IDH):
     plot = cria_mapa(df_IDH_g20_media, "IDH", palette)
 
     plot.name = "Índice de Desenvolvimento Humano"
+    plot.title = "Índice de Desenvolvimento Humano do G20"
 
     descricao = DESCRICAO_MAPA_GINI
 
