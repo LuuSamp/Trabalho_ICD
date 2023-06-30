@@ -36,7 +36,8 @@ def grafico_investimento_saude(datapath_investimento_saude):
                                             height=ALTURA, 
                                             width=LARGURA, 
                                             title="Média dos Investimentos em Saúde nos últimos anos", 
-                                            tools="")
+                                            tools="",
+                                            name="Investimento em Saúde")
 
     # Criando o Gráfico de Barras:
     ranking_investimento_saude_g20.vbar(x="country", 

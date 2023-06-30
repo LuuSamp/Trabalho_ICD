@@ -141,3 +141,16 @@ DESCRICAO_BARRAS_SAUDE = Div(text="""
                                   países. Por outro lado, os EUA que possui o segundo maior IDH é o país com o maior investimento<br>
                                   em saúde, enquanto a Austrália que possui o maior IDH está em sexto lugar no ranking de investimentos. 
                                     """)
+
+DESCRICAO_DISPERSAO_VACINA = Div(text="""
+                                    Esse gráfico tem como objetivo comparar os países do G20 com relação a dois assuntos muito importantes na área da<br>
+                                    Saúde: a Vacinação de Crianças e a Mortalidade Infantil do período de 1990 à 2010. Além disso, foram destacados<br>
+                                    quatro países que tiveram os dois maiores e os dois menores Índices de Desenvolvimento Humano. Os países com cores<br> 
+                                    de tons vermelhos são a Índia e a China que representam os países com os menores IDHs, enquanto os países com cores<br> 
+                                    de tons azuis são a Austrália e os Estados Unidos que representam os países com os maiores IDHs. Pode-se perceber<br> 
+                                    que, em relação ao gráfico, a Índia, que possui um IDH muito baixo também possui uma média de mortes muito elevada,<br> 
+                                    o que justifica a sua baixa porcentagem de crianças vacinadas. Por outro lado, a China, que também tem um IDH baixo<br> 
+                                    possui uma porcentagem alta de crianças vacinadas e, consequentemente uma baixa média de mortes. Um resultado esperado<br> 
+                                    foi observado em relação aos países com IDHs altos, que ao longo dos anos tiveram grande parte das crianças vacinadas<br> 
+                                    e, consequentemente, poucas mortes.  
+                                    """)
