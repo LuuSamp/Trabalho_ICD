@@ -1,4 +1,4 @@
-from bokeh.plotting import figure, column
+from bokeh.plotting import figure, column, row
 from bokeh.models import Slider, ColumnDataSource, Button, NumeralTickFormatter
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
@@ -30,7 +30,7 @@ def ranking_animado_PIB(datapath):
     data_source = ColumnDataSource(raw_data)
 
     # O gráfico
-    plot = figure(name = "PIB por ano", width=700, height=500, title="PIB dos países do G20 (em bilhões)", x_range = (0, 16000), y_range=sorted_dataframe["country"], tools = "")
+    plot = figure(name = "PIB por ano", width=1080, height=600, title="PIB dos países do G20 (em bilhões)", x_range = (0, 16000), y_range=sorted_dataframe["country"], tools = "")
     bars = plot.hbar(y = "country", right = "GDP", color = "color", alpha = "alpha", legend_field = "legend", height = 0.9, source = data_source)
 
     # Atualização do gráfico
@@ -38,8 +38,10 @@ def ranking_animado_PIB(datapath):
         global year
         year += 1
         if year > LAST_YEAR:
-            year = FIRST_YEAR
-        slider.value = year
+            curdoc().remove_periodic_callback(callback)
+            button.label = "Play"
+        else:
+            slider.value = year
 
     # O botão
     button = Button(label = "Play", align = "center")
@@ -101,4 +103,8 @@ def ranking_animado_PIB(datapath):
     plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
     # A GUI
-    return (column(button, slider, plot), DESCRICAO_BARRAS_ANIMADO_PIB)
+    return (column(row(button, slider), plot), DESCRICAO_BARRAS_ANIMADO_PIB)
+
+coluna, descricao = ranking_animado_PIB("dados/gdp_total.csv")
+
+curdoc().add_root(coluna)

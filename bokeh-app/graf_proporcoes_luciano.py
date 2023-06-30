@@ -48,7 +48,10 @@ def educacao_por_genero(datapath_homens, datapath_mulheres):
         year += 1
         if year > 2015:
             year = 1970
-        slider.value = year
+            curdoc().remove_periodic_callback(callback)
+            button.label = "Play"
+        else:
+            slider.value = year
 
     # O botão
     button = Button(label = "Play", align = "center")
@@ -120,3 +123,7 @@ def educacao_por_genero(datapath_homens, datapath_mulheres):
 
     # A GUI
     return (column(row(button, slider), plot), DESCRICAO_PROPORCAO_HOMENS_MULHERES)
+
+layout, descricao = educacao_por_genero("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")
+
+curdoc().add_root(layout)
