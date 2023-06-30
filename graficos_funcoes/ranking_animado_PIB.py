@@ -28,7 +28,7 @@ def ranking_animado_PIB(datapath):
     data_source = ColumnDataSource(raw_data)
 
     # O gráfico
-    plot = figure(width=700, height=500, title="PIB dos países do G20 (em bilhões)", x_range = (0, 16000), y_range=sorted_dataframe["country"], tools = "")
+    plot = figure(name = "PIB por ano", width=700, height=500, title="PIB dos países do G20 (em bilhões)", x_range = (0, 16000), y_range=sorted_dataframe["country"], tools = "")
     bars = plot.hbar(y = "country", right = "GDP", color = "color", alpha = "alpha", legend_field = "legend", height = 0.9, source = data_source)
 
     # Atualização do gráfico
