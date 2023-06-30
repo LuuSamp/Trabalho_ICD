@@ -8,11 +8,11 @@ from graf_mapa_gini_luciano import grafico_mapa_Gini
 from graf_mapa_idh_samuel import grafico_mapa_IDH
 
 
-dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados\life_expectancy_male"),
-                          "IMC X Calorias": grafico_bolhas("dados\pop.csv", "dados\body_mass_index_bmi_men_kgperm2.csv", "dados\body_mass_index_bmi_women_kgperm2.csv","dados\food_supply_kilocalories_per_person_and_day.csv"),
-                          "PIB Médio": graf_barras_pib("dados\total_gdp_ppp_inflation_adjusted.csv"),
+dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados\life_expectancy_male.csv"),
+                          "IMC X Calorias": grafico_bolhas("dados\pop.csv", "dados\\body_mass_index_bmi_men_kgperm2.csv", "dados\\body_mass_index_bmi_women_kgperm2.csv","dados\\food_supply_kilocalories_per_person_and_day.csv"),
+                          "PIB Médio": graf_barras_pib("dados\gdp_total.csv"),
                           "PIB Per Capita": grafico_de_linhas_gdp("dados\gdp_pcap.csv"),
-                          "Anos Na Escola": linha_escola("dados\anos_homens_na_escola.csv", "dados\anos_mulheres_na_escola.csv"),
+                          "Anos Na Escola": linha_escola("dados\\anos_homens_na_escola.csv", "dados\\anos_mulheres_na_escola.csv"),
                           "Emissão de CO2": grafico_ranking_co2("dados\co2.csv"),
                           "Coeficiente de Gini": grafico_mapa_Gini("dados\gini_2100.csv"),
                           "Índice de Desenvolvimento Humano": grafico_mapa_IDH("dados\hdi_human_development_index.csv")}

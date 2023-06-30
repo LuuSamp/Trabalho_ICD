@@ -28,7 +28,7 @@ def criador_colunas_esteticas(dataframe, cores=True, alpha=True, legenda=True):
                 coluna_de_legenda.append("Other Countries")
 
     if cores == True:
-        dataframe["cores"] = coluna_de_cores
+        dataframe["color"] = coluna_de_cores
     if alpha == True:
         dataframe["preenchimento"] = coluna_de_alpha
     if legenda == True:
