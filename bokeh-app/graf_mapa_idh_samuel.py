@@ -38,7 +38,7 @@ def grafico_mapa_IDH(datapath_IDH):
     palette = palette[::-1]
 
     # Criando mapa através da função "cria_mapa":
-    plot = cria_mapa(df_IDH_g20_media, "gini", palette)
+    plot = cria_mapa(df_IDH_g20_media, "IDH", palette)
 
     plot.name = "Índice de Desenvolvimento Humano"
 
