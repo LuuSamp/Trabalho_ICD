@@ -74,8 +74,11 @@ def grafico_de_linhas_gdp(datapath):
                           posicao_legenda="top_left")
 
     line_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
+
+    line_plot.legend.click_policy="hide"
     
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_LINHA_PIB_PC
 
     return line_plot, descricao
+

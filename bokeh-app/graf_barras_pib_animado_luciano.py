@@ -6,6 +6,7 @@ from bokeh.io import curdoc
 import pandas as pd
 from variaveis_globais import *
 from cores import lista_cores, lista_alpha
+from descricoes_dos_graficos import DESCRICAO_BARRAS_ANIMADO_PIB
 
 def ranking_animado_PIB(datapath):
     FIRST_YEAR = 1910
@@ -100,4 +101,4 @@ def ranking_animado_PIB(datapath):
     plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
     # A GUI
-    return (column(button, slider, plot))
+    return (column(button, slider, plot), DESCRICAO_BARRAS_ANIMADO_PIB)
