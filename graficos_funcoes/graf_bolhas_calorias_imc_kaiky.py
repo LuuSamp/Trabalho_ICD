@@ -1,5 +1,5 @@
 from bokeh.plotting import figure
-from bokeh.models import HoverTool, Range1d, Div
+from bokeh.models import HoverTool, Range1d
 import pandas as pd
 import numpy as np
 from traducao_g20 import filtro_paises_do_g20
@@ -7,6 +7,7 @@ from reorganizador import reorganiza, traduz_milhares
 from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
+from descricoes_dos_graficos import *
 
 def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulheres, datapath_calorias):
     # Reorganizando o DataFrame.
@@ -96,16 +97,7 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
                           orientacao_xaxis=0, 
                           posicao_legenda="bottom_right")
 
-    descricao = Div(text="""O gráfico de Bolhas tem como objetivo comparar se há uma correlação entre a quantidade <br>
-                                    média de calorias disponíveis e o Índice de Massa Corporal (IMC) das pessoas. Além disso, <br>
-                                    o tamanho das bolhas foi utilizado para representar o tamanho da população, a fim de <br>
-                                    verificar se isso influencia nos resultados do gráfico. Também foram definidos limites <br>
-                                    para exibir as bolhas em uma área central do gráfico. As cores foram usadas para destacar <br>
-                                    os países com bom desempenho (cor azul) e os países sem destaque (cor vermelha) na área de <br>
-                                    IDH (Índice de Desenvolvimento Humano). As grades de fundo foram removidas, pois não eram <br>
-                                    relevantes para o contexto do gráfico. Através da ferramenta HoverTool, é possível visualizar <br>
-                                    o país, o IMC médio e a média de calorias disponíveis ao passar o mouse sobre as bolhas. <br>
-                                    Conforme mencionado anteriormente, os rótulos foram padronizados com base no módulo variaveis_globais.
-                                """)
+    #DESCRIÇÃO DO GRÁFICO
+    descricao = DESCRICAO_BOLHAS_CALORIAS
 
     return imc_calorias, descricao

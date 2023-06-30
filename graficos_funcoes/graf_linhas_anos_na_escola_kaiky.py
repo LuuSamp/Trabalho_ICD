@@ -1,11 +1,12 @@
 from bokeh.plotting import figure 
-from bokeh.models import HoverTool, Range1d, Div
+from bokeh.models import HoverTool, Range1d
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
 from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
+from descricoes_dos_graficos import *
 
 def linha_escola(datapath_homens,datapath2_mulheres):
     # Tratamento da base de dados.
@@ -70,16 +71,7 @@ def linha_escola(datapath_homens,datapath2_mulheres):
                           orientacao_xaxis=0,
                           posicao_legenda="bottom_right")
 
-    descricao = Div(text="""Neste gráfico de Linhas, é relacionada a média de anos de presença na escola ao <br>
-                                    longo dos anos, em que cada linha representa um país. A visualização tem o objetivo <br>
-                                    de identificar melhorias na frequência dos alunos nas escolas e detectar tendências <br>
-                                    futuras com base nos padrões observados. Além disso, foram utilizadas cores para destacar <br>
-                                    alguns países, sendo a cor azul para os melhores desempenhos e a cor vermelha para os <br>
-                                    piores desempenhos no quesito de IDH (Índice de Desenvolvimento Humano). Por meio do <br>
-                                    módulo HoverTool, foi criada uma ferramenta de interatividade que, ao passar o cursor <br>
-                                    do mouse sobre cada linha, exibe o país, o ano correspondente e a média de anos na escola <br>
-                                    para aquele período. O título foi posicionado no centro para alinhar-se com as informações <br>
-                                    do gráfico. Por fim, vários rótulos foram padronizados em todos os gráficos usando o <br>
-                                    módulo variaveis_globais, proporcionando uma estética consistente para cada representação.""")
+    #DESCRIÇÃO DO GRÁFICO
+    descricao = DESCRICAO_LINHAS_ANOS_ESCOLA
 
     return grafico_linha_escola, descricao

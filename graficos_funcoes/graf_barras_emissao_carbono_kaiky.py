@@ -1,10 +1,11 @@
 from bokeh.plotting import figure
-from bokeh.models import HoverTool, Div
+from bokeh.models import HoverTool
 from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza
 from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
+from descricoes_dos_graficos import *
 
 def grafico_ranking_co2(datapath):
     # Tratamento de dados
@@ -71,18 +72,7 @@ def grafico_ranking_co2(datapath):
                           orientacao_xaxis=0.7,
                           posicao_legenda="top_right")
 
-    descricao = Div(text="""Esse Ranking busca ordenar os países de acordo com a emissão de carbono realizada <br>
-                                 por cada um deles. As barras do gráfico foram colocadas de maneira vertical para que <br>
-                                 itens com barras mais longas ou mais altas sejam visualmente distintos dos itens com <br>
-                                 barras mais curtas ou mais baixas, facilitando a identificação dos melhores ou piores <br>
-                                 classificados e também contribuindo para a compreensão das diferenças entre os países. <br>
-                                 Além disso, é válido ressaltar que algumas das barras foram destacadas com cor, sendo <br>
-                                 a cor azul utilizada para representar os melhores e a cor vermelha para representar as <br>
-                                 piores nações no quesito de IDH (Índice de Desenvolvimento Humano). Outro ponto a ser <br>
-                                 destacado é a utilização de ferramentas interativas por meio da função HoverTool, que <br>
-                                 permite a visualização dos dados de cada barra, incluindo informações sobre o país e <br>
-                                 o valor do investimento realizado. O título foi colocado no centro para alinhar-se com <br>
-                                as informações do gráfico. Os nomes dos países foram rotacionados para facilitar a <br>
-                                leitura. Quanto aos rótulos, foram padronizados com base no módulo de variáveis globais.""")
+    #DESCRIÇÃO DO GRÁFICO
+    descricao = DESCRICAO_BARRAS_CARBONO
 
     return ranking_co2, descricao

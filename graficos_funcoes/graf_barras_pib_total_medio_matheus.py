@@ -1,11 +1,12 @@
 #BIBLIOTECAS E MÓDULOS IMPORTADOS
 from bokeh.plotting import figure 
-from bokeh.models import HoverTool, NumeralTickFormatter, Div
+from bokeh.models import HoverTool, NumeralTickFormatter
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
+from descricoes_dos_graficos import *
 
 def graf_barras_pib(datapath):
     '''
@@ -77,13 +78,7 @@ def graf_barras_pib(datapath):
     
     bar_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
     
-    descricao = Div(text="""Esse gráfico tem como objetivo representar a média do PIB dos integrantes do G20 do período de 1990 à 2010. <br>
-                                    Assim como em todos os gráficos, chamamos atenção para os Estados Unidos, Austrália, China e Índia. <br> 
-                                    Vemos que na questão econômica, a ordem se inverte e que não traduz a mesma ideia quando olhamos para o IDH. <br>
-                                    A China, com um PID muitas vezes maior do que o da Austrália, não consegue transformar isso em melhoras significativas <br>
-                                    para o bem estar do cidadão. Vamos ver no gráfico seguinte que isso pode ser explicado. Quantos as cores, elas foram <br>
-                                    as mesmas utilizadas em todos os outros gráficos, o azul para representar os países com alto IDH e o vermelho os com <br>
-                                    IDH baixo. Destaco, por fim, que utilizamos apenas a ferramenta Hover, uma vez que, no gráfico de barras, <br>
-                                    não faz sentido ferramentas como a Pan, Box_Zoom e outras.""")
+    #DESCRIÇÃO DO GRÁFICO
+    descricao = DESCRICAO_BARRAS_PIB
 
     return bar_plot, descricao
