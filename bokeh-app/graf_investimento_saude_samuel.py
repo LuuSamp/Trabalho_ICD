@@ -44,12 +44,12 @@ def grafico_investimento_saude(datapath_investimento_saude):
                                         top="Investimento em Saúde", 
                                         source=source, 
                                         width=0.9, 
-                                        color="Cor", 
-                                        alpha="Preenchimento", 
+                                        color="color", 
+                                        alpha="preenchimento", 
                                         line_color=COR_DA_LINHA, 
                                         line_width=ESPESSURA_DA_LINHA, 
                                         line_alpha=ALPHA_DA_LINHA, 
-                                        legend_field = "Legenda")
+                                        legend_field = "legenda")
 
     # Implementando ferramenta Hover:
     hover = HoverTool(tooltips=[('País', '@country'), 
