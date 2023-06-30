@@ -85,6 +85,8 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
                           titulo_yaxis="IMC Médio" , 
                           orientacao_xaxis=0, 
                           posicao_legenda="bottom_right")
+    
+    imc_calorias.legend.click_policy="hide"
 
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BOLHAS_CALORIAS

@@ -62,9 +62,10 @@ def graf_barras_pib(datapath):
                           orientacao_xaxis=0.7,
                           posicao_legenda="top_right")
     
-    bar_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")
+    bar_plot.yaxis.formatter = NumeralTickFormatter(format="$0,0")"
     
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BARRAS_PIB
 
     return bar_plot, descricao
+

@@ -73,6 +73,8 @@ def linha_escola(datapath_homens,datapath2_mulheres):
                           titulo_yaxis="Média de Anos na Escola",
                           orientacao_xaxis=0,
                           posicao_legenda="bottom_right")
+    
+    grafico_linha_escola.legend.click_policy="hide"
 
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_LINHAS_ANOS_ESCOLA
