@@ -68,3 +68,4 @@ def graf_barras_pib(datapath):
     descricao = DESCRICAO_BARRAS_PIB
 
     return bar_plot, descricao
+

@@ -1,6 +1,10 @@
 # Importações necessárias:
 from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
+import pandas as pd
+from bokeh.palettes import Blues
+from bokeh.models import LinearColorMapper, ColorBar, Range1d
+from bokeh.models import HoverTool
 from variaveis_globais import *
 from converte_iso import *
 from descricoes_dos_graficos import *

@@ -6,6 +6,7 @@ from bokeh.io import curdoc
 import pandas as pd
 from variaveis_globais import *
 from cores import lista_alpha
+from descricoes_dos_graficos import DESCRICAO_PROPORCAO_HOMENS_MULHERES
 
 def educacao_por_genero(datapath_homens, datapath_mulheres):
 
@@ -118,4 +119,4 @@ def educacao_por_genero(datapath_homens, datapath_mulheres):
     plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
     # A GUI
-    return (column(row(button, slider), plot))
+    return (column(row(button, slider), plot), DESCRICAO_PROPORCAO_HOMENS_MULHERES)

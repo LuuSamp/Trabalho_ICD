@@ -17,5 +17,5 @@ dicionario_de_graficos = {"Expectativa de Vida": box_plot_life("dados/life_expec
                           "Emissão de CO2": grafico_ranking_co2("dados/co2.csv"),
                           "Coeficiente de Gini": grafico_mapa_Gini("dados/gini_2100.csv"),
                           "Índice de Desenvolvimento Humano": grafico_mapa_IDH("dados/hdi_human_development_index.csv"),
-                          "PIB por ano": ranking_animado_PIB("dados/gdp_total_yearly_growth.csv"),
+                          "PIB por ano": ranking_animado_PIB("dados/gdp_total.csv"),
                           "Comparação de anos escolares homens e mulheres": educacao_por_genero("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")}

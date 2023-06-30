@@ -98,3 +98,4 @@ def box_plot_life(datapath):
     descricao = DESCRICAO_BOXPLOT_EXP_VIDA
 
     return boxplot, descricao
+
