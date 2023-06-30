@@ -3,12 +3,13 @@ from reorganizador import reorganiza
 import pandas as pd
 from bokeh.models import ColumnDataSource, HoverTool, Range1d
 from bokeh.plotting import figure
-from bokeh.models import NumeralTickFormatter 
+from bokeh.models import NumeralTickFormatter
 from traducao_g20 import filtro_paises_do_g20 
 from variaveis_globais import *
 from funcoes_esteticas import *
 from fun_cores_legendas_alpha import *
 from descricoes_dos_graficos import *
+from bokeh.io import save, output_file
 
 def grafico_de_dispersao(datapath_vacinas, datapath_mortes):  
     ''''
@@ -16,6 +17,8 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
     Scatter Plot (Gráfico de Dispersão) que compara dois assuntos bem importantes 
     na área da saúde, a Vacinação de crianças e a Mortalidade Infantil.
     '''
+
+    output_file("./html/graf_vacinas.html")
 
     # Criação de Data Frames "tratados" a partir da utilização da função "reorganiza": 
     df_vacina = reorganiza(datapath_vacinas, "Porcentagem de Vacinação", 1990, 2010)
@@ -75,7 +78,11 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
 
     descricao = DESCRICAO_DISPERSAO_VACINA
 
+    save(scatter_plot)
+
     return scatter_plot, descricao
+
+grafico_de_dispersao("dados/dtp3_immunized_percent_of_one_year_olds.csv", "dados/child_mortality_0_5_year_olds_dying_per_1000_born.csv")
 
 
 

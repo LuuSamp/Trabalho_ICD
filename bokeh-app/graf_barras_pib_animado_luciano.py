@@ -7,8 +7,13 @@ import pandas as pd
 from variaveis_globais import *
 from cores import lista_cores, lista_alpha
 from descricoes_dos_graficos import DESCRICAO_BARRAS_ANIMADO_PIB
+from bokeh.io import save, output_file
 
 def ranking_animado_PIB(datapath):
+
+    output_file("./html/graf_pib_animado.html")
+
+
     FIRST_YEAR = 1910
     LAST_YEAR = 2010
 
@@ -100,5 +105,9 @@ def ranking_animado_PIB(datapath):
     plot.legend.border_line_width = ESPESSURA_DA_LINHA
     plot.legend.border_line_alpha = ALPHA_DA_LINHA
 
+    save(plot)
+
     # A GUI
     return (column(button, slider, plot), DESCRICAO_BARRAS_ANIMADO_PIB)
+
+ranking_animado_PIB("dados/gdp_total.csv")

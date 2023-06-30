@@ -8,12 +8,15 @@ from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
 from descricoes_dos_graficos import *
 from fun_cores_legendas_alpha import criador_colunas_esteticas
+from bokeh.io import save, output_file
 
 def box_plot_life(datapath):
     '''
     Função com o objetivo de receber um datapath de uma base de dados, trata e converte ela e depois 
     produz um boxplot para a espectativa de vida dos países do G20.
     '''
+
+    output_file("./html/graf_boxplot.html")
 
     print(f"Carregando {__name__}")
     
@@ -97,5 +100,9 @@ def box_plot_life(datapath):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BOXPLOT_EXP_VIDA
 
+    save(boxplot)
+
     return boxplot, descricao
+
+box_plot_life("dados/life_expectancy_male.csv")
 

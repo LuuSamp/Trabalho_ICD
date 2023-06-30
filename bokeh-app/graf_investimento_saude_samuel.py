@@ -6,6 +6,7 @@ from bokeh.plotting import figure
 from descricoes_dos_graficos import *
 from funcoes_esteticas import configuracoes_visuais
 from fun_cores_legendas_alpha import *
+from bokeh.io import save, output_file
 
 def grafico_investimento_saude(datapath_investimento_saude):
 
@@ -14,6 +15,8 @@ def grafico_investimento_saude(datapath_investimento_saude):
     em saúde. Ela tem o objetivo de retornar um ranking(gráfico de barras) dos países 
     do G20 que mais investem em saúde nos anos de 1995 a 2010.
     '''
+
+    output_file("./html/graf_barras_saude.html")
 
     # Criando um Data Frame "tratado" a partir da utilização da função "reorganiza": 
     df_investimento_saude = reorganiza(datapath_investimento_saude, "Investimento em Saúde", 1995, 2010)
@@ -67,4 +70,8 @@ def grafico_investimento_saude(datapath_investimento_saude):
 
     descricao = DESCRICAO_BARRAS_SAUDE
 
+    save(ranking_investimento_saude_g20)
+
     return ranking_investimento_saude_g20, descricao
+
+grafico_investimento_saude("dados/government_health_spending_of_total_gov_spending_percent.csv")
