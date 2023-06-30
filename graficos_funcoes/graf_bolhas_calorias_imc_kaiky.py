@@ -8,6 +8,7 @@ from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
 from descricoes_dos_graficos import *
+from fun_cores_legendas_alpha import criador_colunas_esteticas
 
 def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulheres, datapath_calorias):
     # Reorganizando o DataFrame.
@@ -32,23 +33,8 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     df_final["IMC Médio"] = (df_imc_homens["IMC dos Homens"] + df_imc_mulheres["IMC das Mulheres"]) / 2
     df_final["População em Proporção"] = np.sqrt(df_final["População"])/200
 
-    # Criação de colunas referentes a cores, transparência e legenda.
-    lista_de_cores = []
-    lista_de_preenchimento = []
-    lista_legenda = []
-
-    for cada_pais in df_final["country"]:
-        if cada_pais in DICT_CORES.keys():
-            lista_de_cores.append(DICT_CORES[cada_pais])
-            lista_de_preenchimento.append(ALPHA_DESTAQUES)
-            lista_legenda.append(cada_pais)
-        else:
-            lista_de_cores.append(CORES_COMUNS)
-            lista_de_preenchimento.append(ALPHA_COMUNS)
-            lista_legenda.append("Other Countries")
-    df_final["color"] = lista_de_cores
-    df_final["preenchimento"] = lista_de_preenchimento
-    df_final["legenda"] = lista_legenda
+    #CRIANDO COLUNAS PARA COR, PREENCHIMENTO E LEGENDA
+    df_final = criador_colunas_esteticas(df_final)
 
     sem_destaques = transformador_CDS(df_final[df_final["color"]=="gray"]) 
     paises_com_destaque = transformador_CDS(df_final[df_final["color"] != "gray"])

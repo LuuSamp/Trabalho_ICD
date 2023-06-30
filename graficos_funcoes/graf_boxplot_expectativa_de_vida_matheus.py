@@ -7,6 +7,7 @@ from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
 from descricoes_dos_graficos import *
+from fun_cores_legendas_alpha import criador_colunas_esteticas
 
 def box_plot_life(datapath):
     '''
@@ -32,25 +33,8 @@ def box_plot_life(datapath):
     
     dataframe_quantis = dataframe_quantis.sort_values("q50", ascending=True).reset_index()
 
-    #CRINDO A COLUNA DE CORES
-    dicionario_de_cores = DICT_CORES
-    lista_de_cores = []
-    lista_de_preenchimentos = []
-    lista_de_legenda = []
-
-    for cada_pais in dataframe_quantis["country"]:
-        if cada_pais in dicionario_de_cores.keys():
-            lista_de_cores.append(dicionario_de_cores[cada_pais])
-            lista_de_preenchimentos.append(ALPHA_DESTAQUES)
-            lista_de_legenda.append(cada_pais)
-        else:
-            lista_de_cores.append("gray")
-            lista_de_preenchimentos.append(ALPHA_COMUNS)
-            lista_de_legenda.append("Other Countries")
-
-    dataframe_quantis["color"] = lista_de_cores
-    dataframe_quantis["preenchimento"] = lista_de_preenchimentos
-    dataframe_quantis["legenda"] = lista_de_legenda
+    #CRIANDO COLUNAS PARA COR, PREENCHIMENTO E LEGENDA
+    dataframe_quantis = criador_colunas_esteticas(dataframe_quantis)
 
     #CRIANDO O BOXPLOT
     data_source = transformador_CDS(dataframe_quantis)

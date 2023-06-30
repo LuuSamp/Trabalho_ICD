@@ -7,6 +7,7 @@ from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
 from descricoes_dos_graficos import *
+from fun_cores_legendas_alpha import criador_colunas_esteticas
 
 def graf_barras_pib(datapath):
     '''
@@ -21,25 +22,8 @@ def graf_barras_pib(datapath):
     dataframe = dataframe.sort_values(["PIB"], ascending=False).reset_index(drop=True)
     dataframe["PIB"] = dataframe["PIB"]/1000000000
 
-    #CONFIGURANDO A COLUNA DE CORES E PREENCHIMENTO
-    dicionario_de_cores = DICT_CORES
-    lista_de_cores = []
-    lista_de_preenchimento = []
-    lista_de_legenda = []
-
-    for cada_pais in dataframe["country"]:
-        if cada_pais in dicionario_de_cores.keys():
-            lista_de_cores.append(dicionario_de_cores[cada_pais])
-            lista_de_preenchimento.append(ALPHA_DESTAQUES)
-            lista_de_legenda.append(cada_pais)
-        else:
-            lista_de_cores.append(CORES_COMUNS)
-            lista_de_preenchimento.append(ALPHA_COMUNS)
-            lista_de_legenda.append("Other Countries")
-
-    dataframe["color"] = lista_de_cores
-    dataframe["preenchimento"] = lista_de_preenchimento
-    dataframe["legenda"] = lista_de_legenda
+    #CRIANDO COLUNAS PARA COR, PREENCHIMENTO E LEGENDA
+    dataframe = criador_colunas_esteticas(dataframe)
 
     #TRANSFORMANDO EM CDS
     data_source = transformador_CDS(dataframe)
