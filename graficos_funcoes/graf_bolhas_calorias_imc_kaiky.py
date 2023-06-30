@@ -11,6 +11,9 @@ from descricoes_dos_graficos import *
 from fun_cores_legendas_alpha import criador_colunas_esteticas
 
 def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulheres, datapath_calorias):
+
+    print(f"Carregando {__name__}")
+
     # Reorganizando o DataFrame.
     df_populacao = reorganiza(datapath_populacao, column_name = "População", first_year = 1990, last_year = 2008, csv = False)
     df_imc_homens = reorganiza(datapath_imc_homens, column_name = "IMC dos Homens", first_year = 1990, last_year = 2008, csv = False)

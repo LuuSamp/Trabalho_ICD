@@ -9,6 +9,9 @@ from descricoes_dos_graficos import *
 from fun_cores_legendas_alpha import criador_colunas_esteticas
 
 def grafico_ranking_co2(datapath):
+
+    print(f"Carregando {__name__}")
+
     # Tratamento de dados
     df_co2 = reorganiza(datapath, column_name = "CO2", first_year = 1990, last_year = 2018, csv = False)
     df_co2 = filtro_paises_do_g20(df_co2, agrupamento="country")

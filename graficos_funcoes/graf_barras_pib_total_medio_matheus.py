@@ -15,6 +15,8 @@ def graf_barras_pib(datapath):
     país do G20 e da UE durante o período de 20 anos (1990-2010) de forma ordenada.
     '''
 
+    print(f"Carregando {__name__}")
+    
     #TRATAMENTO DA BASE DE DADOS
     dataframe = reorganiza(datapath, "PIB", 1990, 2010) 
     dataframe["PIB"] = dataframe["PIB"].apply(traduz_milhares)

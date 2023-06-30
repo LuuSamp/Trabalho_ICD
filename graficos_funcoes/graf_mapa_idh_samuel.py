@@ -14,6 +14,8 @@ def grafico_mapa_IDH(datapath_IDH):
     da cor os países que possuem os maiores e os menores Índices de Desenvolvimento Humano.
     '''
 
+    print(f"Carregando {__name__}")
+
     # Criação de Data Frames "tratados" a partir da utilização da função "reorganiza":
     df_IDH = reorganiza(datapath_IDH, "IDH", 1990, 2010)
 
