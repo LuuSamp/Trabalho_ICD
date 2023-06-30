@@ -1,11 +1,14 @@
 from bokeh.plotting import figure
-from bokeh.models import HoverTool, Range1d, Paragraph
+from bokeh.models import HoverTool, Range1d
 import pandas as pd
 import numpy as np
 from traducao_g20 import filtro_paises_do_g20
 from reorganizador import reorganiza, traduz_milhares
 from variaveis_globais import *
 from CDS import transformador_CDS
+from funcoes_esteticas import configuracoes_visuais
+from descricoes_dos_graficos import *
+from fun_cores_legendas_alpha import criador_colunas_esteticas
 
 def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulheres, datapath_calorias):
     # Reorganizando o DataFrame.
@@ -30,23 +33,8 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     df_final["IMC Médio"] = (df_imc_homens["IMC dos Homens"] + df_imc_mulheres["IMC das Mulheres"]) / 2
     df_final["População em Proporção"] = np.sqrt(df_final["População"])/200
 
-    # Criação de colunas referentes a cores, transparência e legenda.
-    lista_de_cores = []
-    lista_de_preenchimento = []
-    lista_legenda = []
-
-    for cada_pais in df_final["country"]:
-        if cada_pais in DICT_CORES.keys():
-            lista_de_cores.append(DICT_CORES[cada_pais])
-            lista_de_preenchimento.append(ALPHA_DESTAQUES)
-            lista_legenda.append(cada_pais)
-        else:
-            lista_de_cores.append(CORES_COMUNS)
-            lista_de_preenchimento.append(ALPHA_COMUNS)
-            lista_legenda.append("Other Countries")
-    df_final["color"] = lista_de_cores
-    df_final["preenchimento"] = lista_de_preenchimento
-    df_final["legenda"] = lista_legenda
+    #CRIANDO COLUNAS PARA COR, PREENCHIMENTO E LEGENDA
+    df_final = criador_colunas_esteticas(df_final)
 
     sem_destaques = transformador_CDS(df_final[df_final["color"]=="gray"]) 
     paises_com_destaque = transformador_CDS(df_final[df_final["color"] != "gray"])
@@ -89,50 +77,13 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     imc_calorias.add_tools(hover)
 
     # Configuração de ferramentas estéticas.
-    imc_calorias.background_fill_color = BACKGROUND_FILL
+    configuracoes_visuais(imc_calorias, 
+                          titulo_xaxis="Média de Calorias",
+                          titulo_yaxis="IMC Médio" , 
+                          orientacao_xaxis=0, 
+                          posicao_legenda="bottom_right")
 
-    imc_calorias.xaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_X
-    imc_calorias.xaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-    imc_calorias.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
-    imc_calorias.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-
-    imc_calorias.xaxis.axis_label = "Média de Calorias" 
-    imc_calorias.yaxis.axis_label = "IMC Médio" 
-
-    imc_calorias.xaxis.axis_label_text_font = FONTE_TEXTO
-    imc_calorias.yaxis.axis_label_text_font = FONTE_TEXTO
-
-    imc_calorias.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-    imc_calorias.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-
-    imc_calorias.xgrid.grid_line_color = LINHAS_GRADE
-    imc_calorias.ygrid.grid_line_color = LINHAS_GRADE
-
-    imc_calorias.title.text_font = FONTE_TEXTO
-    imc_calorias.title.text_font_size =TAMANHO_TITULO
-    imc_calorias.title.align = ALINHAMENTO_TITULO
-    imc_calorias.title.text_baseline = BASELINE_TITULO
-
-    imc_calorias.legend.location = "bottom_right"
-    imc_calorias.legend.title = ""
-    imc_calorias.legend.border_line_color = COR_DA_LINHA
-    imc_calorias.legend.border_line_width = ESPESSURA_DA_LINHA
-    imc_calorias.legend.border_line_alpha = ALPHA_DA_LINHA
-
-    imc_calorias.toolbar.logo = None 
-    imc_calorias.toolbar.autohide = True 
-    imc_calorias.toolbar_location = POSICAO_BARRA_FERRAMENTAS
-
-    descricao = Paragraph(text="""O gráfico de Bolhas tem como objetivo comparar se há uma correlação entre a quantidade <br>
-                                    média de calorias disponíveis e o Índice de Massa Corporal (IMC) das pessoas. Além disso, <br>
-                                    o tamanho das bolhas foi utilizado para representar o tamanho da população, a fim de <br>
-                                    verificar se isso influencia nos resultados do gráfico. Também foram definidos limites <br>
-                                    para exibir as bolhas em uma área central do gráfico. As cores foram usadas para destacar <br>
-                                    os países com bom desempenho (cor azul) e os países sem destaque (cor vermelha) na área de <br>
-                                    IDH (Índice de Desenvolvimento Humano). As grades de fundo foram removidas, pois não eram <br>
-                                    relevantes para o contexto do gráfico. Através da ferramenta HoverTool, é possível visualizar <br>
-                                    o país, o IMC médio e a média de calorias disponíveis ao passar o mouse sobre as bolhas. <br>
-                                    Conforme mencionado anteriormente, os rótulos foram padronizados com base no módulo variaveis_globais.
-                                """)
+    #DESCRIÇÃO DO GRÁFICO
+    descricao = DESCRICAO_BOLHAS_CALORIAS
 
     return imc_calorias, descricao

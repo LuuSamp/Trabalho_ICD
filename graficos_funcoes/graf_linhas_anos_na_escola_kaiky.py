@@ -1,10 +1,12 @@
 from bokeh.plotting import figure 
-from bokeh.models import HoverTool, Range1d, Paragraph
+from bokeh.models import HoverTool, Range1d
 from reorganizador import reorganiza, traduz_milhares
 from traducao_g20 import filtro_paises_do_g20
 import pandas as pd
 from variaveis_globais import *
 from CDS import transformador_CDS
+from funcoes_esteticas import configuracoes_visuais
+from descricoes_dos_graficos import *
 
 def linha_escola(datapath_homens,datapath2_mulheres):
     # Tratamento da base de dados.
@@ -57,55 +59,19 @@ def linha_escola(datapath_homens,datapath2_mulheres):
                                       legend_label = "Other Countries")
 
     # Implementação de ferramenta HoverTool.
-    hover = HoverTool(tooltips=[('País', '@country'), ('Ano', '@year'), ('Média de tempo na Escola', '@{Média de anos na Escola}{0,0.00} anos')])
+    hover = HoverTool(tooltips=[('País', '@country'), 
+                                ('Ano', '@year'), 
+                                ('Média de tempo na Escola', '@{Média de anos na Escola}{0,0.00} anos')])
     grafico_linha_escola.add_tools(hover)
 
     # Aplicação de elementos estéticos.
-    grafico_linha_escola.background_fill_color = BACKGROUND_FILL
+    configuracoes_visuais(grafico_linha_escola,
+                          titulo_xaxis="Anos",
+                          titulo_yaxis="Média de Anos na Escola",
+                          orientacao_xaxis=0,
+                          posicao_legenda="bottom_right")
 
-    grafico_linha_escola.xaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_X
-    grafico_linha_escola.xaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-    grafico_linha_escola.yaxis[0].ticker.desired_num_ticks = NUM_MAJOR_TICKS_Y
-    grafico_linha_escola.yaxis[0].ticker.num_minor_ticks = NUM_MINOR_TICKS
-
-    grafico_linha_escola.xaxis.axis_label = "Anos" 
-    grafico_linha_escola.yaxis.axis_label = "Média de anos na escola" 
-
-    grafico_linha_escola.xaxis.axis_label_text_font = FONTE_TEXTO
-    grafico_linha_escola.yaxis.axis_label_text_font = FONTE_TEXTO
-
-    grafico_linha_escola.xaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-    grafico_linha_escola.yaxis.axis_label_text_font_size = TAMANHO_TITULO_EIXOS
-
-    grafico_linha_escola.xgrid.grid_line_color = LINHAS_GRADE
-    grafico_linha_escola.ygrid.grid_line_color = LINHAS_GRADE
-
-
-    grafico_linha_escola.title.text_font = FONTE_TEXTO
-    grafico_linha_escola.title.text_font_size =TAMANHO_TITULO
-    grafico_linha_escola.title.align = ALINHAMENTO_TITULO
-    grafico_linha_escola.title.text_baseline = BASELINE_TITULO
-
-    grafico_linha_escola.legend.location = "bottom_right"
-    grafico_linha_escola.legend.title = ""
-    grafico_linha_escola.legend.border_line_color = COR_DA_LINHA
-    grafico_linha_escola.legend.border_line_width = ESPESSURA_DA_LINHA
-    grafico_linha_escola.legend.border_line_alpha = ALPHA_DA_LINHA
-
-    grafico_linha_escola.toolbar.logo = None 
-    grafico_linha_escola.toolbar.autohide = True 
-    grafico_linha_escola.toolbar_location = POSICAO_BARRA_FERRAMENTAS
-
-    descricao = Paragraph(text="""Neste gráfico de Linhas, é relacionada a média de anos de presença na escola ao <br>
-                                    longo dos anos, em que cada linha representa um país. A visualização tem o objetivo <br>
-                                    de identificar melhorias na frequência dos alunos nas escolas e detectar tendências <br>
-                                    futuras com base nos padrões observados. Além disso, foram utilizadas cores para destacar <br>
-                                    alguns países, sendo a cor azul para os melhores desempenhos e a cor vermelha para os <br>
-                                    piores desempenhos no quesito de IDH (Índice de Desenvolvimento Humano). Por meio do <br>
-                                    módulo HoverTool, foi criada uma ferramenta de interatividade que, ao passar o cursor <br>
-                                    do mouse sobre cada linha, exibe o país, o ano correspondente e a média de anos na escola <br>
-                                    para aquele período. O título foi posicionado no centro para alinhar-se com as informações <br>
-                                    do gráfico. Por fim, vários rótulos foram padronizados em todos os gráficos usando o <br>
-                                    módulo variaveis_globais, proporcionando uma estética consistente para cada representação.""")
+    #DESCRIÇÃO DO GRÁFICO
+    descricao = DESCRICAO_LINHAS_ANOS_ESCOLA
 
     return grafico_linha_escola, descricao
