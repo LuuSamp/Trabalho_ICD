@@ -145,6 +145,10 @@ DESCRICAO_DISPERSAO_VACINA = Div(text="""
                                     e, consequentemente, poucas mortes.  
                                     """, width = 1080)
 
+DESCRICAO_LINHAS_NATALIDADE = Div(text="""<p>Em um intervalo de 100 anos (1910 a 2010), a taxa de natalidade esteve em constante movimento. Ela é afetada por vários aspectos sociais e econômicos.</p>
+                                  <p>Seguindo a linha da China, é possível ver um forte decrescimento entre os anos de 1957 e 1961. Essa data coincide com o período conhecido como A Grande Fome Chinesa (1958 - 1961).</p>
+                                  <p>Em todos os países, houve um decrescimento que começou no fim do século passado. Isso se deve à crescente integração da mulher em empresas e o reconhecimento delas como mais que apenas donas de casa.</p>""", width = 1080)
+
 """
 DESCRICAO_BARRAS_CARBONO.style = {'text-align': 'center'}
 DESCRICAO_BARRAS_PIB.style = {'text-align': 'center'}
