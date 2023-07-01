@@ -111,8 +111,10 @@ DESCRICAO_MAPA_IDH = Div(text="""
 DESCRICAO_BARRAS_ANIMADO_PIB = Div(text="""<p> Este gráfico tem como principal objetivo mostrar a mudança do PIB nos países do g20 a cada ano. O PIB é mostrado em bilhões.</p>
                                         <p> É possível notar o incrível avanço do PIB dos Estados Unidos e, mais recente, o avanço da China. </p>""")
 
-DESCRICAO_PROPORCAO_HOMENS_MULHERES = Div(text="""<p> Este gráfico tem como principal objetivo comparar a média de anos que mulheres e homens ficam na escola.</p>
-                                        <p> É possível notar que, em vários países do g20, a média dos anos escolares das mulheres ultrapassou a média dos anos dos homens. </p>"""
+DESCRICAO_PROPORCAO_HOMENS_MULHERES = Div(text="""<p> Este gráfico tem como principal objetivo comparar a média de anos que mulheres e homens ficam na escola. 
+                                        Com as "barras empilhadas", é possível ver a diferença entre a média de anos na escola de homens e mulheres em cada país.</p>
+                                        <p> Caso a a média anos na escola de homens e mulheres sejam a mesma, as barras estarão se encontrando no centro do gráfico, que foi marcado com uma linha.</p>
+                                        <p> Em vários países do g20, a média dos anos escolares das mulheres ultrapassou a média dos anos dos homens nos últimos anos conferidos.</p>""", width = 1080
                                    )
 
 DESCRICAO_BARRAS_SAUDE = Div(text="""
@@ -143,24 +145,11 @@ DESCRICAO_DISPERSAO_VACINA = Div(text="""
                                     e, consequentemente, poucas mortes.  
                                     """)
 
-DESCRICAO_LINHAS_NATALIDADE = Div(text="""<p>Em um intervalo de 100 anos (1910 a 2010), a taxa de natalidade esteve em constante movimento. Ela é afetada por vários aspectos sociais e econômicos.</p>
+DESCRICAO_LINHAS_NATALIDADE = Div(text="""<p>Com um gráfico de linhas, é fácil notar as diferenças em cada período e chegar a uma conclusão sobre o motivo desses eventos.</p>
+                                  <p> Em um intervalo de 100 anos (1910 a 2010), a taxa de natalidade esteve em constante movimento. Ela é afetada por vários aspectos sociais e econômicos.</p>
                                   <p>Seguindo a linha da China, é possível ver um forte decrescimento entre os anos de 1957 e 1961. Essa data coincide com o período conhecido como A Grande Fome Chinesa (1958 - 1961).</p>
                                   <p>Em todos os países, houve um decrescimento que começou no fim do século passado. Isso se deve à crescente integração da mulher em empresas e o reconhecimento delas como mais que apenas donas de casa.</p>""")
 
-"""
-DESCRICAO_BARRAS_CARBONO.style = {'text-align': 'center'}
-DESCRICAO_BARRAS_PIB.style = {'text-align': 'center'}
-DESCRICAO_BOLHAS_CALORIAS.style = {'text-align': 'center'}
-DESCRICAO_BOXPLOT_EXP_VIDA.style = {'text-align': 'center'}
-DESCRICAO_LINHAS_ANOS_ESCOLA.style = {'text-align': 'center'}
-DESCRICAO_LINHA_PIB_PC.style = {'text-align': 'center'}
-DESCRICAO_MAPA_GINI.style = {'text-align': 'center'}
-DESCRICAO_MAPA_IDH.style = {'text-align': 'center'}
-DESCRICAO_BARRAS_ANIMADO_PIB.style = {'text-align': 'center'}
-DESCRICAO_PROPORCAO_HOMENS_MULHERES.style = {'text-align': 'center'}
-DESCRICAO_BARRAS_SAUDE.style = {'text-align': 'center'}
-DESCRICAO_DISPERSAO_VACINA.style = {'text-align': 'center'}
-"""
 
 
 
