@@ -13,8 +13,6 @@ def grafico_mapa_Gini(datapath_Gini):
     países do G20 de acordo com os seus níveis de Gini.
     '''
 
-    output_file("./html/graf_mapa_gini.html")
-
     print(f"Carregando {__name__}")
 
     FIRST_YEAR = 1990
@@ -41,8 +39,6 @@ def grafico_mapa_Gini(datapath_Gini):
 
     descricao = DESCRICAO_MAPA_GINI
 
-    save(plot)
+    plot.sizing_mode = "stretch_width"
 
     return plot, descricao
-
-grafico_mapa_Gini("dados/gini_2100.csv")

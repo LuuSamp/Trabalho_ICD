@@ -17,17 +17,16 @@ DESCRICAO_BARRAS_CARBONO = Div(text="""Esse Ranking busca ordenar os países de 
                                  o valor do investimento realizado. O título foi colocado no centro para alinhar-se com 
                                 as informações do gráfico. Os nomes dos países foram rotacionados para facilitar a 
                                 leitura. Quanto aos rótulos, foram padronizados com base no módulo de variáveis globais.
-                                """, width = 1080)
+                                """)
 
 DESCRICAO_BARRAS_PIB = Div(text="""Esse gráfico tem como objetivo representar a média do PIB dos integrantes do G20 do período de 1990 à 2010. 
                                     Assim como em todos os gráficos, chamamos atenção para os Estados Unidos, Austrália, China e Índia.  
                                     Vemos que na questão econômica, a ordem se inverte e que não traduz a mesma ideia quando olhamos para o IDH. 
                                     A China, com um PID muitas vezes maior do que o da Austrália, não consegue transformar isso em melhoras significativas 
-                                    para o bem estar do cidadão. Vamos ver no gráfico seguinte que isso pode ser explicado. Quantos as cores, elas foram 
-                                    as mesmas utilizadas em todos os outros gráficos, o azul para representar os países com alto IDH e o vermelho os com 
-                                    IDH baixo. Destaco, por fim, que utilizamos apenas a ferramenta Hover, uma vez que, no gráfico de barras, 
-                                    não faz sentido ferramentas como a Pan, Box_Zoom e outras.
-                                    """, width = 1080)
+                                    para o bem estar do cidadão. Quantos as cores, elas foram as mesmas utilizadas em todos os outros gráficos, 
+                                    o azul para representar os países com alto IDH e o vermelho os com IDH baixo. Destaco, por fim, que utilizamos apenas
+                                    a ferramenta Hover, uma vez que, no gráfico de barras, não faz sentido ferramentas como a Pan, Box_Zoom e outras.
+                                    """)
 
 DESCRICAO_BOLHAS_CALORIAS = Div(text="""O gráfico de Bolhas tem como objetivo comparar se há uma correlação entre a quantidade 
                                     média de calorias disponíveis e o Índice de Massa Corporal (IMC) das pessoas. Além disso, 
@@ -37,20 +36,20 @@ DESCRICAO_BOLHAS_CALORIAS = Div(text="""O gráfico de Bolhas tem como objetivo c
                                     os países com bom desempenho (cor azul) e os países sem destaque (cor vermelha) na área de 
                                     IDH (Índice de Desenvolvimento Humano). As grades de fundo foram removidas, pois não eram 
                                     relevantes para o contexto do gráfico. Através da ferramenta HoverTool, é possível visualizar 
-                                    o país, o IMC médio e a média de calorias disponíveis ao passar o mouse sobre as bolhas. 
-                                    Conforme mencionado anteriormente, os rótulos foram padronizados com base no módulo variaveis_globais.
-                                """, width = 1080)
+                                    o país, o IMC médio e a média de calorias disponíveis ao passar o mouse sobre as bolhas. Os rótulos 
+                                    foram padronizados com base no módulo variaveis_globais.
+                                """)
 
 DESCRICAO_BOXPLOT_EXP_VIDA = Div(text="""Esse gráfico tem como objetivo apresentar a distribuição dentre os dados de expectativa de vida 
                                     de cada integrante do G20 de 1950 à 2020. O destaque permanece para os mesmos países, Estados Unidos, 
                                     Austrália, China e Índia, donos dos melhores e piores IDH's do G20, respectivamente. Podemos observar que 
-                                    conseguimos visualizar algo uma tendência coerente com o IDH. Vemos que EUA e Austrália possuíram uma espectativa 
-                                    de vida maiores que China e Índia. Porém a China, mesmo com o IDH baixo, não possuí uma das menores expectativas de vida 
+                                    conseguimos visualizar alguma tendência coerente com o IDH. Vemos que EUA e Austrália possuíram uma espectativa 
+                                    de vida maiores que China e Índia. Porém a China, mesmo com o IDH baixo, não possuí uma das menores expectativas de vida, 
                                     algo que pode ser explicado por diversos fatores. Alguns expecialistas, por exemplo, atribuem a longevidade de alguns povos 
-                                    asiáticos à alimentação e à cultura muito específica. Novamente, pontuo que escolhemos não disponibilizar 
+                                    asiáticos à alimentação e à cultura muito específica. Pontuo que escolhemos não disponibilizar 
                                     todas as ferramentas, mas apenas o Hover. Não seria coerente permitir ao usuário se mover por todo 
                                     o espaço disponível, sendo que todos os dados estão agrupados nessa janela de visualização.
-                                    """, width = 1080)
+                                    """)
 
 DESCRICAO_LINHAS_ANOS_ESCOLA = Div(text="""Neste gráfico de Linhas, é relacionada a média de anos de presença na escola ao 
                                     longo dos anos, em que cada linha representa um país. A visualização tem o objetivo 
@@ -63,22 +62,22 @@ DESCRICAO_LINHAS_ANOS_ESCOLA = Div(text="""Neste gráfico de Linhas, é relacion
                                     para aquele período. O título foi posicionado no centro para alinhar-se com as informações 
                                     do gráfico. Por fim, vários rótulos foram padronizados em todos os gráficos usando o 
                                     módulo variaveis_globais, proporcionando uma estética consistente para cada representação.
-                                    """, width = 1080)
+                                    """)
 
-DESCRICAO_LINHA_PIB_PC = Div(text="""Esse gráfico, embora esteja relacionado com o anterior, tem como objetivo representar a evolução 
+DESCRICAO_LINHA_PIB_PC = Div(text="""Este gráfico tem como objetivo representar a evolução 
                                     do PIB per capita dos países. Olhando para os destaques, vemos claramente uma tendência. Os países 
                                     com maior IDH possuem um dos maiores PIB's per capita e China e Índia vão na contramão disso. 
-                                    Como foi antecipado na descrição anterior, mesmo que a China nos últimos anos tenha um dos maiores 
+                                    Mesmo que a China nos últimos anos tenha um dos maiores 
                                     PIB's brutos do planeta, sua população é gigantesca e toda essa riqueza produzida quando é normalizada 
                                     pela população retorna um valor bem abaixo do esperado. O mesmo acontece para a Índia. Ambas com populações 
                                     acima do 1 bilhão de habitantes. Destaco também, por mais que não seja um dos países destacados, a Arábia Saudita 
                                     na década de 1970 até meados da década de 1980 teve um aumento gritante no seu PIB per capita e isso tem uma 
                                     explicação história simples: A Primeira Crise do Petróleo. Quando os países membros da OPEP, Organização dos Países 
-                                    Exportadores de Petróleo, resolveu aumentar muito o valor do combustível fóssil, que é a principal alavanca da 
+                                    Exportadores de Petróleo, resolveram aumentar muito o valor do combustível, que é a principal alavanca da 
                                     economia saudita há muito tempo, e isso aumentou muito a arrecadação do país e o seu PIB per capita, uma vez que a 
                                     população não cresceu no mesmo rítimo. Por fim, destaco que nesse gráfico a maioria das ferramentas foram adicionadas, 
                                     mas só é possível utilizá-las dentro dos limites da janela de visualização dos dados. 
-                                    """, width = 1080)
+                                    """)
 
 DESCRICAO_MAPA_GINI = Div(text="""
                                     Este outro gráfico do Mapa Mundial tem o objetivo de destacar os países do G20 em relação aos 
@@ -92,7 +91,7 @@ DESCRICAO_MAPA_GINI = Div(text="""
                                     que o da Austrália, tornando-a um país com menos desigualadade, o que não quer dizer algo positivo, já 
                                     que a grande maioria da sociedade indiana está na pobreza. Enquanto isso, a China que possui o segundo 
                                     menor IDH, possui um dos maiores níveis de Gini, rivalizando na questão de desigualdade social com Brasil.  
-                                    """, width = 1080)
+                                    """)
 
 DESCRICAO_MAPA_IDH = Div(text="""
                                     Este gráfico do Mapa Mundial tem o objetivo de destacar os países do G20 em relação aos 
@@ -101,22 +100,21 @@ DESCRICAO_MAPA_IDH = Div(text="""
                                     os países com IDH mais baixos em tons mais claros e os países com IDH mais altos em tons
                                     mais escuros. Observando o mapa, podemos notar que a Austrália possui o maior IDH, seguida 
                                     pelos Estados Unidos com o segundo maior IDH. Por outro lado, a Índia é o país com o menor 
-                                    IDH, seguida pela China, que possui o segundo menor IDH no mundo.
+                                    IDH, seguida pela China, que possui o segundo menor IDH o G20.
 
                                     É importante ressaltar que toda a análise deste trabalho se baseia na comparação entre os 
                                     dois países com os maiores IDH's e os dois países com os menores IDH's, sendo a Austrália o maior, 
                                     os EUA o segundo maior, a Índia o menor e a China o segundo menor. Portanto, essa visualização é 
-                                    fundamental para compreender todas as próximas análises e interpretações do trabalho.
-                                    dois países com os maiores IDHs, Austrália e EUA, e os dois países com os menores IDHs, Índia 
-                                    e China. Portanto, essa visualização é fundamental para compreender todas as próximas análises 
-                                    e interpretações.  
-                                    """, width = 1080)
+                                    fundamental para compreender todas as próximas análises e interpretações do trabalho.  
+                                    """)
 
 DESCRICAO_BARRAS_ANIMADO_PIB = Div(text="""<p> Este gráfico tem como principal objetivo mostrar a mudança do PIB nos países do g20 a cada ano. O PIB é mostrado em bilhões.</p>
-                                        <p> É possível notar o incrível avanço do PIB dos Estados Unidos e, mais recente, o avanço da China. </p>""", width = 1080)
+                                        <p> É possível notar o incrível avanço do PIB dos Estados Unidos e, mais recente, o avanço da China. </p>""")
 
-DESCRICAO_PROPORCAO_HOMENS_MULHERES = Div(text="""<p> Este gráfico tem como principal objetivo comparar a média de anos que mulheres e homens ficam na escola.</p>
-                                        <p> É possível notar que, em vários países do g20, a média dos anos escolares das mulheres ultrapassou a média dos anos dos homens. </p>""", width = 1080
+DESCRICAO_PROPORCAO_HOMENS_MULHERES = Div(text="""<p> Este gráfico tem como principal objetivo comparar a média de anos que mulheres e homens ficam na escola. 
+                                        Com as "barras empilhadas", é possível ver a diferença entre a média de anos na escola de homens e mulheres em cada país.</p>
+                                        <p> Caso a a média anos na escola de homens e mulheres sejam a mesma, as barras estarão se encontrando no centro do gráfico, que foi marcado com uma linha.</p>
+                                        <p> Em vários países do g20, a média dos anos escolares das mulheres ultrapassou a média dos anos dos homens nos últimos anos conferidos.</p>""", width = 1080
                                    )
 
 DESCRICAO_BARRAS_SAUDE = Div(text="""
@@ -130,7 +128,9 @@ DESCRICAO_BARRAS_SAUDE = Div(text="""
                                   a China que possui o segundo menor IDH, possui um investimento mediano com relação aos outros
                                   países. Por outro lado, os EUA que possui o segundo maior IDH é o país com o maior investimento
                                   em saúde, enquanto a Austrália que possui o maior IDH está em sexto lugar no ranking de investimentos. 
-                                    """, width = 1080)
+                                  Quanto às ferramentas e variáveis estéticas, reintero que a escolha do grupo foi de padronizar a grande
+                                  maioria delas, inclusive sendo definidas por meio de uma função armazenada no módulo "funcoes_esteticas".
+                                    """)
 
 DESCRICAO_DISPERSAO_VACINA = Div(text="""
                                     Esse gráfico tem como objetivo comparar os países do G20 com relação a dois assuntos muito importantes na área da
@@ -143,26 +143,13 @@ DESCRICAO_DISPERSAO_VACINA = Div(text="""
                                     possui uma porcentagem alta de crianças vacinadas e, consequentemente uma baixa média de mortes. Um resultado esperado 
                                     foi observado em relação aos países com IDHs altos, que ao longo dos anos tiveram grande parte das crianças vacinadas 
                                     e, consequentemente, poucas mortes.  
-                                    """, width = 1080)
+                                    """)
 
-DESCRICAO_LINHAS_NATALIDADE = Div(text="""<p>Em um intervalo de 100 anos (1910 a 2010), a taxa de natalidade esteve em constante movimento. Ela é afetada por vários aspectos sociais e econômicos.</p>
+DESCRICAO_LINHAS_NATALIDADE = Div(text="""<p>Com um gráfico de linhas, é fácil notar as diferenças em cada período e chegar a uma conclusão sobre o motivo desses eventos.</p>
+                                  <p> Em um intervalo de 100 anos (1910 a 2010), a taxa de natalidade esteve em constante movimento. Ela é afetada por vários aspectos sociais e econômicos.</p>
                                   <p>Seguindo a linha da China, é possível ver um forte decrescimento entre os anos de 1957 e 1961. Essa data coincide com o período conhecido como A Grande Fome Chinesa (1958 - 1961).</p>
-                                  <p>Em todos os países, houve um decrescimento que começou no fim do século passado. Isso se deve à crescente integração da mulher em empresas e o reconhecimento delas como mais que apenas donas de casa.</p>""", width = 1080)
+                                  <p>Em todos os países, houve um decrescimento que começou no fim do século passado. Isso se deve à crescente integração da mulher em empresas e o reconhecimento delas como mais que apenas donas de casa.</p>""")
 
-"""
-DESCRICAO_BARRAS_CARBONO.style = {'text-align': 'center'}
-DESCRICAO_BARRAS_PIB.style = {'text-align': 'center'}
-DESCRICAO_BOLHAS_CALORIAS.style = {'text-align': 'center'}
-DESCRICAO_BOXPLOT_EXP_VIDA.style = {'text-align': 'center'}
-DESCRICAO_LINHAS_ANOS_ESCOLA.style = {'text-align': 'center'}
-DESCRICAO_LINHA_PIB_PC.style = {'text-align': 'center'}
-DESCRICAO_MAPA_GINI.style = {'text-align': 'center'}
-DESCRICAO_MAPA_IDH.style = {'text-align': 'center'}
-DESCRICAO_BARRAS_ANIMADO_PIB.style = {'text-align': 'center'}
-DESCRICAO_PROPORCAO_HOMENS_MULHERES.style = {'text-align': 'center'}
-DESCRICAO_BARRAS_SAUDE.style = {'text-align': 'center'}
-DESCRICAO_DISPERSAO_VACINA.style = {'text-align': 'center'}
-"""
 
 
 

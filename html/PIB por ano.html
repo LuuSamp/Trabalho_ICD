@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bokeh Plot</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.2.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.0.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+  </head>
+  <body>
+    <div id="aadde245-b8e7-4b43-880f-d3cf28937366" data-root-id="p1916" style="display: contents;"></div>
+  <div id="bd65ea6d-c7dd-4dbd-82f4-8ce6ddf1101a" data-root-id="p1009" style="display: contents;"></div>
+  
+    <script type="application/json" id="p2224">
+      {"02953f66-1369-4dca-879b-3f7b791507a4":{"version":"3.2.0","title":"Bokeh Application","roots":[{"type":"object","name":"Column","id":"p1916","attributes":{"children":[{"type":"object","name":"Button","id":"p1913","attributes":{"subscribed_events":{"type":"set","entries":["button_click"]},"align":"center","label":"Play"}},{"type":"object","name":"Slider","id":"p1914","attributes":{"width":800,"align":"center","title":"Year","start":1910,"end":2010,"value":1910}},{"type":"object","name":"Figure","id":"p1878","attributes":{"name":"PIB por ano","width":700,"height":500,"x_range":{"type":"object","name":"Range1d","id":"p1888","attributes":{"end":16000}},"y_range":{"type":"object","name":"FactorRange","id":"p1889","attributes":{"factors":["Saudi Arabia","South Korea","South Africa","Brazil","European Union","Argentina","Australia","Mexico","Turkey","Canada","Indonesia","Italy","Japan","France","India","Russia","United Kingdom","China","Germany","United States"]}},"x_scale":{"type":"object","name":"LinearScale","id":"p1890"},"y_scale":{"type":"object","name":"CategoricalScale","id":"p1891"},"title":{"type":"object","name":"Title","id":"p1881","attributes":{"text":"PIB dos pa\u00edses do G20 (em bilh\u00f5es)","text_font":"Arial","text_font_size":"20pt","text_baseline":"middle","align":"center"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1908","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1875","attributes":{"selected":{"type":"object","name":"Selection","id":"p1876","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1877"},"data":{"type":"map","entries":[["country",["Argentina","Australia","Brazil","Canada","China","France","Germany","India","Indonesia","Italy","Japan","Mexico","Russia","Saudi Arabia","South Africa","South Korea","Turkey","United Kingdom","United States","European Union"]],["GDP",[36.0,36.4,21.8,47.9,373.0,221.0,399.0,236.0,62.1,123.0,187.0,42.5,256.0,3.88,15.2,7.61,47.4,288.0,745.0,23.4867391304348]],["color",{"type":"ndarray","array":["gray","#084C9F","gray","gray","#FA4343","gray","gray","#900C3F","gray","gray","gray","gray","gray","gray","gray","gray","gray","gray","#2685F8","gray"],"shape":[20],"dtype":"object","order":"little"}],["alpha",{"type":"ndarray","array":{"type":"bytes","data":"mpmZmZmZyT+amZmZmZnpP5qZmZmZmck/mpmZmZmZyT+amZmZmZnpP5qZmZmZmck/mpmZmZmZyT+amZmZmZnpP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZ6T+amZmZmZnJPw=="},"shape":[20],"dtype":"float64","order":"little"}],["legend",{"type":"ndarray","array":["Other Countries","Australia","Other Countries","Other Countries","China","Other Countries","Other Countries","India","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","United States","Other Countries"],"shape":[20],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1909","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1910"}}},"glyph":{"type":"object","name":"HBar","id":"p1905","attributes":{"y":{"type":"field","field":"country"},"height":{"type":"value","value":0.9},"right":{"type":"field","field":"GDP"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"field","field":"alpha"},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"field","field":"alpha"},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"field","field":"alpha"}}},"nonselection_glyph":{"type":"object","name":"HBar","id":"p1906","attributes":{"y":{"type":"field","field":"country"},"height":{"type":"value","value":0.9},"right":{"type":"field","field":"GDP"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.1},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"HBar","id":"p1907","attributes":{"y":{"type":"field","field":"country"},"height":{"type":"value","value":0.9},"right":{"type":"field","field":"GDP"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.2},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1887","attributes":{"logo":null,"autohide":true}},"left":[{"type":"object","name":"CategoricalAxis","id":"p1897","attributes":{"ticker":{"type":"object","name":"CategoricalTicker","id":"p1898"},"formatter":{"type":"object","name":"CategoricalTickFormatter","id":"p1899"},"axis_label_text_font":"Arial","axis_label_text_font_size":"15pt","major_label_policy":{"type":"object","name":"AllLabels","id":"p1900"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1892","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1893","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1915","attributes":{"format":"$0,0"}},"axis_label_text_font":"Arial","axis_label_text_font_size":"15pt","major_label_policy":{"type":"object","name":"AllLabels","id":"p1895"}}}],"center":[{"type":"object","name":"Grid","id":"p1896","attributes":{"axis":{"id":"p1892"}}},{"type":"object","name":"Grid","id":"p1901","attributes":{"dimension":1,"axis":{"id":"p1897"}}},{"type":"object","name":"Legend","id":"p1911","attributes":{"location":"bottom_right","title":"","border_line_color":"black","border_line_alpha":0.7,"border_line_width":1.2,"items":[{"type":"object","name":"LegendItem","id":"p1912","attributes":{"label":{"type":"field","field":"legend"},"renderers":[{"id":"p1908"}]}}]}}],"background_fill_color":"rgba(241, 242, 244, 0.5)"}}]}},{"type":"object","name":"Div","id":"p1009","attributes":{"text":"&lt;p&gt; Este gr\u00e1fico tem como principal objetivo mostrar a mudan\u00e7a do PIB nos pa\u00edses do g20 a cada ano. O PIB \u00e9 mostrado em bilh\u00f5es.&lt;/p&gt;\n                                        &lt;p&gt; \u00c9 poss\u00edvel notar o incr\u00edvel avan\u00e7o do PIB dos Estados Unidos e, mais recente, o avan\u00e7o da China. &lt;/p&gt;"}}]}}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('p2224').textContent;
+              const render_items = [{"docid":"02953f66-1369-4dca-879b-3f7b791507a4","roots":{"p1916":"aadde245-b8e7-4b43-880f-d3cf28937366","p1009":"bd65ea6d-c7dd-4dbd-82f4-8ce6ddf1101a"},"root_ids":["p1916","p1009"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>

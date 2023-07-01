@@ -79,7 +79,8 @@ def educacao_por_genero_media(datapath_homens, datapath_mulheres):
     plot.legend.border_line_color = COR_DA_LINHA
     plot.legend.border_line_width = ESPESSURA_DA_LINHA
     plot.legend.border_line_alpha = ALPHA_DA_LINHA
-    print(plot.title)
+
+    plot.sizing_mode = "stretch_width"
     # A GUI
     return (plot, DESCRICAO_PROPORCAO_HOMENS_MULHERES)
 

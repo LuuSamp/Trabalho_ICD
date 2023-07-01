@@ -15,8 +15,6 @@ def linha_escola(datapath_homens,datapath2_mulheres):
     determinados países frequentam a escola. Um datapath para homens e um para mulheres. 
     """
 
-    output_file("./html/graf_linhas_escola.html")
-
     # Tratamento da base de dados.
     print(f"Carregando {__name__}")
 
@@ -86,8 +84,6 @@ def linha_escola(datapath_homens,datapath2_mulheres):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_LINHAS_ANOS_ESCOLA
 
-    save(grafico_linha_escola)
+    grafico_linha_escola.sizing_mode = "stretch_width"
 
     return grafico_linha_escola, descricao
-
-linha_escola("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")

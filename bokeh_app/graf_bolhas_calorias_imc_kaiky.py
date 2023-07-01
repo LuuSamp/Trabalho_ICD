@@ -13,8 +13,6 @@ from bokeh.io import save, output_file
 
 def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulheres, datapath_calorias):
 
-    output_file("./html/graf_bolhas.html")
-
     print(f"Carregando {__name__}")
 
     # Reorganizando o DataFrame.
@@ -94,8 +92,6 @@ def grafico_bolhas(datapath_populacao, datapath_imc_homens, datapath_imc_mulhere
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BOLHAS_CALORIAS
 
-    save(imc_calorias)
+    imc_calorias.sizing_mode = "stretch_width"
 
     return imc_calorias, descricao
-
-grafico_bolhas("dados/pop.csv", "dados/body_mass_index_bmi_men_kgperm2.csv", "dados/body_mass_index_bmi_women_kgperm2.csv","dados/food_supply_kilocalories_per_person_and_day.csv")

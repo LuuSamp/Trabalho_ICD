@@ -16,8 +16,6 @@ def box_plot_life(datapath):
     produz um boxplot para a espectativa de vida dos países do G20.
     '''
 
-    output_file("./html/graf_boxplot.html")
-
     print(f"Carregando {__name__}")
     
     #TRATAMENTO DA BASE DE DADOS
@@ -100,9 +98,7 @@ def box_plot_life(datapath):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BOXPLOT_EXP_VIDA
 
-    save(boxplot)
+    boxplot.sizing_mode = "stretch_width"
 
     return boxplot, descricao
-
-box_plot_life("dados/life_expectancy_male.csv")
 

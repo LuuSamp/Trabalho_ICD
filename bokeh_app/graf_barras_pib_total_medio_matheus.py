@@ -16,8 +16,6 @@ def graf_barras_pib(datapath):
     país do G20 e da UE durante o período de 20 anos (1990-2010) de forma ordenada.
     '''
 
-    output_file("./html/graf_pib_total.html")
-
     print(f"Carregando {__name__}")
     
     #TRATAMENTO DA BASE DE DADOS
@@ -70,9 +68,7 @@ def graf_barras_pib(datapath):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BARRAS_PIB
 
-    save(bar_plot)
+    bar_plot.sizing_mode = "stretch_width"
 
     return bar_plot, descricao
-
-graf_barras_pib("dados/gdp_total.csv")
 
