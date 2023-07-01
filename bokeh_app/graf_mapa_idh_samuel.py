@@ -17,8 +17,6 @@ def grafico_mapa_IDH(datapath_IDH):
     da cor os países que possuem os maiores e os menores Índices de Desenvolvimento Humano.
     '''
 
-    output_file(".\html\graf_mapa_idh.html")
-
     print(f"Carregando {__name__}")
 
     # Criação de Data Frames "tratados" a partir da utilização da função "reorganiza":
@@ -54,7 +52,6 @@ def grafico_mapa_IDH(datapath_IDH):
 
     descricao = DESCRICAO_MAPA_GINI
 
-    save(plot)
+    plot.sizing_mode = "stretch_width"
 
     return plot, descricao
-grafico_mapa_IDH("dados\hdi_human_development_index.csv")

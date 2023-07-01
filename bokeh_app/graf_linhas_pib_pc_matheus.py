@@ -17,8 +17,6 @@ def grafico_de_linhas_gdp(datapath):
     título do gráfico e gerar automaticamente um gráfico com bokeh 
     sobre o PIB ou GDP Per Capita dos integrantes do G20
     '''
-
-    output_file("./html/graf_linha_pib.html")
     
     print(f"Carregando {__name__}")
 
@@ -83,10 +81,8 @@ def grafico_de_linhas_gdp(datapath):
     
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_LINHA_PIB_PC
-    
-    save(line_plot)
+
+    line_plot.sizing_mode = "stretch_width"
 
     return line_plot, descricao
-
-grafico_de_linhas_gdp("dados/gdp_pcap.csv")
 
