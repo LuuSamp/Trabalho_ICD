@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bokeh Plot</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.2.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.0.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+  </head>
+  <body>
+    <div id="d76bc43a-ab9b-42c0-a92b-0c36523e8973" data-root-id="p1723" style="display: contents;"></div>
+  <div id="dcc30461-7a6b-4af9-85c2-2c140dd51f49" data-root-id="p1001" style="display: contents;"></div>
+  
+    <script type="application/json" id="p2219">
+      {"74f9cd20-ed43-47ed-b6cd-7eb83c0ac901":{"version":"3.2.0","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1723","attributes":{"name":"Emiss\u00e3o de CO2","width":1080,"height":720,"sizing_mode":"stretch_width","x_range":{"type":"object","name":"FactorRange","id":"p1733","attributes":{"factors":["United States","Australia","Canada","Saudi Arabia","Russia","Germany","Japan","South Korea","United Kingdom","South Africa","European Union","Italy","France","China","Argentina","Mexico","Turkey","Brazil","Indonesia","India"]}},"y_range":{"type":"object","name":"Range1d","id":"p1734","attributes":{"end":20}},"x_scale":{"type":"object","name":"CategoricalScale","id":"p1735"},"y_scale":{"type":"object","name":"LinearScale","id":"p1736"},"title":{"type":"object","name":"Title","id":"p1726","attributes":{"text":"Emiss\u00e3o de Carbono por Habitante","text_font":"Arial","text_font_size":"20pt","text_baseline":"middle","align":"center"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1753","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1720","attributes":{"selected":{"type":"object","name":"Selection","id":"p1721","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1722"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAA="},"shape":[20],"dtype":"int32","order":"little"}],["country",{"type":"ndarray","array":["United States","Australia","Canada","Saudi Arabia","Russia","Germany","Japan","South Korea","United Kingdom","South Africa","European Union","Italy","France","China","Argentina","Mexico","Turkey","Brazil","Indonesia","India"],"shape":[20],"dtype":"object","order":"little"}],["CO2",{"type":"ndarray","array":{"type":"bytes","data":"BcWPMXdtM0Dgvg6cM8IxQJ5eKcsQBzFAM8SxLm4TMECBBMWPMdcmQP8h/fZ1wCVAryXkg55tI0COdXEbDWAjQOM2GsBbgCFA+u3rwDljIUA9CtejcP0gQHbgnBGlvR1Adk8eFmoNGkClTkATYYMRQPjCZKpgVBBA6pWyDHEsEEDDZKpgVFIPQLprCfmgZ/4/hA1Pr5Rl+D/UmuYdp+jyPw=="},"shape":[20],"dtype":"float64","order":"little"}],["color",{"type":"ndarray","array":["#2685F8","#084C9F","gray","gray","gray","gray","gray","gray","gray","gray","gray","gray","gray","#FA4343","gray","gray","gray","gray","gray","#900C3F"],"shape":[20],"dtype":"object","order":"little"}],["preenchimento",{"type":"ndarray","array":{"type":"bytes","data":"mpmZmZmZ6T+amZmZmZnpP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnpP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnpPw=="},"shape":[20],"dtype":"float64","order":"little"}],["legenda",{"type":"ndarray","array":["United States","Australia","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","China","Other Countries","Other Countries","Other Countries","Other Countries","Other Countries","India"],"shape":[20],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1754","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1755"}}},"glyph":{"type":"object","name":"VBar","id":"p1750","attributes":{"x":{"type":"field","field":"country"},"width":{"type":"value","value":0.9},"top":{"type":"field","field":"CO2"},"line_alpha":{"type":"value","value":0.7},"line_width":{"type":"value","value":1.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"field","field":"preenchimento"},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"field","field":"preenchimento"}}},"nonselection_glyph":{"type":"object","name":"VBar","id":"p1751","attributes":{"x":{"type":"field","field":"country"},"width":{"type":"value","value":0.9},"top":{"type":"field","field":"CO2"},"line_alpha":{"type":"value","value":0.1},"line_width":{"type":"value","value":1.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.1},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"VBar","id":"p1752","attributes":{"x":{"type":"field","field":"country"},"width":{"type":"value","value":0.9},"top":{"type":"field","field":"CO2"},"line_alpha":{"type":"value","value":0.2},"line_width":{"type":"value","value":1.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.2},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1732","attributes":{"logo":null,"autohide":true,"tools":[{"type":"object","name":"HoverTool","id":"p1758","attributes":{"renderers":"auto","tooltips":[["Pa\u00eds","@country"],["Emiss\u00e3o por Pessoa","@CO2 toneladas"]]}}]}},"toolbar_location":"below","left":[{"type":"object","name":"LinearAxis","id":"p1742","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1743","attributes":{"num_minor_ticks":0,"desired_num_ticks":15,"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1744"},"axis_label":"M\u00e9dia da Emiss\u00e3o de CO2 por Pessoa (Toneladas)","axis_label_text_font":"Arial","axis_label_text_font_size":"15pt","major_label_policy":{"type":"object","name":"AllLabels","id":"p1745"}}}],"below":[{"type":"object","name":"CategoricalAxis","id":"p1737","attributes":{"ticker":{"type":"object","name":"CategoricalTicker","id":"p1738"},"formatter":{"type":"object","name":"CategoricalTickFormatter","id":"p1739"},"axis_label":"Pa\u00edses","axis_label_text_font":"Arial","axis_label_text_font_size":"15pt","major_label_orientation":0.7,"major_label_policy":{"type":"object","name":"AllLabels","id":"p1740"}}}],"center":[{"type":"object","name":"Grid","id":"p1741","attributes":{"axis":{"id":"p1737"},"grid_line_color":null}},{"type":"object","name":"Grid","id":"p1746","attributes":{"dimension":1,"axis":{"id":"p1742"},"grid_line_color":null}},{"type":"object","name":"Legend","id":"p1756","attributes":{"title":"","border_line_color":"black","border_line_alpha":0.7,"border_line_width":1.2,"items":[{"type":"object","name":"LegendItem","id":"p1757","attributes":{"label":{"type":"field","field":"legenda"},"renderers":[{"id":"p1753"}]}}]}}],"background_fill_color":"rgba(241, 242, 244, 0.5)"}},{"type":"object","name":"Div","id":"p1001","attributes":{"width":1080,"text":"Esse Ranking busca ordenar os pa\u00edses de acordo com a emiss\u00e3o de carbono realizada \n                                 por cada um deles. As barras do gr\u00e1fico foram colocadas de maneira vertical para que \n                                 itens com barras mais longas ou mais altas sejam visualmente distintos dos itens com \n                                 barras mais curtas ou mais baixas, facilitando a identifica\u00e7\u00e3o dos melhores ou piores \n                                 classificados e tamb\u00e9m contribuindo para a compreens\u00e3o das diferen\u00e7as entre os pa\u00edses. \n                                 Al\u00e9m disso, \u00e9 v\u00e1lido ressaltar que algumas das barras foram destacadas com cor, sendo \n                                 a cor azul utilizada para representar os melhores e a cor vermelha para representar as \n                                 piores na\u00e7\u00f5es no quesito de IDH (\u00cdndice de Desenvolvimento Humano). Outro ponto a ser \n                                 destacado \u00e9 a utiliza\u00e7\u00e3o de ferramentas interativas por meio da fun\u00e7\u00e3o HoverTool, que \n                                 permite a visualiza\u00e7\u00e3o dos dados de cada barra, incluindo informa\u00e7\u00f5es sobre o pa\u00eds e \n                                 o valor do investimento realizado. O t\u00edtulo foi colocado no centro para alinhar-se com \n                                as informa\u00e7\u00f5es do gr\u00e1fico. Os nomes dos pa\u00edses foram rotacionados para facilitar a \n                                leitura. Quanto aos r\u00f3tulos, foram padronizados com base no m\u00f3dulo de vari\u00e1veis globais.\n                                "}}]}}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('p2219').textContent;
+              const render_items = [{"docid":"74f9cd20-ed43-47ed-b6cd-7eb83c0ac901","roots":{"p1723":"d76bc43a-ab9b-42c0-a92b-0c36523e8973","p1001":"dcc30461-7a6b-4af9-85c2-2c140dd51f49"},"root_ids":["p1723","p1001"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>
