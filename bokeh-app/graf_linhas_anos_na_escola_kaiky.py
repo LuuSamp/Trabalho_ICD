@@ -7,10 +7,17 @@ from variaveis_globais import *
 from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
 from descricoes_dos_graficos import *
+from bokeh.io import save, output_file
 
 def linha_escola(datapath_homens,datapath2_mulheres):
-    # Tratamento da base de dados.
+    """
+    Essa função recebe dois datapaths relacionados à quantidade de anos média que os habitantes de 
+    determinados países frequentam a escola. Um datapath para homens e um para mulheres. 
+    """
 
+    output_file("./html/graf_linhas_escola.html")
+
+    # Tratamento da base de dados.
     print(f"Carregando {__name__}")
 
     df_homens = reorganiza(datapath_homens, column_name = "Média de anos na Escola por Homens", first_year = 1970, last_year = 2015, csv = False)
@@ -79,4 +86,8 @@ def linha_escola(datapath_homens,datapath2_mulheres):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_LINHAS_ANOS_ESCOLA
 
+    save(grafico_linha_escola)
+
     return grafico_linha_escola, descricao
+
+linha_escola("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")

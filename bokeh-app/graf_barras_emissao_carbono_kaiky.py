@@ -7,8 +7,11 @@ from CDS import transformador_CDS
 from funcoes_esteticas import configuracoes_visuais
 from descricoes_dos_graficos import *
 from fun_cores_legendas_alpha import criador_colunas_esteticas
+from bokeh.io import save, output_file
 
 def grafico_ranking_co2(datapath):
+
+    output_file("./html/graf_barras_carbono.html")
 
     print(f"Carregando {__name__}")
 
@@ -62,4 +65,10 @@ def grafico_ranking_co2(datapath):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BARRAS_CARBONO
 
+    save(ranking_co2)
+
+    ranking_co2.sizing_mode = "stretch_width"
+    
     return ranking_co2, descricao
+
+grafico_ranking_co2("dados/co2.csv")

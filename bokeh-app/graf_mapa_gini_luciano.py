@@ -3,6 +3,7 @@ from reorganizador import reorganiza
 from traducao_g20 import filtro_paises_do_g20
 from criador_de_mapas import cria_mapa
 from descricoes_dos_graficos import *
+from bokeh.io import save, output_file
 
 def grafico_mapa_Gini(datapath_Gini):
 
@@ -11,6 +12,8 @@ def grafico_mapa_Gini(datapath_Gini):
     do mundo inteiro. Ela tem o objetivo de criar um mapa mundial e destacar os
     países do G20 de acordo com os seus níveis de Gini.
     '''
+
+    output_file("./html/graf_mapa_gini.html")
 
     print(f"Carregando {__name__}")
 
@@ -38,4 +41,8 @@ def grafico_mapa_Gini(datapath_Gini):
 
     descricao = DESCRICAO_MAPA_GINI
 
+    save(plot)
+
     return plot, descricao
+
+grafico_mapa_Gini("dados/gini_2100.csv")
