@@ -22,7 +22,7 @@ def linha_natalidade(datapath):
 
 
     # Objeto base do gráfico.
-    plot = figure(title="Taxa de Natalidade (20)", 
+    plot = figure(title="Taxa de Natalidade G20", 
                                 width=LARGURA, 
                                 height=ALTURA, 
                                 x_range=Range1d(1910, 2010, bounds="auto"), 
