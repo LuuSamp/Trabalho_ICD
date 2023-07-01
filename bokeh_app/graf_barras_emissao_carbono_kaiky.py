@@ -11,8 +11,6 @@ from bokeh.io import save, output_file
 
 def grafico_ranking_co2(datapath):
 
-    output_file("./html/graf_barras_carbono.html")
-
     print(f"Carregando {__name__}")
 
     # Tratamento de dados
@@ -65,10 +63,6 @@ def grafico_ranking_co2(datapath):
     #DESCRIÇÃO DO GRÁFICO
     descricao = DESCRICAO_BARRAS_CARBONO
 
-    save(ranking_co2)
-
     ranking_co2.sizing_mode = "stretch_width"
     
     return ranking_co2, descricao
-
-grafico_ranking_co2("dados/co2.csv")
