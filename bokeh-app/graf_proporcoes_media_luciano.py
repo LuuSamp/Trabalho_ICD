@@ -1,8 +1,8 @@
-from bokeh.plotting import figure, column, row
-from bokeh.models import Slider, ColumnDataSource, Button, NumeralTickFormatter, FixedTicker
+from bokeh.plotting import figure, column
+from bokeh.models import ColumnDataSource, NumeralTickFormatter, FixedTicker
 from reorganizador import *
 from traducao_g20 import filtro_paises_do_g20
-from bokeh.io import show
+from bokeh.io import output_file, save
 import pandas as pd
 from variaveis_globais import *
 from cores import lista_alpha
@@ -16,18 +16,18 @@ def educacao_por_genero_media(datapath_homens, datapath_mulheres):
     # Dataframe a ser usado
     dataframe_homens = reorganiza(datapath=datapath_homens, column_name="Anos_Escolares", first_year=1970, last_year=2015, )
     dataframe_mulheres = reorganiza(datapath=datapath_mulheres, column_name="Anos_Escolares", first_year=1970, last_year=2015, )
-    dataframe_homens = filtro_paises_do_g20(dataframe_homens)
-    dataframe_mulheres = filtro_paises_do_g20(dataframe_mulheres)
+    dataframe_homens = filtro_paises_do_g20(dataframe_homens, True, "country")
+    dataframe_mulheres = filtro_paises_do_g20(dataframe_mulheres, True, "country")
     dataframe_total = dataframe_homens.copy()
     dataframe_total["Anos_Escolares"] = dataframe_homens["Anos_Escolares"] + dataframe_mulheres["Anos_Escolares"]
-
+    print(f"{len(dataframe_homens)}  {len(dataframe_mulheres)}  {len(dataframe_total)}")
+    
     # Dados
-    year = 1970
-
     raw_data = {"country": list(dataframe_total["country"]), 
-                "Homens": list(dataframe_homens["Anos_Escolares"].groupby("country").mean()/dataframe_total["Anos_Escolares"].groupby("country").mean()),
-                "Mulheres": list(dataframe_mulheres["Anos_Escolares"].groupby("country").mean()/dataframe_total["Anos_Escolares"].groupby("country").mean()),
-                "alpha": dataframe_total["country"].groupby("country").apply(lista_alpha)}
+                "Homens": list(dataframe_homens["Anos_Escolares"]/dataframe_total["Anos_Escolares"]),
+                "Mulheres": list(dataframe_mulheres["Anos_Escolares"]/dataframe_total["Anos_Escolares"]),
+                "alpha": list(dataframe_total["country"].apply(lista_alpha))}
+
     data_source = ColumnDataSource(raw_data)
     sorted_countries = list(pd.DataFrame(raw_data).sort_values(by=["Mulheres"])["country"])
 
@@ -55,7 +55,6 @@ def educacao_por_genero_media(datapath_homens, datapath_mulheres):
     plot.title.text_font_size = TAMANHO_TITULO
     plot.background_fill_color = BACKGROUND_FILL
 
-
     plot.xaxis.ticker=FixedTicker(ticks=[tick/100 for tick in range(0, 101, 10)])
 
     plot.xaxis.axis_label_text_font = FONTE_TEXTO
@@ -80,8 +79,10 @@ def educacao_por_genero_media(datapath_homens, datapath_mulheres):
     plot.legend.border_line_color = COR_DA_LINHA
     plot.legend.border_line_width = ESPESSURA_DA_LINHA
     plot.legend.border_line_alpha = ALPHA_DA_LINHA
-
+    print(plot.title)
     # A GUI
     return (plot, DESCRICAO_PROPORCAO_HOMENS_MULHERES)
 
-show(educacao_por_genero_media("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv"))
+output_file("html/media_homens_e_mulheres_na_educacao.html")
+plot, descricao = educacao_por_genero_media("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")
+save(column(plot, descricao))
