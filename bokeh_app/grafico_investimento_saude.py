@@ -6,7 +6,6 @@ from bokeh.plotting import figure
 from descricoes_dos_graficos import *
 from funcoes_esteticas import configuracoes_visuais
 from fun_cores_legendas_alpha import *
-from bokeh.io import save, output_file
 
 def grafico_investimento_saude(datapath_investimento_saude):
 
@@ -15,8 +14,6 @@ def grafico_investimento_saude(datapath_investimento_saude):
     em saúde. Ela tem o objetivo de retornar um ranking(gráfico de barras) dos países 
     do G20 que mais investem em saúde nos anos de 1995 a 2010.
     '''
-
-    output_file("./html/graf_barras_saude.html")
 
     # Criando um Data Frame "tratado" a partir da utilização da função "reorganiza": 
     df_investimento_saude = reorganiza(datapath_investimento_saude, "Investimento em Saúde", 1995, 2010)
@@ -39,20 +36,19 @@ def grafico_investimento_saude(datapath_investimento_saude):
                                             height=ALTURA, 
                                             width=LARGURA, 
                                             title="Média dos Investimentos em Saúde nos últimos anos", 
-                                            tools="",
-                                            name="Investimento em Saúde")
+                                            tools="")
 
     # Criando o Gráfico de Barras:
     ranking_investimento_saude_g20.vbar(x="country", 
                                         top="Investimento em Saúde", 
                                         source=source, 
                                         width=0.9, 
-                                        color="color", 
-                                        alpha="preenchimento", 
+                                        color="Cor", 
+                                        alpha="Preenchimento", 
                                         line_color=COR_DA_LINHA, 
                                         line_width=ESPESSURA_DA_LINHA, 
                                         line_alpha=ALPHA_DA_LINHA, 
-                                        legend_field = "legenda")
+                                        legend_field = "Legenda")
 
     # Implementando ferramenta Hover:
     hover = HoverTool(tooltips=[('País', '@country'), 
@@ -66,12 +62,8 @@ def grafico_investimento_saude(datapath_investimento_saude):
                           orientacao_xaxis=0.7,
                           posicao_legenda="top_right")
 
-    ranking_investimento_saude_g20.yaxis.formatter = NumeralTickFormatter(format = "0.0%") 
+    ranking_investimento_saude_g20.yaxis.formater = NumeralTickFormatter(format = "0.0%") 
 
     descricao = DESCRICAO_BARRAS_SAUDE
 
-    save(ranking_investimento_saude_g20)
-
     return ranking_investimento_saude_g20, descricao
-
-grafico_investimento_saude("dados/government_health_spending_of_total_gov_spending_percent.csv")
