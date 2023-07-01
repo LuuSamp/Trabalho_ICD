@@ -6,6 +6,7 @@ from bokeh.models import Div
 dicionario = dict_graficos.dicionario_de_graficos
 
 for nome, elementos in dicionario.items():
+    print(nome)
     output_file(f"html/{nome}.html")
     save(elementos)
 
