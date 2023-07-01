@@ -67,6 +67,8 @@ def linha_natalidade(datapath):
     
     plot.legend.click_policy="hide"
 
+    plot.sizing_mode = "stretch_width"
+
     return plot, DESCRICAO_LINHAS_NATALIDADE
 output_file("html/Taxa_de_Natalidade.html")
 
