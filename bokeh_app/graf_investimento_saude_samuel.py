@@ -16,8 +16,6 @@ def grafico_investimento_saude(datapath_investimento_saude):
     do G20 que mais investem em saúde nos anos de 1995 a 2010.
     '''
 
-    output_file("./html/graf_barras_saude.html")
-
     # Criando um Data Frame "tratado" a partir da utilização da função "reorganiza": 
     df_investimento_saude = reorganiza(datapath_investimento_saude, "Investimento em Saúde", 1995, 2010)
 
@@ -70,8 +68,6 @@ def grafico_investimento_saude(datapath_investimento_saude):
 
     descricao = DESCRICAO_BARRAS_SAUDE
 
-    save(ranking_investimento_saude_g20)
+    ranking_investimento_saude_g20.sizing_mode = "stretch_width"
 
     return ranking_investimento_saude_g20, descricao
-
-grafico_investimento_saude("dados/government_health_spending_of_total_gov_spending_percent.csv")

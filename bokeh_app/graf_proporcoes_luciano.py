@@ -12,8 +12,6 @@ from bokeh.io import output_file, save
 
 def educacao_por_genero(datapath_homens, datapath_mulheres):
 
-    output_file(".\html\graf_proporsoes.html")
-
     # Dataframe a ser usado
     dataframe_homens = filtro_paises_do_g20(pd.read_csv(datapath_homens), True, "country")
     dataframe_mulheres = filtro_paises_do_g20(pd.read_csv(datapath_mulheres), True, "country")
@@ -121,10 +119,6 @@ def educacao_por_genero(datapath_homens, datapath_mulheres):
     plot.legend.border_line_color = COR_DA_LINHA
     plot.legend.border_line_width = ESPESSURA_DA_LINHA
     plot.legend.border_line_alpha = ALPHA_DA_LINHA
-
-    save(plot)
     
     # A GUI
     return (column(row(button, slider), plot), DESCRICAO_PROPORCAO_HOMENS_MULHERES)
-
-educacao_por_genero("dados/anos_homens_na_escola.csv", "dados/anos_mulheres_na_escola.csv")

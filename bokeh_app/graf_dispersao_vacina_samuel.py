@@ -18,8 +18,6 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
     na área da saúde, a Vacinação de crianças e a Mortalidade Infantil.
     '''
 
-    output_file("./html/graf_vacinas.html")
-
     # Criação de Data Frames "tratados" a partir da utilização da função "reorganiza": 
     df_vacina = reorganiza(datapath_vacinas, "Porcentagem de Vacinação", 1990, 2010)
     df_mortes = reorganiza(datapath_mortes, "Mortes a cada 1000 nascimentos", 1990, 2010)
@@ -78,11 +76,9 @@ def grafico_de_dispersao(datapath_vacinas, datapath_mortes):
 
     descricao = DESCRICAO_DISPERSAO_VACINA
 
-    save(scatter_plot)
+    scatter_plot.sizing_mode = "stretch_width"
 
     return scatter_plot, descricao
-
-grafico_de_dispersao("dados/dtp3_immunized_percent_of_one_year_olds.csv", "dados/child_mortality_0_5_year_olds_dying_per_1000_born.csv")
 
 
 
